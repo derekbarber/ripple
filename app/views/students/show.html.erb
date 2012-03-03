@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First name:</b>
+  <%= @student.first_name %>
+</p>
+
+<p>
+  <b>Family name:</b>
+  <%= @student.family_name %>
+</p>
+
+<p>
+  <b>Family:</b>
+  <%= @student.family_id %>
+</p>
+
+<p>
+  <b>Birthday:</b>
+  <%= @student.birthday %>
+</p>
+
+<p>
+  <b>Gender:</b>
+  <%= @student.gender %>
+</p>
+
+<p>
+  <b>Custom contact details:</b>
+  <%= @student.custom_contact_details %>
+</p>
+
+<p>
+  <b>Street address:</b>
+  <%= @student.street_address %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @student.city %>
+</p>
+
+<p>
+  <b>Postal code:</b>
+  <%= @student.postal_code %>
+</p>
+
+<p>
+  <b>Home phone:</b>
+  <%= @student.home_phone %>
+</p>
+
+<p>
+  <b>Mobile phone:</b>
+  <%= @student.mobile_phone %>
+</p>
+
+<p>
+  <b>Primary email:</b>
+  <%= @student.primary_email %>
+</p>
+
+<p>
+  <b>Secondary email:</b>
+  <%= @student.secondary_email %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @student.notes %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @student.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>

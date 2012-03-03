@@ -1,4 +1,6 @@
 Ripple::Application.routes.draw do
+  resources :students
+
   resources :families
 
   get 'login', to: 'sessions#new', as: 'login'
