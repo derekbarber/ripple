@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Family name:</b>
+  <%= @family.family_name %>
+</p>
+
+<p>
+  <b>Parent names:</b>
+  <%= @family.parent_names %>
+</p>
+
+<p>
+  <b>Street address:</b>
+  <%= @family.street_address %>
+</p>
+
+<p>
+  <b>Postal code:</b>
+  <%= @family.postal_code %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @family.city %>
+</p>
+
+<p>
+  <b>Primary email:</b>
+  <%= @family.primary_email %>
+</p>
+
+<p>
+  <b>Secondary email:</b>
+  <%= @family.secondary_email %>
+</p>
+
+<p>
+  <b>Home phone:</b>
+  <%= @family.home_phone %>
+</p>
+
+<p>
+  <b>Mobile phone:</b>
+  <%= @family.mobile_phone %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @family.notes %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @family.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_family_path(@family) %> |
+<%= link_to 'Back', families_path %>

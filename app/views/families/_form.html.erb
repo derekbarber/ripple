@@ -1,0 +1,21 @@
+<%= simple_form_for(@family) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :family_name %>
+    <%= f.input :parent_names %>
+    <%= f.input :street_address %>
+    <%= f.input :postal_code %>
+    <%= f.input :city %>
+    <%= f.input :primary_email %>
+    <%= f.input :secondary_email %>
+    <%= f.input :home_phone %>
+    <%= f.input :mobile_phone %>
+    <%= f.input :notes %>
+    <%= f.input :status %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
