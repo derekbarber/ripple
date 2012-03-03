@@ -1,80 +1,82 @@
-<p id="notice"><%= notice %></p>
+<h1>Student</h1>
 
 <p>
-  <b>First name:</b>
+  <b>First name</b><br>
   <%= @student.first_name %>
 </p>
 
 <p>
-  <b>Family name:</b>
+  <b>Family name</b><br>
   <%= @student.family_name %>
 </p>
 
 <p>
-  <b>Family:</b>
+  <b>Family</b><br>
   <%= @student.family_id %>
 </p>
 
 <p>
-  <b>Birthday:</b>
+  <b>Birthday</b><br>
   <%= @student.birthday %>
 </p>
 
 <p>
-  <b>Gender:</b>
+  <b>Gender</b><br>
   <%= @student.gender %>
 </p>
 
 <p>
-  <b>Custom contact details:</b>
+  <b>Custom contact details</b><br>
   <%= @student.custom_contact_details %>
 </p>
 
 <p>
-  <b>Street address:</b>
+  <b>Street address</b><br>
   <%= @student.street_address %>
 </p>
 
 <p>
-  <b>City:</b>
+  <b>City</b><br>
   <%= @student.city %>
 </p>
 
 <p>
-  <b>Postal code:</b>
+  <b>Postal code</b><br>
   <%= @student.postal_code %>
 </p>
 
 <p>
-  <b>Home phone:</b>
+  <b>Home phone</b><br>
   <%= @student.home_phone %>
 </p>
 
 <p>
-  <b>Mobile phone:</b>
+  <b>Mobile phone</b><br>
   <%= @student.mobile_phone %>
 </p>
 
 <p>
-  <b>Primary email:</b>
+  <b>Primary email</b><br>
   <%= @student.primary_email %>
 </p>
 
 <p>
-  <b>Secondary email:</b>
+  <b>Secondary email</b><br>
   <%= @student.secondary_email %>
 </p>
 
 <p>
-  <b>Notes:</b>
+  <b>Notes</b><br>
   <%= @student.notes %>
 </p>
 
 <p>
-  <b>Status:</b>
+  <b>Status</b><br>
   <%= @student.status %>
 </p>
 
-
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<div class="form-actions">
+  <%= link_to 'Back', students_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_student_path(@student), :class => 'btn' %>
+  <%= link_to 'Delete', student_path(@student), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

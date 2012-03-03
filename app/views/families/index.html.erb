@@ -1,43 +1,26 @@
-<h1>Listing families</h1>
-
-<table>
-  <tr>
-    <th>Family name</th>
-    <th>Parent names</th>
-    <th>Street address</th>
-    <th>Postal code</th>
-    <th>City</th>
-    <th>Primary email</th>
-    <th>Secondary email</th>
-    <th>Home phone</th>
-    <th>Mobile phone</th>
-    <th>Notes</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @families.each do |family| %>
-  <tr>
-    <td><%= family.family_name %></td>
-    <td><%= family.parent_names %></td>
-    <td><%= family.street_address %></td>
-    <td><%= family.postal_code %></td>
-    <td><%= family.city %></td>
-    <td><%= family.primary_email %></td>
-    <td><%= family.secondary_email %></td>
-    <td><%= family.home_phone %></td>
-    <td><%= family.mobile_phone %></td>
-    <td><%= family.notes %></td>
-    <td><%= family.status %></td>
-    <td><%= link_to 'Show', family %></td>
-    <td><%= link_to 'Edit', edit_family_path(family) %></td>
-    <td><%= link_to 'Destroy', family, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+<h1>Familys</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Family name</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @families.each do |family| %>
+      <tr>
+        <td><%= family.id %></td>
+        <td><%= link_to family.family_name, family_path(family) %></td>
+        <td><%= family.created_at %></td>
+        <td>
+          <%= link_to 'Edit', edit_family_path(family), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', family_path(family), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Family', new_family_path %>
+<%= link_to 'New', new_family_path, :class => 'btn btn-primary' %>

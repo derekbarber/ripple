@@ -1,60 +1,62 @@
-<p id="notice"><%= notice %></p>
+<h1>Family</h1>
 
 <p>
-  <b>Family name:</b>
+  <b>Family name</b><br>
   <%= @family.family_name %>
 </p>
 
 <p>
-  <b>Parent names:</b>
+  <b>Parent names</b><br>
   <%= @family.parent_names %>
 </p>
 
 <p>
-  <b>Street address:</b>
+  <b>Street address</b><br>
   <%= @family.street_address %>
 </p>
 
 <p>
-  <b>Postal code:</b>
+  <b>Postal code</b><br>
   <%= @family.postal_code %>
 </p>
 
 <p>
-  <b>City:</b>
+  <b>City</b><br>
   <%= @family.city %>
 </p>
 
 <p>
-  <b>Primary email:</b>
+  <b>Primary email</b><br>
   <%= @family.primary_email %>
 </p>
 
 <p>
-  <b>Secondary email:</b>
+  <b>Secondary email</b><br>
   <%= @family.secondary_email %>
 </p>
 
 <p>
-  <b>Home phone:</b>
+  <b>Home phone</b><br>
   <%= @family.home_phone %>
 </p>
 
 <p>
-  <b>Mobile phone:</b>
+  <b>Mobile phone</b><br>
   <%= @family.mobile_phone %>
 </p>
 
 <p>
-  <b>Notes:</b>
+  <b>Notes</b><br>
   <%= @family.notes %>
 </p>
 
 <p>
-  <b>Status:</b>
+  <b>Status</b><br>
   <%= @family.status %>
 </p>
 
-
-<%= link_to 'Edit', edit_family_path(@family) %> |
-<%= link_to 'Back', families_path %>
+<div class="form-actions">
+  <%= link_to 'Back', families_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_family_path(@family), :class => 'btn' %>
+  <%= link_to 'Delete', family_path(@family), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

@@ -1,4 +1,6 @@
 class FamiliesController < ApplicationController
+  before_filter :authorize
+
   # GET /families
   # GET /families.json
   def index

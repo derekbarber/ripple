@@ -1,51 +1,26 @@
-<h1>Listing students</h1>
-
-<table>
-  <tr>
-    <th>First name</th>
-    <th>Family name</th>
-    <th>Family</th>
-    <th>Birthday</th>
-    <th>Gender</th>
-    <th>Custom contact details</th>
-    <th>Street address</th>
-    <th>City</th>
-    <th>Postal code</th>
-    <th>Home phone</th>
-    <th>Mobile phone</th>
-    <th>Primary email</th>
-    <th>Secondary email</th>
-    <th>Notes</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @students.each do |student| %>
-  <tr>
-    <td><%= student.first_name %></td>
-    <td><%= student.family_name %></td>
-    <td><%= student.family_id %></td>
-    <td><%= student.birthday %></td>
-    <td><%= student.gender %></td>
-    <td><%= student.custom_contact_details %></td>
-    <td><%= student.street_address %></td>
-    <td><%= student.city %></td>
-    <td><%= student.postal_code %></td>
-    <td><%= student.home_phone %></td>
-    <td><%= student.mobile_phone %></td>
-    <td><%= student.primary_email %></td>
-    <td><%= student.secondary_email %></td>
-    <td><%= student.notes %></td>
-    <td><%= student.status %></td>
-    <td><%= link_to 'Show', student %></td>
-    <td><%= link_to 'Edit', edit_student_path(student) %></td>
-    <td><%= link_to 'Destroy', student, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+<h1>Students</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First name</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.id %></td>
+        <td><%= link_to student.first_name, student_path(student) %></td>
+        <td><%= student.created_at %></td>
+        <td>
+          <%= link_to 'Edit', edit_student_path(student), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', student_path(student), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Student', new_student_path %>
+<%= link_to 'New', new_student_path, :class => 'btn btn-primary' %>
