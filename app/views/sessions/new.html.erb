@@ -1,0 +1,26 @@
+<div class="hero-unit">
+<h1>Sign in</h1>
+
+<p>&nbsp;</p>
+
+<%= form_tag sessions_path, { :class => 'well' } do %>
+  <fieldset>
+    <legend>Enter your account credentials</legend>
+
+    <div>
+      <%= label_tag :username, 'Username:' %>
+      <%= text_field_tag :username, params[:username] %>
+    </div>
+
+    <div>
+      <%= label_tag :name, 'Password:' %>
+      <%= password_field_tag :password, params[:password] %>
+    </div>
+
+    <div class="form-actions">
+      <%= submit_tag "Sign in", :class => 'btn btn-primary' %>
+    </div>
+  </fieldset>
+<% end %>
+
+</div>

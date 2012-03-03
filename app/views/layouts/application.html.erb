@@ -2,13 +2,89 @@
 <html>
 <head>
   <title>Ripple</title>
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-<%= yield %>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">{ Ripple }</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+          <% if current_user %>
+            <li><%= link_to "Manage User", users_path %></li>
+            <li><%= link_to "Sign out", logout_path %></li>
+          <% end %>
+        </ul>
+        <p class="navbar-text pull-right">
+          <% if current_user %>
+            Logged in as <a href="#"><%= current_user.username %></a></p>
+          <% else %>
+
+          <% end %>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <% if current_user %>
+        <div class="well sidebar-nav">
+          <ul class="nav nav-list">
+            <li class="nav-header">Lesson Planning</li>
+            <li><a href="students-pending-schedule.html">Students To Be Scheduled</a></li>
+            <li><a href="tenative-lessons.html">View Tenative Lessons</a></li>
+            <li><a href="view-schedule.html">View Schedule</a></li>
+            <li class="nav-header">Student Management</li>
+            <li><a href="view-families.html">View Families</a></li>
+            <li><a href="add-family.html">Add New Family</a></li>
+            <li><a href="view-students.html">View Students</a></li>
+            <li><a href="add-student.html">Add New Student</a></li>
+            <li class="nav-header">Teacher Management</li>
+            <li><a href="view-teachers.html">View Teachers</a></li>
+            <li><a href="add-teacher.html">Add New Teacher</a></li>
+            <li><a href="view-teacher-schedule.html">View Teacher Schedule</a></li>
+          </ul>
+        </div><!--/.well -->
+      <% end %>
+      &nbsp;
+    </div><!--/span-->
+    <div class="span9">
+
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+          <a class="close" data-dismiss="alert">x</a>
+          <%= msg %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div><!--/span-->
+  </div><!--/row-->
+
+  <hr>
+
+  <footer>
+    <p>&copy; Resound School of Music 2012</p>
+  </footer>
+
+</div><!--/.fluid-container-->
 
 </body>
 </html>
