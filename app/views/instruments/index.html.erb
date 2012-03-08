@@ -1,23 +1,26 @@
-<h1>Listing instruments</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @instruments.each do |instrument| %>
-  <tr>
-    <td><%= instrument.name %></td>
-    <td><%= link_to 'Show', instrument %></td>
-    <td><%= link_to 'Edit', edit_instrument_path(instrument) %></td>
-    <td><%= link_to 'Destroy', instrument, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+<h1>Instruments</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @instruments.each do |instrument| %>
+      <tr>
+        <td><%= instrument.id %></td>
+        <td><%= link_to instrument.name, instrument_path(instrument) %></td>
+        <td><%= instrument.created_at %></td>
+        <td>
+          <%= link_to 'Edit', edit_instrument_path(instrument), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', instrument_path(instrument), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Instrument', new_instrument_path %>
+<%= link_to 'New', new_instrument_path, :class => 'btn btn-primary' %>

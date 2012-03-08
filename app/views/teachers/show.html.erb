@@ -1,0 +1,67 @@
+<h1>Teacher</h1>
+
+<p>
+  <b>First name</b><br>
+  <%= @teacher.first_name %>
+</p>
+
+<p>
+  <b>Family name</b><br>
+  <%= @teacher.family_name %>
+</p>
+
+<p>
+  <b>Gender</b><br>
+  <%= @teacher.gender %>
+</p>
+
+<p>
+  <b>Email</b><br>
+  <%= @teacher.email %>
+</p>
+
+<p>
+  <b>Street address</b><br>
+  <%= @teacher.street_address %>
+</p>
+
+<p>
+  <b>City</b><br>
+  <%= @teacher.city %>
+</p>
+
+<p>
+  <b>Postal code</b><br>
+  <%= @teacher.postal_code %>
+</p>
+
+<p>
+  <b>Home phone</b><br>
+  <%= @teacher.home_phone %>
+</p>
+
+<p>
+  <b>Mobile phone</b><br>
+  <%= @teacher.mobile_phone %>
+</p>
+
+<p>
+  <b>Secondary email</b><br>
+  <%= @teacher.secondary_email %>
+</p>
+
+<p>
+  <b>Notes</b><br>
+  <%= @teacher.notes %>
+</p>
+
+<p>
+  <b>Status</b><br>
+  <%= @teacher.status %>
+</p>
+
+<div class="form-actions">
+  <%= link_to 'Back', teachers_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_teacher_path(@teacher), :class => 'btn' %>
+  <%= link_to 'Delete', teacher_path(@teacher), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

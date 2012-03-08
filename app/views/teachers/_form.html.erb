@@ -1,0 +1,94 @@
+<%= form_for @teacher, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Teacher</legend>
+
+    <div class="control-group">
+      <%= f.label :first_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :first_name, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :family_name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :family_name, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :gender, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :gender, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :email, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :email, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :street_address, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :street_address, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :city, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :city, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :postal_code, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :postal_code, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :home_phone, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :home_phone, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :mobile_phone, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :mobile_phone, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :secondary_email, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :secondary_email, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :notes, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :notes, :class => 'text_area' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :status, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :status, :class => 'number_field' %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', teachers_path, :class => 'btn' %>
+    </div>
+  </fieldset>
+<% end %>

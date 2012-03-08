@@ -1,10 +1,12 @@
-<p id="notice"><%= notice %></p>
+<h1>Instrument</h1>
 
 <p>
-  <b>Name:</b>
+  <b>Name</b><br>
   <%= @instrument.name %>
 </p>
 
-
-<%= link_to 'Edit', edit_instrument_path(@instrument) %> |
-<%= link_to 'Back', instruments_path %>
+<div class="form-actions">
+  <%= link_to 'Back', instruments_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_instrument_path(@instrument), :class => 'btn' %>
+  <%= link_to 'Delete', instrument_path(@instrument), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

@@ -1,11 +1,17 @@
-<%= simple_form_for(@instrument) do |f| %>
-  <%= f.error_notification %>
+<%= form_for @instrument, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Instrument</legend>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-  </div>
+    <div class="control-group">
+      <%= f.label :name, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'text_field' %>
+      </div>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', instruments_path, :class => 'btn' %>
+    </div>
+  </fieldset>
 <% end %>
