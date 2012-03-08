@@ -1,59 +1,58 @@
-<h1>Family</h1>
+<h1>Manage Family: <%= @family.family_name %>, <%= @family.parent_names %></h1>
 
+<p>&nbsp;</p>
+<h4>Address</h4>
 <p>
-  <b>Family name</b><br>
-  <%= @family.family_name %>
-</p>
-
-<p>
-  <b>Parent names</b><br>
-  <%= @family.parent_names %>
-</p>
-
-<p>
-  <b>Street address</b><br>
   <%= @family.street_address %>
+  <%= @family.city %>, BC <%= @family.postal_code %>
 </p>
 
+<p>&nbsp;</p>
+
+<h4>Contact Details</h4>
 <p>
-  <b>Postal code</b><br>
-  <%= @family.postal_code %>
+  <strong>Primary email</strong>:  <%= @family.primary_email %><br>
+  <strong>Secondary email</strong>: <%= @family.secondary_email %><br>
+  <strong>Home phone</strong>: <%= @family.home_phone %><br>
+  <strong>Mobile phone</strong>: <%= @family.mobile_phone %>
 </p>
 
+<h4>Notes</h4>
 <p>
-  <b>City</b><br>
-  <%= @family.city %>
-</p>
-
-<p>
-  <b>Primary email</b><br>
-  <%= @family.primary_email %>
-</p>
-
-<p>
-  <b>Secondary email</b><br>
-  <%= @family.secondary_email %>
-</p>
-
-<p>
-  <b>Home phone</b><br>
-  <%= @family.home_phone %>
-</p>
-
-<p>
-  <b>Mobile phone</b><br>
-  <%= @family.mobile_phone %>
-</p>
-
-<p>
-  <b>Notes</b><br>
-  <%= @family.notes %>
+<%= @family.notes %>
 </p>
 
 <p>
   <b>Status</b><br>
   <%= @family.status %>
 </p>
+
+<h2>Students</h2>
+
+<% if @family.students.count > 0 %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Family Name</th>
+        <th>Student Name</th>
+        <th>Instrument(s)</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @family.students.each do |student| %>
+        <tr>
+          <td><%= student.family_name %></td>
+          <td><%= student.first_name %></td>
+          <td></td>
+          <td><a href="#">Manage Student</a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No students</p>
+<% end %>
 
 <div class="form-actions">
   <%= link_to 'Back', families_path, :class => 'btn'  %>

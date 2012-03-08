@@ -1,4 +1,6 @@
 Ripple::Application.routes.draw do
+  resources :instruments
+
   resources :students
 
   resources :families
