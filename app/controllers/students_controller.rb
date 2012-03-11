@@ -17,6 +17,10 @@ class StudentsController < ApplicationController
   def show
     @student = Student.find(params[:id])
 
+    if @student.family_id > 0
+      @family = Family.find(@student.family_id)
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @student }
@@ -27,6 +31,14 @@ class StudentsController < ApplicationController
   # GET /students/new.json
   def new
     @student = Student.new
+    if params[:family_id]
+      @family = Family.find(params[:family_id])
+      @student.family_id = params[:family_id]
+    else
+      @student.family_id = 0
+    end
+
+    @student.custom_contact_details = false
 
     respond_to do |format|
       format.html # new.html.erb

@@ -1,69 +1,60 @@
-<h1>Student</h1>
+<%= render :partial => 'header' %>
+
+<div class="main-unit">
+
+<h2>Manage Student: <%= @student.first_name %> <%= @student.family_name %></h2>
+
+<br>
 
 <p>
-  <b>First name</b><br>
-  <%= @student.first_name %>
+  <strong>Birthday:</strong> <%= @student.birthday %><br>
+  <strong>Gender:</strong> <%= @student.gender %><br>
 </p>
 
-<p>
-  <b>Family name</b><br>
-  <%= @student.family_name %>
-</p>
 
 <p>
   <b>Family</b><br>
   <%= @student.family_id %>
 </p>
 
-<p>
-  <b>Birthday</b><br>
-  <%= @student.birthday %>
-</p>
+<% if @student.custom_contact_details == true %>
 
-<p>
-  <b>Gender</b><br>
-  <%= @student.gender %>
-</p>
+  <p>
+    <b>Custom contact details</b>
+  </p>
 
-<p>
-  <b>Custom contact details</b><br>
-  <%= @student.custom_contact_details %>
-</p>
+  <p>
+    <b>Street address: </b>
+    <%= @student.street_address %>
+    <br>
+    <b>City: </b>
+    <%= @student.city %>
+    <br>
+    <b>Postal code: </b>
+    <%= @student.postal_code %>
+  </p>
 
-<p>
-  <b>Street address</b><br>
-  <%= @student.street_address %>
-</p>
+  <p>
+    <b>Home phone: </b>
+    <%= @student.home_phone %>
+    <br>
+    <b>Mobile phone: </b>
+    <%= @student.mobile_phone %>
+    <br>
+    <b>Primary email: </b>
+    <%= @student.primary_email %>
+    <br>
+    <b>Secondary email: </b>
+    <%= @student.secondary_email %>
+  </p>
 
-<p>
-  <b>City</b><br>
-  <%= @student.city %>
-</p>
+<% else %>
 
-<p>
-  <b>Postal code</b><br>
-  <%= @student.postal_code %>
-</p>
+  <p>
+    <strong>Contact Details are the same as the family</strong>
+  </p>
 
-<p>
-  <b>Home phone</b><br>
-  <%= @student.home_phone %>
-</p>
-
-<p>
-  <b>Mobile phone</b><br>
-  <%= @student.mobile_phone %>
-</p>
-
-<p>
-  <b>Primary email</b><br>
-  <%= @student.primary_email %>
-</p>
-
-<p>
-  <b>Secondary email</b><br>
-  <%= @student.secondary_email %>
-</p>
+<% end %>
 
 <p>
   <b>Notes</b><br>

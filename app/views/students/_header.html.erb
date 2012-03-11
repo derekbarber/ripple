@@ -1,0 +1,6 @@
+<% if @family %>
+  <div class="main-unit">
+    <p style="float: right"><%= link_to "Return to Manage Family", family_path(@family) %></p>
+    <h3>Manage Family: <%= @family.family_name %>, <%= @family.parent_names %></h3>
+  </div>
+<% end %>

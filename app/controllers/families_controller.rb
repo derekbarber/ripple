@@ -17,7 +17,7 @@ class FamiliesController < ApplicationController
   def show
     @family = Family.find(params[:id])
 
-    @students = @family.students.build
+    #@students = @family.students.build
 
     respond_to do |format|
       format.html # show.html.erb

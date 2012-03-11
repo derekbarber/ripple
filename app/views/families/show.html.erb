@@ -29,7 +29,7 @@
 
 <h2>Students</h2>
 
-<% if @family.students.count > 0 %>
+<% if @family.students.any? %>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -45,7 +45,7 @@
           <td><%= student.family_name %></td>
           <td><%= student.first_name %></td>
           <td></td>
-          <td><a href="#">Manage Student</a></td>
+          <td><%= link_to 'Manage Student', student_path(student), :class => 'btn' %></td>
         </tr>
       <% end %>
     </tbody>
@@ -56,6 +56,7 @@
 
 <div class="form-actions">
   <%= link_to 'Back', families_path, :class => 'btn'  %>
-  <%= link_to 'Edit', edit_family_path(@family), :class => 'btn' %>
-  <%= link_to 'Delete', family_path(@family), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  <%= link_to 'Add Student to Family', new_student_path(:family_id => @family.id), :class => 'btn' %>
+  <%= link_to 'Edit Family', edit_family_path(@family), :class => 'btn' %>
+  <%= link_to 'Delete Family', family_path(@family), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
 </div>

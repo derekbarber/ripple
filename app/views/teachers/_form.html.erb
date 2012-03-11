@@ -1,90 +1,35 @@
-<%= form_for @teacher, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @teacher, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Teacher</legend>
 
     <div class="control-group">
-      <%= f.label :first_name, :class => 'control-label' %>
+      <%= f.label "Name", :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :first_name, :class => 'text_field' %>
+        <%= f.text_field :first_name, :class => 'input-medium', :placeholder => "First Name" %>
+        <%= f.text_field :family_name, :class => 'input-medium', :placeholder => "Family Name" %>
       </div>
     </div>
 
+    <%= f.input :gender, :collection => [ "Male", "Female" ] %>
+
+    <%= f.input :email %>
+
     <div class="control-group">
-      <%= f.label :family_name, :class => 'control-label' %>
+      <%= f.label "Address", :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :family_name, :class => 'text_field' %>
+        <%= f.text_field :street_address, :class => 'input-medium', :placeholder => "Street Address" %>
+        <%= f.text_field :city, :class => 'input-small', :placeholder => "City" %>
+        <%= f.text_field :postal_code, :class => 'input-small', :placeholder => "Postal Code" %>
       </div>
     </div>
 
-    <div class="control-group">
-      <%= f.label :gender, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :gender, :class => 'text_field' %>
-      </div>
-    </div>
+    <%= f.input :home_phone %>
+    <%= f.input :mobile_phone %>
+    <%= f.input :secondary_email %>
 
-    <div class="control-group">
-      <%= f.label :email, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :email, :class => 'text_field' %>
-      </div>
-    </div>
+    <%= f.input :notes, :class => 'input-xlarge', :input_html => { :rows => 5 } %>
 
-    <div class="control-group">
-      <%= f.label :street_address, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :street_address, :class => 'text_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :city, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :city, :class => 'text_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :postal_code, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :postal_code, :class => 'text_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :home_phone, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :home_phone, :class => 'text_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :mobile_phone, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :mobile_phone, :class => 'text_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :secondary_email, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :secondary_email, :class => 'text_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :notes, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_area :notes, :class => 'text_area' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :status, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.number_field :status, :class => 'number_field' %>
-      </div>
-    </div>
+    <%= f.input :status, :collection => { "Prospective" => 0, "Active" => 1, "Inactive" => 2 } %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
