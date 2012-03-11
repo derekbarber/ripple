@@ -1,54 +1,35 @@
-<h1>Teacher</h1>
+<div class="main-unit">
+
+<h1>Manage Teacher: <%= @teacher.first_name %> <%= @teacher.family_name %></h1>
+
+<p>&nbsp;</p>
 
 <p>
-  <b>First name</b><br>
-  <%= @teacher.first_name %>
+  <strong>Gender:</strong> <%= @teacher.gender %><br>
 </p>
 
 <p>
-  <b>Family name</b><br>
-  <%= @teacher.family_name %>
+  <b>Email:</b> <%= @teacher.email %>
 </p>
 
-<p>
-  <b>Gender</b><br>
-  <%= @teacher.gender %>
-</p>
+<p>&nbsp;</p>
+
+<h4>Address</h4>
 
 <p>
-  <b>Email</b><br>
-  <%= @teacher.email %>
+  <%= @teacher.street_address %><br>
+  <%= @teacher.city %>, <%= @teacher.postal_code %>
 </p>
 
-<p>
-  <b>Street address</b><br>
-  <%= @teacher.street_address %>
-</p>
+<p>&nbsp;</p>
 
 <p>
-  <b>City</b><br>
-  <%= @teacher.city %>
+  <b>Home phone:</b> <%= @teacher.home_phone %><br>
+  <b>Mobile phone:</b> <%= @teacher.mobile_phone %><br>
+  <b>Secondary email:</b> <%= @teacher.secondary_email %>
 </p>
 
-<p>
-  <b>Postal code</b><br>
-  <%= @teacher.postal_code %>
-</p>
-
-<p>
-  <b>Home phone</b><br>
-  <%= @teacher.home_phone %>
-</p>
-
-<p>
-  <b>Mobile phone</b><br>
-  <%= @teacher.mobile_phone %>
-</p>
-
-<p>
-  <b>Secondary email</b><br>
-  <%= @teacher.secondary_email %>
-</p>
+<p>&nbsp;</p>
 
 <p>
   <b>Notes</b><br>
