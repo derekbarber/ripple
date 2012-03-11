@@ -1,6 +1,6 @@
 <%= simple_form_for @teacher, :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
-    <legend><%= controller.action_name.capitalize %> Teacher</legend>
+    <legend>General Details</legend>
 
     <div class="control-group">
       <%= f.label "Name", :class => 'control-label' %>
@@ -10,26 +10,30 @@
       </div>
     </div>
 
-    <%= f.input :gender, :collection => [ "Male", "Female" ] %>
+    <%= f.input :gender, :input_html => { :class => 'span2' }, :collection => [ "Male", "Female" ] %>
 
-    <%= f.input :email %>
+    <%= f.input :status, :input_html => { :class => 'span2' }, :collection => { "Prospective" => 0, "Active" => 1, "Inactive" => 2 } %>
+
+    <%= f.input :email, :label => 'Primay Email (Gmail)' %>
+
+    <%= f.input :notes, :input_html => { :class => 'input-xlarge', :rows => 5 } %>
+
+    </legend>
+
+    <legend>Contact Information</legend>
 
     <div class="control-group">
       <%= f.label "Address", :class => 'control-label' %>
       <div class="controls">
         <%= f.text_field :street_address, :class => 'input-medium', :placeholder => "Street Address" %>
-        <%= f.text_field :city, :class => 'input-small', :placeholder => "City" %>
+        <%= f.text_field :city, :class => 'input-medium', :placeholder => "City" %>
         <%= f.text_field :postal_code, :class => 'input-small', :placeholder => "Postal Code" %>
       </div>
     </div>
 
-    <%= f.input :home_phone %>
-    <%= f.input :mobile_phone %>
-    <%= f.input :secondary_email %>
-
-    <%= f.input :notes, :class => 'input-xlarge', :input_html => { :rows => 5 } %>
-
-    <%= f.input :status, :collection => { "Prospective" => 0, "Active" => 1, "Inactive" => 2 } %>
+    <%= f.input :home_phone, :input_html => { :class => 'input-medium' } %>
+    <%= f.input :mobile_phone, :input_html => { :class => 'input-medium' } %>
+    <%= f.input :secondary_email, :input_html => { :class => 'input-large' } %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>

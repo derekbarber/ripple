@@ -12,8 +12,6 @@
   <b>Email:</b> <%= @teacher.email %>
 </p>
 
-<p>&nbsp;</p>
-
 <h4>Address</h4>
 
 <p>
@@ -21,15 +19,11 @@
   <%= @teacher.city %>, <%= @teacher.postal_code %>
 </p>
 
-<p>&nbsp;</p>
-
 <p>
   <b>Home phone:</b> <%= @teacher.home_phone %><br>
   <b>Mobile phone:</b> <%= @teacher.mobile_phone %><br>
   <b>Secondary email:</b> <%= @teacher.secondary_email %>
 </p>
-
-<p>&nbsp;</p>
 
 <p>
   <b>Notes</b><br>
@@ -40,6 +34,21 @@
   <b>Status</b><br>
   <%= @teacher.status %>
 </p>
+
+
+<h2>Instruments</h2>
+
+<% if @teacher.teacher_instrument.any? %>
+
+  <% @teacher.teacher_instrument.each do |instrument| %>
+    <h3><%= instrument.name %></h3>
+  <% end %>
+
+<% else %>
+  <p>No Instruments Yet</p>
+<% end %>
+
+
 
 <div class="form-actions">
   <%= link_to 'Back', teachers_path, :class => 'btn'  %>
