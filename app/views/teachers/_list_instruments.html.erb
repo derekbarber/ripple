@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       <% @teacher.teacher_instrument.each do |teacher_instrument| %>
-        <% instrument = Instrument.find(teacher_instrument.id) %>
+      <% instrument = Instrument.find(teacher_instrument.instrument_id) %>
         <tr>
           <td><%= instrument.name %></td>
           <td><%= teacher_instrument.created_at %></td>
