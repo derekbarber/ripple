@@ -15,6 +15,19 @@ class TeachersController < ApplicationController
   def show
     @teacher = Teacher.find(params[:id])
 
+    @instrument_names = Instrument.all.collect { |instrument| [instrument.name, instrument.id] }
+
+    @teacher_instrument = TeacherInstrument.new
+    @teacher_availability = TeacherAvailability.new
+
+    @teacher_availability.available_surrey = true
+    @teacher_availability.available_whiterock = true
+    @teacher_availability.available_langley = true
+    @teacher_availability.available_aldergrove = true
+    @teacher_availability.available_abbotsford = true
+    @teacher_availability.available_newwest = true
+    @teacher_availability.available_poco = true
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @teacher }

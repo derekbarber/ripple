@@ -1,0 +1,59 @@
+<h1>Listing teacher_availabilities</h1>
+
+<table>
+  <tr>
+    <th>Teacher</th>
+    <th>Day of week</th>
+    <th>Start time</th>
+    <th>End time</th>
+    <th>Custom start location</th>
+    <th>Start address</th>
+    <th>Start city</th>
+    <th>Start postal code</th>
+    <th>Custom end location</th>
+    <th>End address</th>
+    <th>End city</th>
+    <th>End postal code</th>
+    <th>Available surrey</th>
+    <th>Available whiterock</th>
+    <th>Available langley</th>
+    <th>Available aldergrove</th>
+    <th>Available abbotsford</th>
+    <th>Available newwest</th>
+    <th>Available</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @teacher_availabilities.each do |teacher_availability| %>
+  <tr>
+    <td><%= teacher_availability.teacher_id %></td>
+    <td><%= teacher_availability.day_of_week %></td>
+    <td><%= teacher_availability.start_time %></td>
+    <td><%= teacher_availability.end_time %></td>
+    <td><%= teacher_availability.custom_start_location %></td>
+    <td><%= teacher_availability.start_address %></td>
+    <td><%= teacher_availability.start_city %></td>
+    <td><%= teacher_availability.start_postal_code %></td>
+    <td><%= teacher_availability.custom_end_location %></td>
+    <td><%= teacher_availability.end_address %></td>
+    <td><%= teacher_availability.end_city %></td>
+    <td><%= teacher_availability.end_postal_code %></td>
+    <td><%= teacher_availability.available_surrey %></td>
+    <td><%= teacher_availability.available_whiterock %></td>
+    <td><%= teacher_availability.available_langley %></td>
+    <td><%= teacher_availability.available_aldergrove %></td>
+    <td><%= teacher_availability.available_abbotsford %></td>
+    <td><%= teacher_availability.available_newwest %></td>
+    <td><%= teacher_availability.available %></td>
+    <td><%= link_to 'Show', teacher_availability %></td>
+    <td><%= link_to 'Edit', edit_teacher_availability_path(teacher_availability) %></td>
+    <td><%= link_to 'Destroy', teacher_availability, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Teacher availability', new_teacher_availability_path %>

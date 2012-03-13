@@ -1,0 +1,13 @@
+<%= simple_form_for @teacher_instrument, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <div class="control-group">
+    <%= f.hidden_field :teacher_id, :value => @teacher.id %>
+
+    <%= f.input :instrument_id, :label => 'Add new instrument', :collection => @instrument_names %>
+
+    <div class="controls">
+      <%= f.submit "Add Instrument", :class => 'btn btn-small' %>
+    </div>
+  </div>
+
+<% end %>

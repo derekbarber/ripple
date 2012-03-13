@@ -1,0 +1,29 @@
+<%= simple_form_for(@teacher_availability) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :teacher_id %>
+    <%= f.input :day_of_week %>
+    <%= f.input :start_time %>
+    <%= f.input :end_time %>
+    <%= f.input :custom_start_location %>
+    <%= f.input :start_address %>
+    <%= f.input :start_city %>
+    <%= f.input :start_postal_code %>
+    <%= f.input :custom_end_location %>
+    <%= f.input :end_address %>
+    <%= f.input :end_city %>
+    <%= f.input :end_postal_code %>
+    <%= f.input :available_surrey %>
+    <%= f.input :available_whiterock %>
+    <%= f.input :available_langley %>
+    <%= f.input :available_aldergrove %>
+    <%= f.input :available_abbotsford %>
+    <%= f.input :available_newwest %>
+    <%= f.input :available %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

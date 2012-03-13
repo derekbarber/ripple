@@ -1,6 +1,7 @@
 <div class="main-unit">
 
-<h1>Manage Teacher: <%= @teacher.first_name %> <%= @teacher.family_name %></h1>
+<h2>Manage Teacher</h2>
+<h3><%= @teacher.first_name %> <%= @teacher.family_name %> (<%= @teacher.status == 1 ? "Active": "Inactive" %>)</h3>
 
 <p>&nbsp;</p>
 
@@ -30,28 +31,27 @@
   <%= @teacher.notes %>
 </p>
 
-<p>
-  <b>Status</b><br>
-  <%= @teacher.status %>
-</p>
-
-
-<h2>Instruments</h2>
-
-<% if @teacher.teacher_instrument.any? %>
-
-  <% @teacher.teacher_instrument.each do |instrument| %>
-    <h3><%= instrument.name %></h3>
-  <% end %>
-
-<% else %>
-  <p>No Instruments Yet</p>
-<% end %>
-
-
-
 <div class="form-actions">
   <%= link_to 'Back', teachers_path, :class => 'btn'  %>
   <%= link_to 'Edit', edit_teacher_path(@teacher), :class => 'btn' %>
   <%= link_to 'Delete', teacher_path(@teacher), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
 </div>
+
+</div>
+
+<div class="main-unit">
+
+  <%= render :partial => 'list_instruments' %>
+
+  <%= render :partial => 'add_instrument' %>
+
+</div>
+
+<div class="main-unit">
+
+  <%= render :partial => 'list_availability' %>
+
+  <%= render :partial => 'add_availability' %>
+
+</div>
+

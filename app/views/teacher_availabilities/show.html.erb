@@ -1,0 +1,100 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Teacher:</b>
+  <%= @teacher_availability.teacher_id %>
+</p>
+
+<p>
+  <b>Day of week:</b>
+  <%= @teacher_availability.day_of_week %>
+</p>
+
+<p>
+  <b>Start time:</b>
+  <%= @teacher_availability.start_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @teacher_availability.end_time %>
+</p>
+
+<p>
+  <b>Custom start location:</b>
+  <%= @teacher_availability.custom_start_location %>
+</p>
+
+<p>
+  <b>Start address:</b>
+  <%= @teacher_availability.start_address %>
+</p>
+
+<p>
+  <b>Start city:</b>
+  <%= @teacher_availability.start_city %>
+</p>
+
+<p>
+  <b>Start postal code:</b>
+  <%= @teacher_availability.start_postal_code %>
+</p>
+
+<p>
+  <b>Custom end location:</b>
+  <%= @teacher_availability.custom_end_location %>
+</p>
+
+<p>
+  <b>End address:</b>
+  <%= @teacher_availability.end_address %>
+</p>
+
+<p>
+  <b>End city:</b>
+  <%= @teacher_availability.end_city %>
+</p>
+
+<p>
+  <b>End postal code:</b>
+  <%= @teacher_availability.end_postal_code %>
+</p>
+
+<p>
+  <b>Available surrey:</b>
+  <%= @teacher_availability.available_surrey %>
+</p>
+
+<p>
+  <b>Available whiterock:</b>
+  <%= @teacher_availability.available_whiterock %>
+</p>
+
+<p>
+  <b>Available langley:</b>
+  <%= @teacher_availability.available_langley %>
+</p>
+
+<p>
+  <b>Available aldergrove:</b>
+  <%= @teacher_availability.available_aldergrove %>
+</p>
+
+<p>
+  <b>Available abbotsford:</b>
+  <%= @teacher_availability.available_abbotsford %>
+</p>
+
+<p>
+  <b>Available newwest:</b>
+  <%= @teacher_availability.available_newwest %>
+</p>
+
+<p>
+  <b>Available:</b>
+  <%= @teacher_availability.available %>
+</p>
+
+
+<%= link_to 'Edit', edit_teacher_availability_path(@teacher_availability) %> |
+<%= link_to 'Back', teacher_availabilities_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120311203342) do
+ActiveRecord::Schema.define(:version => 20120313043437) do
 
   create_table "families", :force => true do |t|
     t.string   "family_name"
@@ -61,6 +61,30 @@ ActiveRecord::Schema.define(:version => 20120311203342) do
     t.integer  "status"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+  end
+
+  create_table "teacher_availabilities", :force => true do |t|
+    t.integer  "teacher_id"
+    t.string   "day_of_week"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.boolean  "custom_start_location"
+    t.string   "start_address"
+    t.string   "start_city"
+    t.string   "start_postal_code"
+    t.boolean  "custom_end_location"
+    t.string   "end_address"
+    t.string   "end_city"
+    t.string   "end_postal_code"
+    t.boolean  "available_surrey"
+    t.boolean  "available_whiterock"
+    t.boolean  "available_langley"
+    t.boolean  "available_aldergrove"
+    t.boolean  "available_abbotsford"
+    t.boolean  "available_newwest"
+    t.boolean  "available_poco"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "teacher_instruments", :force => true do |t|

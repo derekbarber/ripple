@@ -1,0 +1,55 @@
+<h3>Teacher Availability</h3>
+
+<% if @teacher.teacher_availability.any? %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Start Location</th>
+        <th>End Location</th>
+        <th>Availability</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @teacher.teacher_availability.each do |availability| %>
+        <tr>
+          <td><%= availability.day_of_week %></td>
+          <td><%= availability.start_time.to_s(:time) %> - <%= availability.end_time.to_s(:time) %></td>
+          <td>
+            <% if availability.custom_start_location %>
+              <%= availability.start_address %><br><%= availability.start_city %> <%= availability.start_postal_code %>
+            <% else %>
+              Home Location
+            <% end %>
+          </td>
+          <td>
+            <% if availability.custom_end_location %>
+              <%= availability.end_address %><br><%= availability.end_city %> <%= availability.end_postal_code %>
+            <% else %>
+              Home Location
+            <% end %>
+          </td>
+          <td>
+            <%= 'Surrey' if availability.available_surrey %>
+            <%= 'White Rock' if availability.available_whiterock %>
+            <%= 'Langley' if availability.available_langley %>
+            <%= 'Aldergrove' if availability.available_aldergrove %>
+            <br>
+            <%= 'Abbotsford' if availability.available_abbotsford %>
+            <%= 'New Westminster' if availability.available_newwest %>
+            <%= 'Port Coquitlam' if availability.available_poco %>
+          </td>
+          <td>
+            <%= link_to 'Destroy', teacher_availability_path(availability), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  <p>No Availability Defined Yet</p>
+<% end %>

@@ -1,5 +1,8 @@
 Ripple::Application.routes.draw do
+  resources :teacher_availabilities
+
   resources :teachers
+  resources :teacher_instruments
 
   resources :instruments
 
