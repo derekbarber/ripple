@@ -2,6 +2,21 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Student</legend>
 
+    <% if @student.family_id > 0 %>
+      <%= f.hidden_field :family_id %>
+    <% else %>
+      <div class="control-group">
+        <label class="control-label" >Is this student part<br> of a family?</label>
+        <div class="controls">
+          <select>
+            <option>No</option>
+            <option>Yes</option>
+          </select>
+        </div>
+      </div>
+      <input type="hidden" name="family_id" value="0">
+    <% end %>
+
     <div class="control-group">
       <%= f.label "Name", :class => 'control-label' %>
       <div class="controls">
@@ -10,20 +25,16 @@
       </div>
     </div>
 
-    <% if @family %>
-    <%= f.hidden_field :family_id %>
-    <% end %>
-
     <div class="control-group">
       <%= f.label :birthday, :class => 'control-label' %>
       <div class="controls">
-        <%= f.date_select :birthday, :class => 'date_select' %>
+        <%= f.date_select :birthday, { :start_year => 1950, :end_year => Time.now.year - 4 }, { :class => 'span2' } %>
       </div>
     </div>
 
-    <%= f.input :gender, :collection => [ "Male", "Female" ] %>
+    <%= f.input :gender, :collection => [ "Male", "Female" ], :selected => "Male" %>
 
-    <%= f.input :custom_contact_details, :collection => { 'Same as family' => false, 'Custom' => true }, :priority => [ "Custom" ] %>
+    <%= f.input :custom_contact_details, :collection => { 'Same as family' => false, 'Custom' => true }, :selected => false %>
 
     <div id="custom-address" style="display: none;">
 
@@ -49,11 +60,15 @@
 
     <%= f.input :notes, :class => 'input-xlarge', :input_html => { :rows => 5 } %>
 
-    <%= f.input :status, :collection => { "Active Prospect" => 0, "Customer" => 1, "Nurture Prospect" => 2, "Inactive Prospect" => 3 } %>
+    <% if @student.family_id > 0 %>
+      <%= f.input :status, :collection => { "Active" => 0, "Inactive" => 1 }, :selected => 0 %>
+    <% else %>
+      <%= f.input :status, :collection => { "Active Prospect" => 0, "Customer" => 1, "Nurture Prospect" => 2, "Inactive Prospect" => 3 }, :selected => 0 %>
+    <% end %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', students_path, :class => 'btn' %>
+      <%= link_to 'Cancel', @student, :class => 'btn' %>
     </div>
 
   </fieldset>

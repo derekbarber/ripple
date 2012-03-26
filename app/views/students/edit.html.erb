@@ -1,1 +1,21 @@
+<% if @student.family_id > 0 %>
+
+  <div class="page-header">
+    <h1>Edit Student</h1>
+    <h3><%= @student.first_name %> <%= @student.family_name %></h3>
+    <h5>Family: <%= @family.parent_names %> <%= @family.family_name %></h5>
+  </div>
+
+<% else %>
+
+  <div class="page-header">
+    <h1>Edit Student</h1>
+    <h3><%= @student.first_name %> <%= @student.family_name %></h3>
+  </div>
+
+<% end %>
+
+<div class="content-clear"></div>
+
+
 <%= render :partial => 'form' %>

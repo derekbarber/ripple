@@ -1,50 +1,33 @@
 <%= render :partial => 'header' %>
 
-<div class="main-unit">
 
-<h2>Manage Student: <%= @student.first_name %> <%= @student.family_name %></h2>
-
-<br>
+<div class="content-box">
 
 <p>
   <strong>Birthday:</strong> <%= @student.birthday %><br>
   <strong>Gender:</strong> <%= @student.gender %><br>
 </p>
 
-<p>
-  <b>Family</b><br>
-  <%= @student.family_id %>
-</p>
 
 <% if @student.custom_contact_details == true %>
 
   <p>
-    <b>Custom contact details</b>
+    <b>Student Address</b>
   </p>
 
   <p>
-    <b>Street address: </b>
-    <%= @student.street_address %>
-    <br>
-    <b>City: </b>
-    <%= @student.city %>
-    <br>
-    <b>Postal code: </b>
-    <%= @student.postal_code %>
+    <%= @student.street_address %><br>
+    <%= @student.city %>, BC <%= @student.postal_code %>
   </p>
 
+  <br>
+
+  <h3>Student Contact Details</h3>
   <p>
-    <b>Home phone: </b>
-    <%= @student.home_phone %>
-    <br>
-    <b>Mobile phone: </b>
-    <%= @student.mobile_phone %>
-    <br>
-    <b>Primary email: </b>
-    <%= @student.primary_email %>
-    <br>
-    <b>Secondary email: </b>
-    <%= @student.secondary_email %>
+    <strong>Primary email</strong>:  <%= @student.primary_email %><br>
+    <strong>Secondary email</strong>: <%= @student.secondary_email %><br>
+    <strong>Home phone</strong>: <%= @student.home_phone %><br>
+    <strong>Mobile phone</strong>: <%= @student.mobile_phone %>
   </p>
 
 <% else %>
@@ -55,18 +38,46 @@
 
 <% end %>
 
+</div>
+
+<div class="content-box well">
+
+<h3>Notes</h3>
 <p>
-  <b>Notes</b><br>
-  <%= @student.notes %>
+<%= @student.notes %>
 </p>
 
+<br>
+
+
 <p>
-  <b>Status</b><br>
-  <%= @student.status %>
+  <b>Status:</b>
+  <%= @student.status_text %>
 </p>
+
+</div>
+
+<div class="content-clear"></div>
+
+
+<div class="main-unit">
+
+  <%= render :partial => 'list_instruments' %>
+
+  <%= render :partial => 'add_instrument' %>
+
+</div>
+
+<div class="main-unit">
+
+  <%= render :partial => 'list_availability' %>
+
+  <%= render :partial => 'add_availability' %>
+
+</div>
+
 
 <div class="form-actions">
-  <%= link_to 'Back', students_path, :class => 'btn'  %>
-  <%= link_to 'Edit', edit_student_path(@student), :class => 'btn' %>
-  <%= link_to 'Delete', student_path(@student), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  <%= link_to 'Delete Student', student_path(@student), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
 </div>
+

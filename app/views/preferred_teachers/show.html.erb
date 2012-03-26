@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Student instrument:</b>
+  <%= @preferred_teacher.student_instrument_id %>
+</p>
+
+<p>
+  <b>Teacher:</b>
+  <%= @preferred_teacher.teacher_id %>
+</p>
+
+<p>
+  <b>Order of preference:</b>
+  <%= @preferred_teacher.order_of_preference %>
+</p>
+
+
+<%= link_to 'Edit', edit_preferred_teacher_path(@preferred_teacher) %> |
+<%= link_to 'Back', preferred_teachers_path %>

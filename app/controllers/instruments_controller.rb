@@ -44,7 +44,7 @@ class InstrumentsController < ApplicationController
 
     respond_to do |format|
       if @instrument.save
-        format.html { redirect_to @instrument, notice: 'Instrument was successfully created.' }
+        format.html { redirect_to instruments_url, notice: 'Instrument was successfully created.' }
         format.json { render json: @instrument, status: :created, location: @instrument }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class InstrumentsController < ApplicationController
 
     respond_to do |format|
       if @instrument.update_attributes(params[:instrument])
-        format.html { redirect_to @instrument, notice: 'Instrument was successfully updated.' }
+        format.html { redirect_to instruments_url, notice: 'Instrument was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -1,23 +1,21 @@
 <h3>Instruments</h3>
 
-<% if @teacher.teacher_instrument.any? %>
+<% if @teacher.teacher_instruments.any? %>
 
   <table class="table table-striped">
     <thead>
       <tr>
         <th>Instrument</th>
-        <th>Assigned</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <% @teacher.teacher_instrument.each do |teacher_instrument| %>
+      <% @teacher.teacher_instruments.each do |teacher_instrument| %>
       <% instrument = Instrument.find(teacher_instrument.instrument_id) %>
         <tr>
           <td><%= instrument.name %></td>
-          <td><%= teacher_instrument.created_at %></td>
           <td>
-            <%= link_to 'Destroy', teacher_instrument_path(teacher_instrument), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+            <%= link_to 'Remove', teacher_instrument_path(teacher_instrument), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
           </td>
         </tr>
       <% end %>

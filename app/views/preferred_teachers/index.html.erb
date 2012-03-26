@@ -1,0 +1,27 @@
+<h1>Listing preferred_teachers</h1>
+
+<table>
+  <tr>
+    <th>Student instrument</th>
+    <th>Teacher</th>
+    <th>Order of preference</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @preferred_teachers.each do |preferred_teacher| %>
+  <tr>
+    <td><%= preferred_teacher.student_instrument_id %></td>
+    <td><%= preferred_teacher.teacher_id %></td>
+    <td><%= preferred_teacher.order_of_preference %></td>
+    <td><%= link_to 'Show', preferred_teacher %></td>
+    <td><%= link_to 'Edit', edit_preferred_teacher_path(preferred_teacher) %></td>
+    <td><%= link_to 'Destroy', preferred_teacher, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Preferred teacher', new_preferred_teacher_path %>

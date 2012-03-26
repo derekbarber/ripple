@@ -1,6 +1,29 @@
-<% if @family %>
-  <div class="main-unit">
-    <p style="float: right"><%= link_to "Return to Manage Family", family_path(@family) %></p>
-    <h3>Manage Family: <%= @family.family_name %>, <%= @family.parent_names %></h3>
+<% if @student.family_id > 0 %>
+
+  <div class="controls-box" style="padding: 20px;">
+    <%= link_to 'Edit Student', edit_student_path(@student), :class => 'btn' %>
+    <%= link_to 'Return to Family Details', family_path(@family), :class => 'btn' %>
   </div>
+
+  <div class="page-header">
+    <h1>Manage Student</h1>
+    <h3><%= @student.first_name %> <%= @student.family_name %></h3>
+    <h5>Family: <%= @family.parent_names %> <%= @family.family_name %></h5>
+
+  </div>
+
+<% else%>
+
+  <div class="controls-box" style="padding: 20px;">
+    <%= link_to 'Back to Student Listing', students_path, :class => 'btn'  %>
+    <%= link_to 'Edit Student', edit_student_path(@student), :class => 'btn' %>
+  </div>
+
+  <div class="page-header">
+    <h1>Manage Student</h1>
+    <h3><%= @student.first_name %> <%= @student.family_name %></h3>
+  </div>
+
 <% end %>
+
+<div class="content-clear"></div>

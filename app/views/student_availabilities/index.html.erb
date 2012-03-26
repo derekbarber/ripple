@@ -1,0 +1,33 @@
+<h1>Listing student_availabilities</h1>
+
+<table>
+  <tr>
+    <th>Student</th>
+    <th>Day of week</th>
+    <th>Start time</th>
+    <th>End time</th>
+    <th>Preferred time</th>
+    <th>Order of preference</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @student_availabilities.each do |student_availability| %>
+  <tr>
+    <td><%= student_availability.student_id %></td>
+    <td><%= student_availability.day_of_week %></td>
+    <td><%= student_availability.start_time %></td>
+    <td><%= student_availability.end_time %></td>
+    <td><%= student_availability.preferred_time %></td>
+    <td><%= student_availability.order_of_preference %></td>
+    <td><%= link_to 'Show', student_availability %></td>
+    <td><%= link_to 'Edit', edit_student_availability_path(student_availability) %></td>
+    <td><%= link_to 'Destroy', student_availability, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Student availability', new_student_availability_path %>

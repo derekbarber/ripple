@@ -27,11 +27,11 @@
 
     <%= f.input :notes, :class => 'input-xlarge', :input_html => { :rows => 5 } %>
 
-    <%= f.input :status, :collection => ["Active Prospect", "Customer", "Nurture Prospect", "Inactive Prospect"] %>
+    <%= f.input :status, :collection => {"Active Prospect" => 0, "Customer" => 1, "Nurture Prospect" => 2, "Inactive Prospect" => 3}, :selected => 1 %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', families_path, :class => 'btn' %>
+      <%= link_to 'Cancel', @family, :class => 'btn' %>
     </div>
   </fieldset>
 <% end %>

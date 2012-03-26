@@ -53,20 +53,20 @@
               <li><a href="#">View Schedule</a></li>
               <li class="nav-header">Student Management</li>
               <li <%= current_page?(families_path) ? "class='active'" : '' %>>
-                <%= link_to "Manage Familes", families_path %>
+                <%= link_to "List Familes", families_path %>
               </li>
               <li <%= current_page?(new_family_path) ? "class='active'" : '' %>>
                 <%= link_to "Add New Family", new_family_path %>
               </li>
               <li <%= current_page?(students_path) ? "class='active'" : '' %>>
-                <%= link_to "Manage Students", students_path %>
+                <%= link_to "List Students", students_path %>
               </li>
               <li <%= current_page?(new_student_path) ? "class='active'" : '' %>>
                 <%= link_to "Add New Student", new_student_path %>
               </li>
               <li class="nav-header">Teacher Management</li>
               <li <%= current_page?(teachers_path) ? "class='active'" : '' %>>
-                <%= link_to "Manage Teachers", teachers_path %>
+                <%= link_to "List Teachers", teachers_path %>
               </li>
               <li <%= current_page?(new_teacher_path) ? "class='active'" : '' %>>
                 <%= link_to "Add New Teacher", new_teacher_path %>
@@ -112,6 +112,8 @@
   <footer>
     <p>&copy; Resound School of Music 2012</p>
   </footer>
+
+<%= debug(params) if Rails.env.development? %>
 
 </div><!--/.fluid-container-->
 

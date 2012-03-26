@@ -1,0 +1,32 @@
+<h3>Student Availability</h3>
+
+<% if @student.student_availability.any? %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Preferred Time?</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @student.student_availability.each do |availability| %>
+        <tr>
+          <td><%= availability.day_of_week %></td>
+          <td><%= availability.start_time.to_s(:time) %> - <%= availability.end_time.to_s(:time) %></td>
+          <td><%= availability.preferred_time? ? 'Yes' : 'No' %>
+          </td>
+          <td>
+            <%= link_to 'Edit', teacher_availability_path(availability), :class => 'btn btn-mini' %>
+            <%= link_to 'Delete', teacher_availability_path(availability), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  <p>No Availabilities Defined Yet</p>
+<% end %>

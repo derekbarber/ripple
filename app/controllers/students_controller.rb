@@ -4,7 +4,7 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
+    @students = Student.all(:order => "family_name")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,6 +16,13 @@ class StudentsController < ApplicationController
   # GET /students/1.json
   def show
     @student = Student.find(params[:id])
+
+    @instruments = Instrument.all
+    @instrument_names = Instrument.all.collect { |instrument| [instrument.name, instrument.id] }
+
+    @student_instrument = StudentInstrument.new
+    @student_availability = StudentAvailability.new
+    @preferred_teacher = PreferredTeacher.new
 
     if @student.family_id > 0
       @family = Family.find(@student.family_id)
@@ -49,6 +56,11 @@ class StudentsController < ApplicationController
   # GET /students/1/edit
   def edit
     @student = Student.find(params[:id])
+
+    if @student.family_id > 0
+      @family = Family.find(@student.family_id)
+    end
+
   end
 
   # POST /students

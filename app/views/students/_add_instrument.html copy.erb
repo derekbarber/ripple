@@ -1,0 +1,37 @@
+<h4>Add Instrument</h4>
+<%= simple_form_for @student_instrument, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <div class="control-group">
+    <%= f.hidden_field :student_id, :value => @student.id %>
+
+    <%= f.input :instrument_id, :label => 'Add new instrument', :collection => @instrument_names %>
+
+    <% @instruments.each do |instrument| %>
+      <% @teachers = instrument.teachers %>
+      <div class="control-group preferred_teachers" id="<%= instrument.name %>_teacher" style="display: none;">
+        <label class="control-label" >Preferred <%= instrument.name %> Teacher</label>
+        <div class="controls">
+          <select name="preferred_teacher[<%= instrument.id %>]">
+            <% @teachers.each do |teacher| %>
+            <option value="<%= teacher.id %>"><%= teacher.first_name + ' ' + teacher.family_name %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+    <% end %>
+
+    <script>
+      $('#student_instrument_instrument_id').change(function () {
+        var selectedVal = $('#student_instrument_instrument_id').val();
+        var selectedText = $('#student_instrument_instrument_id option[value=' + selectedVal + ']').text();
+        $('.preferred_teachers').hide();
+        $('#' + selectedText + '_teacher').show();
+      });
+    </script>
+
+    <div class="controls">
+      <%= f.submit "Add Instrument", :class => 'btn btn-small' %>
+    </div>
+  </div>
+
+<% end %>

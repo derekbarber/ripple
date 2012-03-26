@@ -1,0 +1,13 @@
+<%= simple_form_for(@preferred_teacher) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :student_instrument_id %>
+    <%= f.input :teacher_id %>
+    <%= f.input :order_of_preference %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

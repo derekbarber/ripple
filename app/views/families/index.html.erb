@@ -2,25 +2,31 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>ID</th>
       <th>Family name</th>
-      <th>Created at</th>
+      <th>Parent name(s)</th>
+      <th>Student name(s)</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @families.each do |family| %>
       <tr>
-        <td><%= family.id %></td>
         <td><%= link_to family.family_name, family_path(family) %></td>
-        <td><%= family.created_at %></td>
+        <td><%= link_to family.parent_names, family_path(family) %></td>
         <td>
+          <% if family.students.any? %>
+          <%=  family.students.map{|s| s.first_name}.join(", ") %>
+          <% else %>
+            No students yet
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Manage', family, :class => 'btn btn-mini' %>
           <%= link_to 'Edit', edit_family_path(family), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', family_path(family), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'New', new_family_path, :class => 'btn btn-primary' %>
+<%= link_to 'New Family', new_family_path, :class => 'btn btn-primary' %>

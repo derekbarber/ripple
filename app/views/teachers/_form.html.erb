@@ -10,11 +10,11 @@
       </div>
     </div>
 
-    <%= f.input :gender, :input_html => { :class => 'span2' }, :collection => [ "Male", "Female" ] %>
+    <%= f.input :gender, :input_html => { :class => 'span2' }, :collection => [ "Male", "Female" ], :selected => "Male" %>
 
-    <%= f.input :status, :input_html => { :class => 'span2' }, :collection => { "Prospective" => 0, "Active" => 1, "Inactive" => 2 } %>
+    <%= f.input :status, :input_html => { :class => 'span2' }, :collection => { "Prospective" => 0, "Active" => 1, "Inactive" => 2 }, :selected => 1 %>
 
-    <%= f.input :email, :label => 'Primay Email (Gmail)' %>
+    <%= f.input :email, :label => 'Resound Email' %>
 
     <%= f.input :notes, :input_html => { :class => 'input-xlarge', :rows => 5 } %>
 
@@ -31,13 +31,13 @@
       </div>
     </div>
 
-    <%= f.input :home_phone, :input_html => { :class => 'input-medium' } %>
-    <%= f.input :mobile_phone, :input_html => { :class => 'input-medium' } %>
-    <%= f.input :secondary_email, :input_html => { :class => 'input-large' } %>
+    <%= f.input :home_phone, :as => :tel, :input_html => { :class => 'input-medium' } %>
+    <%= f.input :mobile_phone, :as => :tel, :input_html => { :class => 'input-medium' } %>
+    <%= f.input :secondary_email, :as => :email, :label => "Primary Contact Email", :input_html => { :class => 'input-large' } %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', teachers_path, :class => 'btn' %>
+      <%= link_to 'Cancel', @teacher, :class => 'btn' %>
     </div>
   </fieldset>
 <% end %>

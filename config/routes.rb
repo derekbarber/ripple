@@ -1,4 +1,8 @@
 Ripple::Application.routes.draw do
+  resources :preferred_teachers
+
+  resources :student_availabilities
+
   resources :teacher_availabilities
 
   resources :teachers
@@ -7,6 +11,7 @@ Ripple::Application.routes.draw do
   resources :instruments
 
   resources :students
+  resources :student_instruments
 
   resources :families
 

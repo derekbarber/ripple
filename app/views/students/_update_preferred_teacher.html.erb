@@ -1,0 +1,39 @@
+
+<div class="control-group">
+
+  <% @preferred_teachers = student_instrument.preferred_teachers %>
+  <% @teachers = instrument.teachers %>
+  <% if @preferred_teachers.any? %>
+
+    <% @preferred_teachers.each do |preferred_teacher| %>
+
+      <%= simple_form_for preferred_teacher, :html => { :class => 'form-inline' } do |f| %>
+
+        <select name="preferred_teacher[teacher_id]" id="teacher_id">
+          <% @teachers.each do |teacher| %>
+            <% if teacher.id == preferred_teacher.teacher_id %>
+              <option selected="selected" value="<%= teacher.id %>"><%= teacher.first_name + ' ' + teacher.family_name %></option>
+            <% else %>
+              <option value="<%= teacher.id %>"><%= teacher.first_name + ' ' + teacher.family_name %></option>
+            <% end %>
+          <% end %>
+        </select>
+
+        <%= f.submit "Update", :class => 'btn btn-small' %>
+      <% end %>
+    <% end %>
+  <% else %>
+
+    <%= simple_form_for @preferred_teacher, :html => { :class => 'form-inline' } do |f| %>
+      <%= f.hidden_field :student_instrument_id, :value => student_instrument.id %>
+      <select name="preferred_teacher_teacher_id" id="teacher_id">
+        <option value="0">-- No preferred teacher --</option>
+        <% @teachers.each do |teacher| %>
+          <option value="<%= teacher.id %>"><%= teacher.first_name + ' ' + teacher.family_name %></option>
+        <% end %>
+      </select>
+
+      <%= f.submit "Add", :class => 'btn btn-small' %>
+    <% end %>
+  <% end %>
+</div>

@@ -6,12 +6,11 @@
 
   <%= f.hidden_field :teacher_id, :value => @teacher.id %>
 
-  <%= f.input :day_of_week, :input_html => { :class => 'span2' }, :collection => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ] %>
+  <%= f.input :day_of_week, :input_html => { :class => 'span2' }, :collection => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ], :selected => 'Monday' %>
 
-  <%= f.input :start_time, :as => :time, :input_html => { :class => 'span2' }, :minute_step => 15 %>
+  <%= f.input :start_time, :as => :time, :ampm => true, :input_html => { :class => 'span2' }, :minute_step => 5, :selected => 00 %>
 
-  <%= f.input :end_time, :as => :time, :input_html => { :class => 'span2' }, :minute_step => 15 %>
-
+  <%= f.input :end_time, :as => :time, :ampm => true, :input_html => { :class => 'span2' }, :minute_step => 5, :selected => 00 %>
 
   <%= f.input :custom_start_location, :label => "Start Location", :collection => { 'Home' => false, 'Custom Location' => true }, :selected => false %>
 

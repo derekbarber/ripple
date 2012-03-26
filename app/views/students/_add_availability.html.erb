@@ -1,0 +1,19 @@
+<hr>
+
+<h3>Add New Availability</h3>
+
+<%= simple_form_for @student_availability, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <%= f.hidden_field :student_id, :value => @student.id %>
+
+  <%= f.input :day_of_week, :input_html => { :class => 'span2' }, :collection => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ], :selected => 'Monday' %>
+
+  <%= f.input :start_time, :as => :time, :ampm => true, :input_html => { :class => 'span2' }, :minute_step => 15 %>
+
+  <%= f.input :end_time, :as => :time, :ampm => true, :input_html => { :class => 'span2' }, :minute_step => 15 %>
+
+  <%= f.input :preferred_time, :as => :boolean  %>
+
+  <%= f.submit "Add new availability", :class => 'btn btn-small' %>
+
+<% end %>

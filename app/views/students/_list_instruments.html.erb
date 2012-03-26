@@ -1,0 +1,31 @@
+<h3>Instruments</h3>
+
+<% if @student.student_instrument.any? %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Instrument</th>
+        <th>Preferred Teachers</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @student.student_instrument.each do |student_instrument| %>
+      <% instrument = Instrument.find(student_instrument.instrument_id) %>
+        <tr>
+          <td><%= instrument.name %></td>
+          <td>
+            <%= render :partial => 'update_preferred_teacher', :locals => {:instrument => instrument, :student_instrument => student_instrument} %>
+          </td>
+          <td>
+            <%= link_to 'Remove', student_instrument_path(student_instrument), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  <p>No Instruments Yet</p>
+<% end %>

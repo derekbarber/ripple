@@ -1,99 +1,98 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Teacher:</b>
-  <%= @teacher_availability.teacher_id %>
-</p>
+<hr>
 
-<p>
-  <b>Day of week:</b>
-  <%= @teacher_availability.day_of_week %>
-</p>
+<h3>Update Availability</h3>
 
-<p>
-  <b>Start time:</b>
-  <%= @teacher_availability.start_time %>
-</p>
+<%= simple_form_for @teacher_availability, :html => { :class => 'form-horizontal' } do |f| %>
 
-<p>
-  <b>End time:</b>
-  <%= @teacher_availability.end_time %>
-</p>
+  <%= f.input :day_of_week, :input_html => { :class => 'span2' }, :collection => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ], :selected => 'Monday' %>
 
-<p>
-  <b>Custom start location:</b>
-  <%= @teacher_availability.custom_start_location %>
-</p>
+  <%= f.input :start_time, :as => :time, :ampm => true, :input_html => { :class => 'span2' }, :minute_step => 5, :selected => 00 %>
 
-<p>
-  <b>Start address:</b>
-  <%= @teacher_availability.start_address %>
-</p>
+  <%= f.input :end_time, :as => :time, :ampm => true, :input_html => { :class => 'span2' }, :minute_step => 5, :selected => 00 %>
 
-<p>
-  <b>Start city:</b>
-  <%= @teacher_availability.start_city %>
-</p>
+  <%= f.input :custom_start_location, :label => "Start Location", :collection => { 'Home' => false, 'Custom Location' => true }, :selected => false %>
 
-<p>
-  <b>Start postal code:</b>
-  <%= @teacher_availability.start_postal_code %>
-</p>
+  <div id="custom-start-address" style="display: none;">
 
-<p>
-  <b>Custom end location:</b>
-  <%= @teacher_availability.custom_end_location %>
-</p>
+    <div class="control-group">
+      <%= f.label "Starting Location", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :start_address, :class => 'input-medium', :placeholder => "Street Address" %>
+        <%= f.text_field :start_city, :class => 'input-medium', :placeholder => "City" %>
+        <%= f.text_field :start_postal_code, :class => 'input-small', :placeholder => "Postal Code" %>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <b>End address:</b>
-  <%= @teacher_availability.end_address %>
-</p>
+  <%= f.input :custom_end_location, :label => "End Location", :collection => { 'Home' => false, 'Custom Location' => true }, :selected => false %>
 
-<p>
-  <b>End city:</b>
-  <%= @teacher_availability.end_city %>
-</p>
+  <div id="custom-end-address" style="display: none;">
 
-<p>
-  <b>End postal code:</b>
-  <%= @teacher_availability.end_postal_code %>
-</p>
+    <div class="control-group">
+      <%= f.label "Ending Location", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :end_address, :class => 'input-medium', :placeholder => "Street Address" %>
+        <%= f.text_field :end_city, :class => 'input-medium', :placeholder => "City" %>
+        <%= f.text_field :end_postal_code, :class => 'input-small', :placeholder => "Postal Code" %>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <b>Available surrey:</b>
-  <%= @teacher_availability.available_surrey %>
-</p>
+  <div class="control-group">
+    <label class="control-label" for="location-availability">Location Availability</label>
+    <div class="controls">
+      <select id="location-availability" class="span3">
+        <option value="everywhere">Available everywhere</option>
+        <option value="custom">Custom availability</option>
+      </select>
+    </div>
+  </div>
 
-<p>
-  <b>Available whiterock:</b>
-  <%= @teacher_availability.available_whiterock %>
-</p>
+  <div class="control-group" id="custom-availability" style="display: none;">
 
-<p>
-  <b>Available langley:</b>
-  <%= @teacher_availability.available_langley %>
-</p>
+      <%= f.input :available_surrey, :label => 'Surrey', :as => :boolean, :wrapper => false  %>
+      <%= f.input :available_whiterock, :label => 'Whiterock',  :as => :boolean, :wrapper => false %>
+      <%= f.input :available_langley, :label => 'Langley',  :as => :boolean, :wrapper => false %>
+      <%= f.input :available_aldergrove, :label => 'Aldergrove',  :as => :boolean, :wrapper => false %>
+      <%= f.input :available_abbotsford, :label => 'Abbotsford',  :as => :boolean, :wrapper => false %>
+      <%= f.input :available_newwest, :label => 'New Westminster',  :as => :boolean, :wrapper => false %>
+      <%= f.input :available_poco, :label => 'Port Coquitlam',  :as => :boolean, :wrapper => false %>
 
-<p>
-  <b>Available aldergrove:</b>
-  <%= @teacher_availability.available_aldergrove %>
-</p>
+  </div>
 
-<p>
-  <b>Available abbotsford:</b>
-  <%= @teacher_availability.available_abbotsford %>
-</p>
+  <%= f.submit "Update availability", :class => 'btn btn-small' %>
 
-<p>
-  <b>Available newwest:</b>
-  <%= @teacher_availability.available_newwest %>
-</p>
+<% end %>
 
-<p>
-  <b>Available:</b>
-  <%= @teacher_availability.available %>
-</p>
+<script>
+  $('#teacher_availability_custom_start_location').change(function() {
+    if ($('#teacher_availability_custom_start_location').val() == 'true') {
+      $('#custom-start-address').show();
+    } else {
+      $('#custom-start-address').hide();
+    }
+  });
+
+  $('#teacher_availability_custom_end_location').change(function() {
+    if ($('#teacher_availability_custom_end_location').val() == 'true') {
+      $('#custom-end-address').show();
+    } else {
+      $('#custom-end-address').hide();
+    }
+  });
+
+  $('#location-availability').change(function() {
+    if ($('#location-availability').val() === 'custom') {
+      $('#custom-availability').show();
+    } else {
+      $('#custom-availability').hide();
+    }
+  });
+
+</script>
+
 
 
 <%= link_to 'Edit', edit_teacher_availability_path(@teacher_availability) %> |

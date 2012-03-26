@@ -2,25 +2,34 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>ID</th>
+      <th>Family name</th>
       <th>First name</th>
-      <th>Created at</th>
+      <th>Instrument(s)</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @teachers.each do |teacher| %>
       <tr>
-        <td><%= teacher.id %></td>
+        <td><%= link_to teacher.family_name, teacher_path(teacher) %></td>
         <td><%= link_to teacher.first_name, teacher_path(teacher) %></td>
-        <td><%= teacher.created_at %></td>
         <td>
+          <% if teacher.teacher_instruments.any? %>
+            <% teacher.teacher_instruments.each do |teacher_instrument| %>
+              <% instrument = Instrument.find(teacher_instrument.instrument_id) %>
+              <%= instrument.name %>
+            <% end %>
+          <% else %>
+            No instruments defined
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Manage', teacher, :class => 'btn btn-mini' %>
           <%= link_to 'Edit', edit_teacher_path(teacher), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', teacher_path(teacher), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'New', new_teacher_path, :class => 'btn btn-primary' %>
+<%= link_to 'New Teacher', new_teacher_path, :class => 'btn btn-primary' %>

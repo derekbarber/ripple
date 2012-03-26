@@ -1,15 +1,26 @@
-<h1>Manage Family: <%= @family.family_name %>, <%= @family.parent_names %></h1>
+<div class="controls-box" style="padding: 20px;">
+  <%= link_to 'Edit Family Details', edit_family_path(@family), :class => 'btn' %>
+  <%= link_to 'Back to Listings', families_path, :class => 'btn'  %>
+</div>
 
-<p>&nbsp;</p>
-<h4>Address</h4>
+<div class="page-header">
+  <h1>Manage Family</h1>
+  <h3><%= @family.parent_names %> <%= @family.family_name %></h3>
+</div>
+
+<div class="content-clear"></div>
+
+<div class="content-box">
+
+<h3>Family Address</h3>
 <p>
-  <%= @family.street_address %>
+  <%= @family.street_address %><br>
   <%= @family.city %>, BC <%= @family.postal_code %>
 </p>
 
-<p>&nbsp;</p>
+<br>
 
-<h4>Contact Details</h4>
+<h3>Family Contact Details</h3>
 <p>
   <strong>Primary email</strong>:  <%= @family.primary_email %><br>
   <strong>Secondary email</strong>: <%= @family.secondary_email %><br>
@@ -17,17 +28,36 @@
   <strong>Mobile phone</strong>: <%= @family.mobile_phone %>
 </p>
 
-<h4>Notes</h4>
+</div>
+
+<div class="content-box well">
+
+<h3>Notes</h3>
 <p>
 <%= @family.notes %>
 </p>
 
+<br>
+
 <p>
-  <b>Status</b><br>
-  <%= @family.status %>
+  <b>Family Status:</b>
+  <%= @family.status_text %>
 </p>
 
-<h2>Students</h2>
+</div>
+
+<div class="content-clear"></div>
+
+<hr>
+
+<div class="controls-box">
+  <%= link_to 'Add New Student to Family', new_student_path(:family_id => @family.id), :class => 'btn' %>
+</div>
+
+<h3>Students Assigned to Family</h3>
+
+<div class="content-clear"></div>
+<br>
 
 <% if @family.students.any? %>
   <table class="table table-striped">
@@ -44,7 +74,16 @@
         <tr>
           <td><%= student.family_name %></td>
           <td><%= student.first_name %></td>
-          <td></td>
+          <td>
+            <% if student.student_instrument.any? %>
+              <% student.student_instrument.each do |student_instrument| %>
+                <% instrument = Instrument.find(student_instrument.instrument_id) %>
+                <%= instrument.name %>
+              <% end %>
+            <% else %>
+              No instruments defined
+            <% end %>
+          </td>
           <td><%= link_to 'Manage Student', student_path(student), :class => 'btn' %></td>
         </tr>
       <% end %>
@@ -55,8 +94,5 @@
 <% end %>
 
 <div class="form-actions">
-  <%= link_to 'Back', families_path, :class => 'btn'  %>
-  <%= link_to 'Add Student to Family', new_student_path(:family_id => @family.id), :class => 'btn' %>
-  <%= link_to 'Edit Family', edit_family_path(@family), :class => 'btn' %>
   <%= link_to 'Delete Family', family_path(@family), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
 </div>

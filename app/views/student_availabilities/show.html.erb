@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Student:</b>
+  <%= @student_availability.student_id %>
+</p>
+
+<p>
+  <b>Day of week:</b>
+  <%= @student_availability.day_of_week %>
+</p>
+
+<p>
+  <b>Start time:</b>
+  <%= @student_availability.start_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @student_availability.end_time %>
+</p>
+
+<p>
+  <b>Preferred time:</b>
+  <%= @student_availability.preferred_time %>
+</p>
+
+<p>
+  <b>Order of preference:</b>
+  <%= @student_availability.order_of_preference %>
+</p>
+
+
+<%= link_to 'Edit', edit_student_availability_path(@student_availability) %> |
+<%= link_to 'Back', student_availabilities_path %>

@@ -48,7 +48,7 @@ class TeacherAvailabilitiesController < ApplicationController
         format.html { redirect_to @teacher, notice: 'Teacher availability was successfully created.' }
         format.json { render json: @teacher, status: :created, location: @teacher }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to @teacher }
         format.json { render json: @teacher.errors, status: :unprocessable_entity }
       end
     end
@@ -58,6 +58,7 @@ class TeacherAvailabilitiesController < ApplicationController
   # PUT /teacher_availabilities/1.json
   def update
     @teacher_availability = TeacherAvailability.find(params[:id])
+    @teacher = @teacher_availability.teacher_id
 
     respond_to do |format|
       if @teacher_availability.update_attributes(params[:teacher_availability])
