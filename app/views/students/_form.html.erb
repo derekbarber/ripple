@@ -34,9 +34,40 @@
 
     <%= f.input :gender, :collection => [ "Male", "Female" ], :selected => "Male" %>
 
-    <%= f.input :custom_contact_details, :collection => { 'Same as family' => false, 'Custom' => true }, :selected => false %>
+    <% if (@student.family_id && @student.family_id > 0) %>
+      <%= f.input :custom_contact_details, :collection => { 'Same as family' => false, 'Custom' => true }, :selected => false %>
 
-    <div id="custom-address" style="display: none;">
+      <div id="custom-address" style="display: none;">
+
+        <div class="control-group">
+          <%= f.label "Address", :class => 'control-label' %>
+          <div class="controls">
+            <%= f.text_field :street_address, :class => 'input-medium', :placeholder => "Street Address" %>
+            <%= f.text_field :city, :class => 'input-small', :placeholder => "City" %>
+            <%= f.text_field :postal_code, :class => 'input-small', :placeholder => "Postal Code" %>
+          </div>
+        </div>
+
+        <%= f.input :home_phone %>
+        <%= f.input :mobile_phone %>
+        <%= f.input :primary_email %>
+        <%= f.input :secondary_email %>
+
+      </div>
+
+      <script>
+        $('#student_custom_contact_details').change(function() {
+          if ($('#student_custom_contact_details').val() == 'true') {
+            $('#custom-address').show();
+          } else {
+            $('#custom-address').hide();
+          }
+        });
+      </script>
+
+    <% else %>
+
+      <%= f.hidden_field :custom_contact_details, :value => true %>
 
       <div class="control-group">
         <%= f.label "Address", :class => 'control-label' %>
@@ -52,7 +83,7 @@
       <%= f.input :primary_email %>
       <%= f.input :secondary_email %>
 
-    </div>
+    <% end %>
   </fieldset>
 
   <fieldset>
@@ -74,12 +105,4 @@
   </fieldset>
 <% end %>
 
-<script>
-  $('#student_custom_contact_details').change(function() {
-    if ($('#student_custom_contact_details').val() == 'true') {
-      $('#custom-address').show();
-    } else {
-      $('#custom-address').hide();
-    }
-  });
-</script>
+
