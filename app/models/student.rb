@@ -4,7 +4,7 @@ class Student < ActiveRecord::Base
   has_many :student_availability, :dependent => :destroy
 
   def status_text
-    if self.family_id > 0
+    if self.family_id && self.family_id > 0
       if self.status == 0
         "Active"
       elsif self.status == 1

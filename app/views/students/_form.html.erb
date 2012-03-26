@@ -2,7 +2,7 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Student</legend>
 
-    <% if @student.family_id > 0 %>
+    <% if (@student.family_id && @student.family_id > 0) %>
       <%= f.hidden_field :family_id %>
     <% else %>
       <div class="control-group">
@@ -60,7 +60,7 @@
 
     <%= f.input :notes, :class => 'input-xlarge', :input_html => { :rows => 5 } %>
 
-    <% if @student.family_id > 0 %>
+    <% if (@student.family_id && @student.family_id > 0) %>
       <%= f.input :status, :collection => { "Active" => 0, "Inactive" => 1 }, :selected => 0 %>
     <% else %>
       <%= f.input :status, :collection => { "Active Prospect" => 0, "Customer" => 1, "Nurture Prospect" => 2, "Inactive Prospect" => 3 }, :selected => 0 %>

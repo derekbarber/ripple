@@ -17,16 +17,16 @@ class StudentsController < ApplicationController
   def show
     @student = Student.find(params[:id])
 
+    if (@student.family_id && @student.family_id > 0)
+      @family = Family.find(@student.family_id)
+    end
+
     @instruments = Instrument.all
     @instrument_names = Instrument.all.collect { |instrument| [instrument.name, instrument.id] }
 
     @student_instrument = StudentInstrument.new
     @student_availability = StudentAvailability.new
     @preferred_teacher = PreferredTeacher.new
-
-    if @student.family_id > 0
-      @family = Family.find(@student.family_id)
-    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -57,7 +57,7 @@ class StudentsController < ApplicationController
   def edit
     @student = Student.find(params[:id])
 
-    if @student.family_id > 0
+    if (@student.family_id && @student.family_id > 0)
       @family = Family.find(@student.family_id)
     end
 

@@ -1,4 +1,4 @@
-<% if @student.family_id > 0 %>
+<% if (@student.family_id && @student.family_id > 0) %>
 
   <div class="controls-box" style="padding: 20px;">
     <%= link_to 'Edit Student', edit_student_path(@student), :class => 'btn' %>
