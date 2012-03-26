@@ -1,4 +1,20 @@
-<%= render :partial => 'header' %>
+<% if (@student.family_id && @student.family_id > 0) %>
+
+  <div class="page-header">
+    <h1>New Student</h1>
+    <h5>Family: <%= @family.parent_names %> <%= @family.family_name %></h5>
+  </div>
+
+<% else %>
+
+  <div class="page-header">
+    <h1>New Student</h1>
+  </div>
+
+<% end %>
+
+<div class="content-clear"></div>
+
 
 <div class="main-unit">
 
