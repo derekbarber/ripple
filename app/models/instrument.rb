@@ -3,4 +3,5 @@ class Instrument < ActiveRecord::Base
   has_many :students, :through => :student_instruments
   has_many :teacher_instruments
   has_many :teachers, :through => :teacher_instruments
+  has_many :lessons
 end

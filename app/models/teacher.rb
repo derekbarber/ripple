@@ -1,8 +1,9 @@
 class Teacher < ActiveRecord::Base
-  has_many :teacher_instruments
+  has_many :teacher_instruments, :dependent => :destroy
   has_many :instruments, :through => :teacher_instruments
-  has_many :teacher_availability
-  has_many :preferred_teachers
+  has_many :teacher_availability, :dependent => :destroy
+  has_many :preferred_teachers, :dependent => :destroy
+  has_many :lessons, :dependent => :destroy
 
   before_validation :strip_phone_numbers
 

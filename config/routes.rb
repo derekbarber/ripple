@@ -1,11 +1,12 @@
 Ripple::Application.routes.draw do
-  get "schedule_student/pending"
+  match '/pending_schedule',    to: 'schedule_student#pending'
 
   resources :preferred_teachers
 
   resources :student_availabilities
 
   resources :teacher_availabilities
+  resources :lessons
 
   resources :teachers
   resources :teacher_instruments

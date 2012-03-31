@@ -14,7 +14,12 @@
       <tr>
         <td><%= link_to student.family_name, student_path(student) %></td>
         <td><%= link_to student.first_name, student_path(student) %></td>
-        <td><%= student.family_id == 0 ? 'No' : 'Yes'  %></td>
+        <td>
+          <% if student.family_id  %>
+            <% family = Family.find(student.family_id) %>
+            <%= family.parent_names %>
+          <% end %>
+        </td>
         <td>
           <% if student.student_instrument.any? %>
             <% student.student_instrument.each do |student_instrument| %>

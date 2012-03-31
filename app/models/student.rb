@@ -2,6 +2,7 @@ class Student < ActiveRecord::Base
   belongs_to :family
   has_many :student_instrument, :dependent => :destroy
   has_many :student_availability, :dependent => :destroy
+  has_many :lessons, :dependent => :destroy
 
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :primary_email, format: { with: valid_email_regex }, :allow_blank => true,
@@ -11,7 +12,6 @@ class Student < ActiveRecord::Base
 
   validates_length_of :home_phone, :minimum => 10, :maximum => 10, :allow_blank => true
   validates_length_of :mobile_phone, :minimum => 10, :maximum => 10, :allow_blank => true
-
 
   def status_text
     if self.family_id && self.family_id > 0
@@ -31,6 +31,10 @@ class Student < ActiveRecord::Base
         "Inactive Prospect"
       end
     end
+  end
+
+  def full_name
+    self.first_name + " " + self.family_name
   end
 
   protected

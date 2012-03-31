@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331034508) do
+ActiveRecord::Schema.define(:version => 20120331213448) do
 
   create_table "families", :force => true do |t|
     t.string   "family_name"
@@ -45,8 +45,9 @@ ActiveRecord::Schema.define(:version => 20120331034508) do
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "status"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.integer  "student_instrument_id"
   end
 
   create_table "preferred_teachers", :force => true do |t|
