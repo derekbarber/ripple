@@ -67,7 +67,7 @@ class LessonController < ApplicationController
     @lesson.destroy
 
     respond_to do |format|
-      format.html { redirect_to lesson_path, notice: Lesson was successfully deleted' }
+      format.html { redirect_to lesson_path, notice: 'Lesson was successfully deleted' }
       format.json { head :no_content }
     end
   end
