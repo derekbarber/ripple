@@ -15,7 +15,8 @@
         <td><%= link_to teacher.first_name, teacher_path(teacher) %></td>
         <td>
           <% if teacher.teacher_instruments.any? %>
-            <% teacher.teacher_instruments.each do |teacher_instrument| %>
+            <% instrument_count = teacher.teacher_instruments.count %>
+            <% teacher.teacher_instruments.each_with_index do |teacher_instrument, index| %>
               <% instrument = Instrument.find(teacher_instrument.instrument_id) %>
               <%= instrument.name %>
             <% end %>

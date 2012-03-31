@@ -1,0 +1,2 @@
+module ScheduleStudentHelper
+end

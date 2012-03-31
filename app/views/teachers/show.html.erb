@@ -21,8 +21,8 @@
 </p>
 
 <p>
-  <b>Home phone:</b> <%= @teacher.home_phone %><br>
-  <b>Mobile phone:</b> <%= @teacher.mobile_phone %><br>
+  <b>Home phone:</b> <%= number_to_phone(@teacher.home_phone) %><br>
+  <b>Mobile phone:</b> <%= number_to_phone(@teacher.mobile_phone) %><br>
   <b>Primary contact email:</b> <%= @teacher.secondary_email %>
 </p>
 

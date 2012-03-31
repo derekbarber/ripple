@@ -15,7 +15,7 @@
         <td><%= link_to family.parent_names, family_path(family) %></td>
         <td>
           <% if family.students.any? %>
-          <%=  family.students.map{|s| s.first_name}.join(", ") %>
+            <%= family.students.map{|s| s.first_name}.join(", ") %>
           <% else %>
             No students yet
           <% end %>

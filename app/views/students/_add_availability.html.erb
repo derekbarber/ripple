@@ -8,9 +8,9 @@
 
   <%= f.input :day_of_week, :input_html => { :class => 'span2' }, :collection => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ], :selected => 'Monday' %>
 
-  <%= f.input :start_time, :as => :time, :ampm => true, :input_html => { :class => 'span2' }, :minute_step => 15 %>
+  <%= f.input :start_time, :as => :time, :ampm => true, :input_html => { :class => 'span2' }, :minute_step => 5 %>
 
-  <%= f.input :end_time, :as => :time, :ampm => true, :input_html => { :class => 'span2' }, :minute_step => 15 %>
+  <%= f.input :end_time, :as => :time, :ampm => true, :input_html => { :class => 'span2' }, :minute_step => 5 %>
 
   <%= f.input :preferred_time, :as => :boolean  %>
 

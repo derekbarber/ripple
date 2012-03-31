@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120325204456) do
+ActiveRecord::Schema.define(:version => 20120331034508) do
 
   create_table "families", :force => true do |t|
     t.string   "family_name"
@@ -35,6 +35,20 @@ ActiveRecord::Schema.define(:version => 20120325204456) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "lessons", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "teacher_id"
+    t.integer  "instrument_id"
+    t.string   "day_of_week"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "status"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "preferred_teachers", :force => true do |t|
     t.integer  "student_instrument_id"
     t.integer  "teacher_id"
@@ -56,8 +70,9 @@ ActiveRecord::Schema.define(:version => 20120325204456) do
   create_table "student_instruments", :force => true do |t|
     t.integer  "student_id"
     t.integer  "instrument_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "lesson_duration"
   end
 
   create_table "students", :force => true do |t|

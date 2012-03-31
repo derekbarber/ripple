@@ -1,4 +1,6 @@
 Ripple::Application.routes.draw do
+  get "schedule_student/pending"
+
   resources :preferred_teachers
 
   resources :student_availabilities
