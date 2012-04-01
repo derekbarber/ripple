@@ -4,7 +4,7 @@ class Family < ActiveRecord::Base
   before_validation :strip_phone_numbers
 
   validates :family_name, presence: true
-  validates :parent_name, presence: true
+  validates :parent_names, presence: true
 
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :primary_email, format: { with: valid_email_regex }, :allow_blank => true,
