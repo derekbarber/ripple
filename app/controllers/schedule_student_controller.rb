@@ -10,11 +10,11 @@ class ScheduleStudentController < ApplicationController
     @lesson = Lesson.new
   end
 
-  def view_tenative
-    @lessons = Lesson.all(:conditions => "lessons.status IS 0")
+  def view_tentative
+    @lessons = Lesson.all(:conditions => "status IS 0")
   end
 
-  def confirm_tenative
+  def confirm_tentative
     @lesson = Lesson.find(params[:id])
     @lesson.status = 1
     @lesson.save
@@ -23,7 +23,7 @@ class ScheduleStudentController < ApplicationController
   end
 
   def view_schedule
-    @lessons = Lesson.all(:conditions => "lessons.status IS 1")
+    @lessons = Lesson.all(:conditions => "status IS 1")
   end
 
   def view_teacher_schedule
