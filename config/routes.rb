@@ -1,8 +1,8 @@
 Ripple::Application.routes.draw do
   match '/schedule_pending',  to: 'schedule_student#schedule_pending'
   match '/view_pending',      to: 'schedule_student#view_pending'
-  match '/view_tenative',     to: 'schedule_student#view_tenative'
-  match '/confirm_tenative',   to: 'schedule_student#confirm_tenative'
+  match '/view_tentative',     to: 'schedule_student#view_tentative'
+  match '/confirm_tentative',   to: 'schedule_student#confirm_tentative'
   match '/view_schedule',     to: 'schedule_student#view_schedule'
   match '/view_teacher_schedule',     to: 'schedule_student#view_teacher_schedule'
 
