@@ -19,7 +19,7 @@ class ScheduleStudentController < ApplicationController
     @lesson.status = 1
     @lesson.save
 
-    redirect_to view_tenative_path, notice: 'Lesson was successfully confirmed'
+    redirect_to view_tentative_path, notice: 'Lesson was successfully confirmed'
   end
 
   def view_schedule

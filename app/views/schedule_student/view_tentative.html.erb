@@ -46,7 +46,7 @@
           <td><%= lesson.day_of_week %></td>
           <td><%= lesson.start_time.strftime("%I:%M %p") %> - <%= lesson.end_time.strftime("%I:%M %p") %></td>
           <td>
-            <%= link_to 'Confirm Lesson', confirm_tenative_path(:id => lesson.id), :class => 'btn btn-mini' %>
+            <%= link_to 'Confirm Lesson', confirm_tentative_path(:id => lesson.id), :class => 'btn btn-mini' %>
             <%= link_to 'Delete', lesson_path(lesson), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
           </td>
       </tr>
