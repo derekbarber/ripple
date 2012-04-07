@@ -17,7 +17,9 @@
         <td>
           <% if student.family_id  %>
             <% family = Family.find(student.family_id) %>
-            <%= family.parent_names %>
+            Yes: <%= family.parent_names %>
+          <% else %>
+            No
           <% end %>
         </td>
         <td>

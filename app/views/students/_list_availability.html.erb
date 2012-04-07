@@ -15,7 +15,7 @@
       <% @student.student_availability.each do |availability| %>
         <tr>
           <td><%= availability.day_of_week %></td>
-          <td><%= availability.start_time.to_s(:time) %> - <%= availability.end_time.to_s(:time) %></td>
+          <td><%= availability.start_time.strftime("%I:%M %p") %> - <%= availability.end_time.strftime("%I:%M %p") %></td>
           <td><%= availability.preferred_time? ? 'Yes' : 'No' %>
           </td>
           <td>

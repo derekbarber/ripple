@@ -1,26 +1,12 @@
-<hr>
-
-<% teachers = Array.new %>
-<% teacher_instruments = TeacherInstrument.find(:all, :conditions => ["instrument_id = ?", instrument.id]) %>
-<% teacher_instruments.each do |teacher_instrument|
-  if (teacher_instrument.teacher_id)
-    teachers << Teacher.find(teacher_instrument.teacher_id)
-  end
-end
-
-teacher_array = teachers.each.collect { |teacher| [teacher.full_name, teacher.id]}
-%>
-
-<h3>Schedule Lesson</h3>
-
 <%= simple_form_for @lesson, :html => { :class => 'form-horizontal' } do |f| %>
 
   <%= f.hidden_field :student_id, :value => student.id %>
   <%= f.hidden_field :instrument_id, :value => instrument.id %>
 
-  <%= f.hidden_field :student_instrument_id, :value => student_instrument.id %>
+  <%= f.hidden_field :student_instrument_id %>
+  <%= f.hidden_field :teacher_id %>
 
-  <%= f.input :teacher_id, :input_html => { :class => 'span2' }, :collection => teacher_array %>
+  <%= f.input :teacher_id, :input_html => { :class => 'span2' }, :collection => teachers %>
 
   <%= f.input :day_of_week, :input_html => { :class => 'span2' }, :collection => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ], :selected => 'Monday' %>
 

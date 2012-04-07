@@ -62,6 +62,7 @@
   </div>
 
   <%= f.submit "Update availability", :class => 'btn btn-small' %>
+  <%= link_to 'Cancel', teacher_path(@teacher), :class => 'btn btn-small' %>
 
 <% end %>
 
@@ -92,7 +93,3 @@
 
 </script>
 
-
-
-<%= link_to 'Edit', edit_teacher_availability_path(@teacher_availability) %> |
-<%= link_to 'Back', teacher_availabilities_path %>

@@ -14,6 +14,7 @@ class TeacherAvailabilitiesController < ApplicationController
   # GET /teacher_availabilities/1.json
   def show
     @teacher_availability = TeacherAvailability.find(params[:id])
+    @teacher = Teacher.find(@teacher_availability.teacher_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,6 +36,7 @@ class TeacherAvailabilitiesController < ApplicationController
   # GET /teacher_availabilities/1/edit
   def edit
     @teacher_availability = TeacherAvailability.find(params[:id])
+    @teacher = Teacher.find(@teacher_availability.teacher_id)
   end
 
   # POST /teacher_availabilities
@@ -58,11 +60,11 @@ class TeacherAvailabilitiesController < ApplicationController
   # PUT /teacher_availabilities/1.json
   def update
     @teacher_availability = TeacherAvailability.find(params[:id])
-    @teacher = @teacher_availability.teacher_id
+    @teacher = Teacher.find(@teacher_availability.teacher_id)
 
     respond_to do |format|
       if @teacher_availability.update_attributes(params[:teacher_availability])
-        format.html { redirect_to @teacher_availability, notice: 'Teacher availability was successfully updated.' }
+        format.html { redirect_to @teacher, notice: 'Teacher availability was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

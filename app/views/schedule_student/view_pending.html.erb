@@ -1,0 +1,68 @@
+<h1>Students Pending Schedule</h1>
+
+<p>&nbsp;</p>
+
+<!--
+<form class="well form-search">
+  <select id="select01">
+    <option>-- Instrument --</option>
+    <option>Guitar</option>
+    <option>Bass</option>
+    <option>Piano</option>
+    <option>Drums</option>
+    <option>Voice</option>
+  </select>
+
+  <input type="text" class="input-medium search-query" placeholder="Student Name">
+  <button type="submit" class="btn">Search</button>
+</form>
+
+-->
+<% if @student_instruments.any? %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Family Name</th>
+        <th>Instrument</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+
+    <% @student_instruments.each do |student_instrument| %>
+
+      <% student = Student.find(student_instrument.student_id) %>
+
+      <% if student.family_id %>
+        <% family = Family.find(student.family_id) %>
+      <% end %>
+
+      <% instrument = Instrument.find(student_instrument.instrument_id) %>
+
+      <tr>
+        <td><%= student.full_name %></td>
+        <td>
+          <% if family %>
+            <%= family.parent_names %>
+          <% else %>
+            Not part of a family
+          <% end %>
+        </td>
+        <td><%= instrument.name %></td>
+        <td>
+          <%= link_to 'Schedule Lesson', schedule_pending_path(:id => student_instrument.id), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+
+    <% end %>
+
+    </tbody>
+  </table>
+
+<% else %>
+
+<h3>No students pending scheduling at this time</h3>
+
+<% end %>

@@ -1,8 +1,12 @@
 Ripple::Application.routes.draw do
-  match '/pending_schedule',    to: 'schedule_student#pending'
+  match '/schedule_pending',  to: 'schedule_student#schedule_pending'
+  match '/view_pending',      to: 'schedule_student#view_pending'
+  match '/view_tenative',     to: 'schedule_student#view_tenative'
+  match '/confirm_tenative',   to: 'schedule_student#confirm_tenative'
+  match '/view_schedule',     to: 'schedule_student#view_schedule'
+  match '/view_teacher_schedule',     to: 'schedule_student#view_teacher_schedule'
 
   resources :preferred_teachers
-
   resources :student_availabilities
 
   resources :teacher_availabilities

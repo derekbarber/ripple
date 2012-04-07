@@ -1,0 +1,66 @@
+<h1>View Teacher Schedule</h1>
+
+<p>&nbsp;</p>
+
+<%= form_tag do %>
+
+<%= select_tag "teacher_id", options_from_collection_for_select(@teachers, "id", "full_name") %>
+
+<%= button_tag "Select", :class => "btn" %>
+
+<% end %>
+
+<hr>
+
+<% if @teacher %>
+  <h2>Displaying Lessons for <%= @teacher.full_name%></h2>
+<% else %>
+  <h3>Please select a teacher to display their schedule.</h3>
+<% end %>
+
+<br>
+
+<% if @lessons %>
+
+  <% if @lessons.any? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Teacher Name</th>
+          <th>Instrument</th>
+          <th>Day</th>
+          <th>Time</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @lessons.each do |lesson| %>
+
+          <% student = Student.find(lesson.student_id) %>
+          <% teacher = Teacher.find(lesson.teacher_id) %>
+          <% instrument = Instrument.find(lesson.instrument_id) %>
+
+          <tr>
+            <td><%= student.full_name %></td>
+            <td><%= teacher.full_name %></td>
+            <td><%= instrument.name %></td>
+            <td><%= lesson.day_of_week %></td>
+            <td><%= lesson.start_time.strftime("%I:%M %p") %> - <%= lesson.end_time.strftime("%I:%M %p") %></td>
+            <td>
+              <%= link_to 'Delete', lesson_path(lesson), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+            </td>
+        </tr>
+
+      <% end %>
+
+      </tbody>
+    </table>
+
+  <% else %>
+
+  <h3>No lessons scheduled at this time</h3>
+
+  <% end %>
+<% end %>

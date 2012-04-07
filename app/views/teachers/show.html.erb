@@ -1,9 +1,16 @@
-<div class="main-unit">
+<div class="controls-box" style="padding: 20px;">
+  <%= link_to 'Back to Teacher Listing', teachers_path, :class => 'btn'  %>
+  <%= link_to 'Edit Teacher', edit_teacher_path(@teacher), :class => 'btn' %>
+</div>
 
-<h2>Manage Teacher</h2>
-<h3><%= @teacher.first_name %> <%= @teacher.family_name %> (<%= @teacher.status == 1 ? "Active": "Inactive" %>)</h3>
+<div class="page-header">
+  <h2>Manage Teacher</h2>
+  <h3><%= @teacher.first_name %> <%= @teacher.family_name %></h3>
+</div>
 
-<p>&nbsp;</p>
+<div class="content-clear"></div>
+
+<div class="content-box">
 
 <p>
   <strong>Gender:</strong> <%= @teacher.gender %><br>
@@ -26,18 +33,26 @@
   <b>Primary contact email:</b> <%= @teacher.secondary_email %>
 </p>
 
+</div>
+
+<div class="content-box well">
+
+<h3>Notes</h3>
 <p>
-  <b>Notes</b><br>
-  <%= @teacher.notes %>
+<%= @teacher.notes %>
 </p>
 
-<div class="form-actions">
-  <%= link_to 'Back to Teacher Listing', teachers_path, :class => 'btn'  %>
-  <%= link_to 'Edit', edit_teacher_path(@teacher), :class => 'btn' %>
-  <%= link_to 'Delete Teacher', teacher_path(@teacher), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
-</div>
+<br>
+
+<p>
+  <b>Status:</b>
+  <%= @teacher.status_text %>
+</p>
 
 </div>
+
+<div class="content-clear"></div>
+
 
 <div class="main-unit">
 
@@ -55,3 +70,6 @@
 
 </div>
 
+<div class="form-actions">
+  <%= link_to 'Delete Teacher', teacher_path(@teacher), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       #sign_in user
       #redirect_back_or user
       session[:user_id] = user.id
-      redirect_to families_path, notice: "Logged in!"
+      redirect_to view_pending_path, notice: "Logged in!"
     else
       #flash.now.alert = "Email or password is invalid"
       flash.now[:error] = 'Invalid username/password combination'

@@ -1,0 +1,168 @@
+<h1>Schedule Lesson</h1>
+
+<p>&nbsp;</p>
+
+<% student = Student.find(@student_instrument.student_id) %>
+
+<% if student.family_id > 0 %>
+  <% family = Family.find(student.family_id) %>
+<% end %>
+
+<% student_availability = StudentAvailability.find(:all, :conditions => { :student_id => student.id }) %>
+
+<% instrument = Instrument.find(@student_instrument.instrument_id) %>
+
+<% preferred_teachers = PreferredTeacher.find(:all, :conditions => { :student_instrument_id => @student_instrument.id }) %>
+
+
+<h2><%= student.full_name %>: Schedule <%= instrument.name %> Lessons</h2>
+<% if student.custom_contact_details == false %>
+<h4><%= family.street_address %>, <%= family.city %></h4>
+<% else %>
+  <h4><%= student.street_address %>, <%= student.city %></h4>
+<% end %>
+
+<br>
+
+<h3>Student Availability</h3>
+
+<% if student_availability %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Preferred Time?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% student_availability.each do |availability| %>
+        <tr>
+          <td><%= availability.day_of_week %></td>
+          <td><%= availability.start_time.strftime("%I:%M %p") %> - <%= availability.end_time.strftime("%I:%M %p") %></td>
+          <td><%= availability.preferred_time ? "No" : "Yes" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <hr>
+
+
+  <form class="well form-search">
+    Teacher View Preferences
+    <select id="show-other-teachers">
+      <option value="1">Only Show Preferred Teachers</option>
+      <option value="2">Only Show Other Teachers</option>
+      <option value="3">Show All Possible Teachers</option>
+    </select>
+
+    <!--
+    <select id="select01">
+      <option> Any Day</option>
+      <option>Monday</option>
+      <option>Tuesday</option>
+      <option>Wednesday</option>
+      <option>Thursday</option>
+      <option>Friday</option>
+      <option>Saturday</option>
+    </select>
+
+    <input type="text" class="input-medium search-query" placeholder="Teacher Name">
+
+    <button type="submit" class="btn">Update Teacher</button>
+    -->
+  </form>
+
+  <div id="preferred-teachers">
+
+    <h3>Preferred Teacher Availability</h3>
+
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th>Teacher</th>
+          <th>Day</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% preferred_teacher_ids = Array.new %>
+        <% preferred_teachers.each do |preferred_teacher| %>
+          <% if preferred_teacher.teacher_id %>
+            <% teacher = Teacher.find(preferred_teacher.teacher_id) %>
+            <% teacher_availability = TeacherAvailability.find(:all, :conditions => { :teacher_id => teacher.id }) %>
+            <% preferred_teacher_ids.push teacher.id %>
+
+            <% teacher_availability.each do |availability| %>
+              <tr>
+                <td><%= teacher.first_name + ' ' + teacher.family_name %></td>
+                <td><%= availability.day_of_week %></td>
+                <td><%= availability.start_time.strftime("%I:%M %p") %> - <%= availability.end_time.strftime("%I:%M %p") %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="other-teachers" style="display: none;">
+    <h3>Other Possible Teacher Availability</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Teacher</th>
+          <th>Day</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% other_teachers = TeacherInstrument.find(:all, :conditions => ["instrument_id = ? and teacher_id not in (?)", instrument.id, preferred_teacher_ids]) %>
+
+        <% other_teachers.each do |other_teacher| %>
+
+          <% teacher = Teacher.find(other_teacher.teacher_id) %>
+          <% teacher_availability = TeacherAvailability.find(:all, :conditions => { :teacher_id => teacher.id }) %>
+
+          <% teacher_availability.each do |availability| %>
+            <tr>
+              <td><%= teacher.first_name + ' ' + teacher.family_name %></td>
+              <td><%= availability.day_of_week %></td>
+              <td><%= availability.start_time.strftime("%I:%M %p") %> - <%= availability.end_time.strftime("%I:%M %p") %></td>
+            </tr>
+          <% end %>
+        <% end %>
+
+      </tbody>
+    </table>
+  </div>
+
+
+  <%= render :partial => 'add_lesson', :locals => { :student => student, :instrument => instrument,
+                                                    :student_instrument => @student_instrument} %>
+
+<script>
+  $('#show-other-teachers').change(function() {
+    if ($('#show-other-teachers').val() == '1') {
+      $('#preferred-teachers').show();
+      $('#other-teachers').hide();
+    } else if ($('#show-other-teachers').val() == '2') {
+      $('#preferred-teachers').hide();
+      $('#other-teachers').show();
+    } else if ($('#show-other-teachers').val() == '3') {
+      $('#preferred-teachers').show();
+      $('#other-teachers').show();
+    }
+  });
+
+</script>
+
+<% else %>
+
+  <h3>No availability yet defined</h3>
+
+<% end %>
+
+

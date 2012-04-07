@@ -14,10 +14,20 @@ class Teacher < ActiveRecord::Base
   validates :email, presence: true, format: { with: valid_email_regex },
                     uniqueness: { case_sensitive: false }
   validates :secondary_email, format: { with: valid_email_regex },
-                    uniqueness: { case_sensitive: false }
+                    uniqueness: { case_sensitive: false }, :allow_blank => true
 
   validates_length_of :home_phone, :minimum => 10, :maximum => 10, :allow_blank => true
   validates_length_of :mobile_phone, :minimum => 10, :maximum => 10, :allow_blank => true
+
+
+  def status_text
+     self.status == 1 ? "Active": "Inactive"
+  end
+
+  def full_name
+    self.first_name + " " + self.family_name
+  end
+
 
   protected
 

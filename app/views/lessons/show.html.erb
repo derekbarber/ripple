@@ -1,0 +1,20 @@
+<h3>View Lesson Details</h3>
+<p>
+  Student Name <%= @student.full_name %><br>
+  Address:<br>
+  <%= @student.street_address%>
+  <%= @student.city %>, BC <%= @student.postal_code %>
+</p>
+
+<p>Teacher: <%= @teacher.full_name %></p>
+
+<p>Instrument: <%= @instrument.name %></p>
+
+<p>
+  <strong>Day</strong>:  <%= @lesson.day_of_week %><br>
+  <strong>Start Time</strong>: <%= @lesson.start_time.strftime("%I:%M %p") %><br>
+  <strong>End Time</strong>: <%= @lesson.end_time.strftime("%I:%M %p") %><br>
+  <strong>Status</strong>: <%= @lesson.status_text %>
+</p>
+
+</div>
