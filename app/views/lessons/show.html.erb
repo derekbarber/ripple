@@ -1,14 +1,16 @@
 <h3>View Lesson Details</h3>
+<br>
 <p>
-  Student Name <%= @student.full_name %><br>
-  Address:<br>
-  <%= @student.street_address%>
-  <%= @student.city %>, BC <%= @student.postal_code %>
+  <strong>Student Name:</strong> <%= @student.full_name %><br>
 </p>
 
-<p>Teacher: <%= @teacher.full_name %></p>
+<p>
+  <strong>Teacher:</strong> <%= @teacher.full_name %>
+</p>
 
-<p>Instrument: <%= @instrument.name %></p>
+<p>
+  <strong>Instrument:</strong> <%= @instrument.name %>
+</p>
 
 <p>
   <strong>Day</strong>:  <%= @lesson.day_of_week %><br>

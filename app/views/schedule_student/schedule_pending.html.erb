@@ -14,7 +14,6 @@
 
 <% preferred_teachers = PreferredTeacher.find(:all, :conditions => { :student_instrument_id => @student_instrument.id }) %>
 
-
 <h2><%= student.full_name %>: Schedule <%= instrument.name %> Lessons</h2>
 <% if student.custom_contact_details == false %>
 <h4><%= family.street_address %>, <%= family.city %></h4>
@@ -48,7 +47,6 @@
 
   <hr>
 
-
   <form class="well form-search">
     Teacher View Preferences
     <select id="show-other-teachers">
@@ -78,7 +76,7 @@
 
     <h3>Preferred Teacher Availability</h3>
 
-    <table class="table table-striped" >
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>Teacher</th>
@@ -119,7 +117,11 @@
       </thead>
       <tbody>
 
-        <% other_teachers = TeacherInstrument.find(:all, :conditions => ["instrument_id = ? and teacher_id not in (?)", instrument.id, preferred_teacher_ids]) %>
+        <% if preferred_teacher_ids.length > 0 %>
+          <% other_teachers = TeacherInstrument.find(:all, :conditions => ["instrument_id = ? and teacher_id not in (?)", instrument.id, preferred_teacher_ids]) %>
+        <% else %>
+          <% other_teachers = TeacherInstrument.find(:all, :conditions => ["instrument_id = ?", instrument.id]) %>
+        <% end %>
 
         <% other_teachers.each do |other_teacher| %>
 
@@ -138,7 +140,6 @@
       </tbody>
     </table>
   </div>
-
 
   <%= render :partial => 'add_lesson', :locals => { :student => student, :instrument => instrument,
                                                     :student_instrument => @student_instrument} %>
