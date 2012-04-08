@@ -35,9 +35,17 @@
 
       <% @lessons.each do |lesson| %>
 
-        <% student = Student.find(lesson.student_id) %>
-        <% teacher = Teacher.find(lesson.teacher_id) %>
-        <% instrument = Instrument.find(lesson.instrument_id) %>
+        <%
+          if lesson.student_id
+            student = Student.find(lesson.student_id)
+          end
+          if lesson.teacher_id
+            teacher = Teacher.find(lesson.teacher_id)
+          end
+          if lesson.instrument_id
+            instrument = Instrument.find(lesson.instrument_id)
+          end
+        %>
 
         <tr>
           <td><%= student.full_name %></td>
