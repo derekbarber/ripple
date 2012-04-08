@@ -4,8 +4,8 @@
 
 <% student = Student.find(@student_instrument.student_id) %>
 
-<% if student.family_id > 0 %>
-  <% family = Family.find(student.family_id) %>
+<% if student.family_id %>
+  <% family = Family.find(student.family_id) if student.family_id > 0 %>
 <% end %>
 
 <% student_availability = StudentAvailability.find(:all, :conditions => { :student_id => student.id }) %>
