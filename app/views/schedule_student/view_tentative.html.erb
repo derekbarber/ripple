@@ -48,8 +48,8 @@
         %>
 
         <tr>
-          <td><%= student.full_name %></td>
-          <td><%= teacher.full_name %></td>
+          <td><%= student.full_name if student %></td>
+          <td><%= teacher.full_name if teacher %></td>
           <td><%= instrument.name %></td>
           <td><%= lesson.day_of_week %></td>
           <td><%= lesson.start_time.strftime("%I:%M %p") %> - <%= lesson.end_time.strftime("%I:%M %p") %></td>
