@@ -8,7 +8,7 @@ class FamiliesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @families }
+      format.json { render json: FamiliesDatatable.new(view_context) }
     end
   end
 

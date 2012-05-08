@@ -22,10 +22,25 @@
 
 <h3>Family Contact Details</h3>
 <p>
-  <strong>Primary email</strong>:  <%= @family.primary_email %><br>
-  <strong>Secondary email</strong>: <%= @family.secondary_email %><br>
-  <strong>Home phone</strong>: <%= @family.home_phone %><br>
-  <strong>Mobile phone</strong>: <%= @family.mobile_phone %>
+  <% if @family.primary_email.length > 0 %>
+    <strong>Primary email</strong>: <a href="mailto:<%= @family.primary_email %>"><%= @family.primary_email %></a><br>
+  <% end %>
+  <% if @family.secondary_email.length > 0 %>
+    <strong>Secondary email</strong>: <a href="mailto:<%= @family.secondary_email %>"><%= @family.secondary_email %></a><br>
+  <% end %>
+  <% if @family.phone_number1.length > 0 %>
+    <strong>Primary phone number</strong>: <%= number_to_phone(@family.phone_number1, :area_code => true) %><br>
+  <% end %>
+  <% if @family.phone_number2.length > 0 %>
+    <strong>Phone Number 2</strong>: <%= number_to_phone(@family.phone_number2, :area_code => true) %>
+  <% end %>
+  <% if @family.phone_number3 && @family.phone_number3.length > 0 %>
+    <strong>Phone Number 3</strong>: <%= number_to_phone(@family.phone_number3, :area_code => true) %>
+  <% end %>
+  <% if @family.phone_number4 && @family.phone_number4.length > 0 %>
+    <strong>Phone Number 4</strong>: <%= number_to_phone(@family.phone_number4, :area_code => true) %>
+  <% end %>
+
 </p>
 
 </div>
@@ -34,7 +49,11 @@
 
 <h3>Notes</h3>
 <p>
-<%= @family.notes %>
+  <% if @family.notes.length > 0 %>
+    <%= @family.notes %>
+  <% else %>
+    No notes
+  <% end %>
 </p>
 
 <br>

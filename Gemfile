@@ -23,6 +23,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 
   gem 'twitter-bootstrap-rails'
+  gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+  gem 'jquery-ui-rails'
 end
 
 gem 'jquery-rails'
@@ -53,3 +55,4 @@ end
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem 'simple_form'
+gem 'will_paginate'

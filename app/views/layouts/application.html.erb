@@ -49,7 +49,10 @@
             <ul class="nav nav-list">
               <li class="nav-header">Lesson Planning</li>
               <li <%= current_page?(view_pending_path) ? "class='active'" : '' %>>
-                <%= link_to "Students Pending Schedule", view_pending_path %>
+                <%= link_to "Schedule a Student", view_pending_path %>
+              </li>
+              <li <%= current_page?(schedule_multiple_path) ? "class='active'" : '' %>>
+                <%= link_to "Schedule Multiple Students", schedule_multiple_path %>
               </li>
               <li <%= current_page?(view_tentative_path) ? "class='active'" : '' %>>
                 <%= link_to "View Tentative Lessons", view_tentative_path %>
@@ -79,6 +82,13 @@
               </li>
               <li <%= current_page?(view_teacher_schedule_path) ? "class='active'" : '' %>>
                 <%= link_to "View Teacher Schedule", view_teacher_schedule_path %>
+              </li>
+              <li class="nav-header">Resound Process</li>
+              <li <%= current_page?(next_steps_path) ? "class='active'" : '' %>>
+                <%= link_to "Next Steps", next_steps_path %>
+              </li>
+              <li <%= current_page?(follow_up_calls_path) ? "class='active'" : '' %>>
+                <%= link_to "Make Follow-up Calls", follow_up_calls_path %>
               </li>
               <li class="nav-header">System Functions</li>
               <li <%= current_page?(instruments_path) ? "class='active'" : '' %>>

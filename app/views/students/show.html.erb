@@ -4,7 +4,7 @@
 <div class="content-box">
 
 <p>
-  <strong>Birthday:</strong> <%= @student.birthday %><br>
+  <strong>Birthday:</strong> <%= @student.birthday.strftime("%B %d, %Y") %> (Age: <%= @student.age %>)<br>
   <strong>Gender:</strong> <%= @student.gender %><br>
 </p>
 
@@ -24,10 +24,24 @@
 
   <h3>Student Contact Details</h3>
   <p>
-    <strong>Primary email</strong>:  <%= @student.primary_email %><br>
-    <strong>Secondary email</strong>: <%= @student.secondary_email %><br>
-    <strong>Home phone</strong>: <%= @student.home_phone %><br>
-    <strong>Mobile phone</strong>: <%= @student.mobile_phone %>
+    <% if @student.primary_email.length > 0 %>
+      <strong>Primary email</strong>: <a href="mailto:<%= @student.primary_email %>"><%= @student.primary_email %></a><br>
+    <% end %>
+    <% if @student.secondary_email.length > 0 %>
+      <strong>Secondary email</strong>: <a href="mailto:<%= @student.secondary_email %>"><%= @student.secondary_email %></a><br>
+    <% end %>
+    <% if @student.phone_number1.length > 0 %>
+      <strong>Primary phone</strong>: <%= number_to_phone(@student.phone_number1, :area_code => true) %><br>
+    <% end %>
+    <% if @student.phone_number2.length > 0 %>
+      <strong>Secondary phone</strong>: <%= number_to_phone(@student.phone_number2, :area_code => true) %>
+    <% end %>
+    <% if @student.phone_number3 && @student.phone_number3.length > 0 %>
+      <strong>Phone Number 3</strong>: <%= number_to_phone(@student.phone_number3, :area_code => true) %>
+    <% end %>
+    <% if @student.phone_number4 && @student.phone_number4.length > 0 %>
+      <strong>Phone Number 4</strong>: <%= number_to_phone(@student.phone_number4, :area_code => true) %>
+    <% end %>
   </p>
 
 <% else %>
@@ -44,11 +58,14 @@
 
 <h3>Notes</h3>
 <p>
-<%= @student.notes %>
+  <% if @student.notes.length > 0 %>
+    <%= @student.notes %>
+  <% else %>
+    No notes
+  <% end %>
 </p>
 
 <br>
-
 
 <p>
   <b>Status:</b>

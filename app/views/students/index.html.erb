@@ -1,5 +1,6 @@
 <h1>Students</h1>
-<table class="table table-striped">
+<br>
+<table class="table table-striped" id="families" data-source="">
   <thead>
     <tr>
       <th>Family name</th>
@@ -17,16 +18,16 @@
         <td>
           <% if student.family_id  %>
             <% family = Family.find(student.family_id) %>
-            Yes: <%= family.parent_names %>
+            <%= link_to family.parent_names, family_path(family) %>
           <% else %>
             No
           <% end %>
         </td>
-        <td>
+        <td>|
           <% if student.student_instrument.any? %>
             <% student.student_instrument.each do |student_instrument| %>
               <% instrument = Instrument.find(student_instrument.instrument_id) %>
-              <%= instrument.name %>
+              <%= instrument.name %> |
             <% end %>
           <% else %>
             No instruments defined
@@ -40,4 +41,5 @@
   </tbody>
 </table>
 
-<%= link_to 'New Student', new_student_path, :class => 'btn btn-primary' %>
+<br>
+<%= link_to 'New Student', new_student_path, :class => 'btn' %>

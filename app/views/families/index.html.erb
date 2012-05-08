@@ -1,10 +1,13 @@
 <h1>Families</h1>
-<table class="table table-striped">
+<br>
+<table class="table table-striped" id="families" data-source="">
   <thead>
     <tr>
       <th>Family name</th>
       <th>Parent name(s)</th>
       <th>Student name(s)</th>
+      <th>Primary Phone</th>
+      <th>Primary Email</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -13,13 +16,18 @@
       <tr>
         <td><%= link_to family.family_name, family_path(family) %></td>
         <td><%= link_to family.parent_names, family_path(family) %></td>
-        <td>
+        <td>|
           <% if family.students.any? %>
-            <%= family.students.map{|s| s.first_name}.join(", ") %>
+            <% family.students.each do |student| %>
+            <%= link_to student.first_name, student_path(student) %> |
+            <%#= family.students.map{|s| s.first_name}.join(", ") %>
+            <% end %>
           <% else %>
             No students yet
           <% end %>
         </td>
+        <td><%= number_to_phone(family.phone_number1) %></td>
+        <td><a href="mailto:<%= family.primary_email %>"><%= family.primary_email %></a></td>
         <td>
           <%= link_to 'Manage', family, :class => 'btn btn-mini' %>
           <%= link_to 'Edit', edit_family_path(family), :class => 'btn btn-mini' %>
@@ -29,4 +37,5 @@
   </tbody>
 </table>
 
-<%= link_to 'New Family', new_family_path, :class => 'btn btn-primary' %>
+<br>
+<%= link_to 'New Family', new_family_path, :class => 'btn' %>

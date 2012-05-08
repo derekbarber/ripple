@@ -16,9 +16,9 @@ class Teacher < ActiveRecord::Base
   validates :secondary_email, format: { with: valid_email_regex },
                     uniqueness: { case_sensitive: false }, :allow_blank => true
 
-  validates_length_of :home_phone, :minimum => 10, :maximum => 10, :allow_blank => true
-  validates_length_of :mobile_phone, :minimum => 10, :maximum => 10, :allow_blank => true
-
+  validates_length_of :phone_number1, :minimum => 10, :maximum => 11, :allow_blank => true
+  validates_length_of :phone_number2, :minimum => 10, :maximum => 11, :allow_blank => true
+  validates_length_of :phone_number3, :minimum => 10, :maximum => 11, :allow_blank => true
 
   def status_text
      self.status == 1 ? "Active": "Inactive"
@@ -28,11 +28,11 @@ class Teacher < ActiveRecord::Base
     self.first_name + " " + self.family_name
   end
 
-
   protected
 
   def strip_phone_numbers
-    self.home_phone = self.home_phone.gsub(/[^0-9]/, "")
-    self.mobile_phone = self.home_phone.gsub(/[^0-9]/, "")
+    self.phone_number1 = self.phone_number1.gsub(/[^0-9]/, "")
+    self.phone_number2 = self.phone_number2.gsub(/[^0-9]/, "")
+    self.phone_number3 = self.phone_number3.gsub(/[^0-9]/, "")
   end
 end

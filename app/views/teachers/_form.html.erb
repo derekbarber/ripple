@@ -31,8 +31,9 @@
       </div>
     </div>
 
-    <%= f.input :home_phone, :as => :tel, :input_html => { :class => 'input-medium' } %>
-    <%= f.input :mobile_phone, :as => :tel, :input_html => { :class => 'input-medium' } %>
+    <%= f.input :phone_number1, label: "Primary Phone", :input_html => { :class => 'input-medium' } %>
+    <%= f.input :phone_number2, label: "Secondary Phone", :input_html => { :class => 'input-medium' } %>
+    <%= f.input :phone_number3, label: "Phone # 3", :input_html => { :class => 'input-medium' } %>
     <%= f.input :secondary_email, :as => :email, :label => "Primary Contact Email", :input_html => { :class => 'input-large' } %>
 
     <div class="form-actions">

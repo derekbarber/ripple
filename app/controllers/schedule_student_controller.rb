@@ -10,6 +10,11 @@ class ScheduleStudentController < ApplicationController
     @lesson = Lesson.new
   end
 
+  def schedule_multiple
+
+  end
+
+
   def view_tentative
     @lessons = Lesson.all(:conditions => "status = 0")
   end
@@ -34,6 +39,5 @@ class ScheduleStudentController < ApplicationController
 
     @teachers = Teacher.all
   end
-
 
 end

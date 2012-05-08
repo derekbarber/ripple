@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331213448) do
+ActiveRecord::Schema.define(:version => 20120505183537) do
 
   create_table "families", :force => true do |t|
     t.string   "family_name"
@@ -21,12 +21,14 @@ ActiveRecord::Schema.define(:version => 20120331213448) do
     t.string   "city"
     t.string   "primary_email"
     t.string   "secondary_email"
-    t.string   "home_phone"
-    t.string   "mobile_phone"
+    t.string   "phone_number1"
+    t.string   "phone_number2"
     t.text     "notes"
     t.integer  "status"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "phone_number3"
+    t.string   "phone_number4"
   end
 
   create_table "instruments", :force => true do |t|
@@ -86,14 +88,16 @@ ActiveRecord::Schema.define(:version => 20120331213448) do
     t.string   "street_address"
     t.string   "city"
     t.string   "postal_code"
-    t.string   "home_phone"
-    t.string   "mobile_phone"
+    t.string   "phone_number1"
+    t.string   "phone_number2"
     t.string   "primary_email"
     t.string   "secondary_email"
     t.text     "notes"
     t.integer  "status"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.string   "phone_number3"
+    t.string   "phone_number4"
   end
 
   create_table "teacher_availabilities", :force => true do |t|
@@ -135,13 +139,14 @@ ActiveRecord::Schema.define(:version => 20120331213448) do
     t.string   "street_address"
     t.string   "city"
     t.string   "postal_code"
-    t.string   "home_phone"
-    t.string   "mobile_phone"
+    t.string   "phone_number1"
+    t.string   "phone_number2"
     t.string   "secondary_email"
     t.text     "notes"
     t.integer  "status"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "phone_number3"
   end
 
   create_table "users", :force => true do |t|

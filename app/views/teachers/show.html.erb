@@ -17,20 +17,32 @@
 </p>
 
 <p>
-  <b>Resound Email:</b> <%= @teacher.email %>
+  <% if @teacher.email.length > 0 %>
+    <strong>Resound Email</strong>: <a href="mailto:<%= @teacher.email %>"><%= @teacher.email %></a><br>
+  <% end %>
 </p>
 
 <h4>Address</h4>
 
 <p>
   <%= @teacher.street_address %><br>
-  <%= @teacher.city %>, <%= @teacher.postal_code %>
+  <%= @teacher.city %>, BC <%= @teacher.postal_code %>
 </p>
 
 <p>
-  <b>Home phone:</b> <%= number_to_phone(@teacher.home_phone) %><br>
-  <b>Mobile phone:</b> <%= number_to_phone(@teacher.mobile_phone) %><br>
-  <b>Primary contact email:</b> <%= @teacher.secondary_email %>
+  <% if @teacher.phone_number1.length > 0 %>
+    <b>Primary phone:</b> <%= number_to_phone(@teacher.phone_number1, :area_code => true) %><br>
+  <% end %>
+  <% if @teacher.phone_number2.length > 0 %>
+    <b>Secondary phone:</b> <%= number_to_phone(@teacher.phone_number2, :area_code => true) %><br>
+  <% end %>
+  <% if @teacher.phone_number3 && @teacher.phone_number3.length > 0 %>
+    <strong>Phone Number 3</strong>: <%= number_to_phone(@teacher.phone_number3, :area_code => true) %>
+  <% end %>
+
+  <% if @teacher.secondary_email.length > 0 %>
+    <strong>Seconary Contact Email</strong>: <a href="mailto:<%= @teacher.secondary_email %>"><%= @teacher.secondary_email %></a><br>
+  <% end %>
 </p>
 
 </div>
@@ -39,7 +51,11 @@
 
 <h3>Notes</h3>
 <p>
-<%= @teacher.notes %>
+  <% if @teacher.notes.length > 0 %>
+    <%= @teacher.notes %>
+  <% else %>
+    No notes
+  <% end %>
 </p>
 
 <br>
