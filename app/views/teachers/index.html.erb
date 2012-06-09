@@ -6,6 +6,8 @@
       <th>Family name</th>
       <th>First name</th>
       <th>Instrument(s)</th>
+      <th>Phone Number</th>
+      <th>Email</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -25,6 +27,8 @@
             No instruments defined
           <% end %>
         </td>
+        <td><%= number_to_phone(teacher.phone_number1, :area_code => true) %></td>
+        <td><a href="mailto:<%= teacher.secondary_email %>"><%= teacher.secondary_email %></a></td>
         <td>
           <%= link_to 'Manage', teacher, :class => 'btn btn-mini' %>
           <%= link_to 'Edit', edit_teacher_path(teacher), :class => 'btn btn-mini' %>

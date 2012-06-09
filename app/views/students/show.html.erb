@@ -68,6 +68,16 @@
 <br>
 
 <p>
+  Form: <%= @student.assessment_form %>
+  <%= link_to @student.assessment_form_url if @student.assessment_form? %>
+</p>
+
+<p>
+  Form 2: <%= @student.bank_authorization %>
+  <%= link_to @student.bank_authorization_url if @student.bank_authorization? %>
+</p>
+
+<p>
   <b>Status:</b>
   <%= @student.status_text %>
 </p>

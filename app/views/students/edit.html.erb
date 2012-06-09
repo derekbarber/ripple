@@ -1,4 +1,4 @@
-<% if (@student.family_id && @student.family_id > 0) %>
+<% if (@family) %>
 
   <div class="page-header">
     <h1>Edit Student</h1>
@@ -16,6 +16,5 @@
 <% end %>
 
 <div class="content-clear"></div>
-
 
 <%= render :partial => 'form' %>

@@ -5,6 +5,10 @@
     <%= f.input :username %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
+    <%= f.input :admin, :as => :boolean  %>
+    <%= f.input :teacher_id, :label => 'Teacher', :collection => @teacher_names %>
+    <%#= f.input :admin, :input_html => { :class => 'span2' }, :collection => { "Teacher" => false, "Administrator" => true }, :selected => false, :label => 'User Type' %>
+    <%= f.input :status, :input_html => { :class => 'span2' }, :collection => { "Enabled" => 1, "Disabled" => 0 }, :selected => false, :label => 'Status' %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>

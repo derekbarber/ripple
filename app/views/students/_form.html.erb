@@ -1,4 +1,5 @@
-<%= simple_form_for @student, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @student, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
+  <%= f.error_notification %>
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Student</legend>
 
@@ -81,8 +82,11 @@
         </div>
       </div>
 
-      <%= f.input :home_phone %>
-      <%= f.input :mobile_phone %>
+      <%= f.input :phone_number1, label: 'Primary Phone' %>
+      <%= f.input :phone_number2, label: 'Secondary Phone' %>
+      <%= f.input :phone_number3, label: 'Phone # 3' %>
+      <%= f.input :phone_number4, label: 'Phone # 4' %>
+
       <%= f.input :primary_email %>
       <%= f.input :secondary_email %>
 
@@ -93,6 +97,12 @@
     <legend>Additional Details</legend>
 
     <%= f.input :notes, :class => 'input-xlarge', :input_html => { :rows => 5 } %>
+
+    <%= f.input :assessment_form, :as => :file, label: "Assessment Form" %>
+    <%= f.hidden_field :assessment_form_cache %>
+
+    <%= f.input :bank_authorization, :as => :file, label: "Bank Authorization Form" %>
+    <%= f.hidden_field :bank_authorization_cache %>
 
     <% if (@student.family_id && @student.family_id > 0) %>
       <%= f.input :status, :collection => { "Active" => 0, "Inactive" => 1 }, :selected => 0 %>

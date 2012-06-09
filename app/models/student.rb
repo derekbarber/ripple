@@ -1,4 +1,7 @@
 class Student < ActiveRecord::Base
+  #attr_accessible :family_id, :first_name, :family_name, :birthday, :gender, :custom_contact_details
+  #attr_accessible :street_address, :city, :postal_code, :phone_number1, :phone_number2, :phone_number3
+  #attr_accessible :phone_number4, :primary_email, :secondary_email, :notes, :assessment_form, :bank_authorization, :status
   belongs_to :family
   has_many :student_instrument, :dependent => :destroy
   has_many :student_availability, :dependent => :destroy
@@ -15,6 +18,8 @@ class Student < ActiveRecord::Base
   validates_length_of :phone_number3, :minimum => 10, :maximum => 11, :allow_blank => true
   validates_length_of :phone_number4, :minimum => 10, :maximum => 11, :allow_blank => true
 
+  mount_uploader :assessment_form, AssessmentUploader
+  mount_uploader :bank_authorization, BankAuthorizationUploader
 
   def status_text
     if self.family_id && self.family_id > 0

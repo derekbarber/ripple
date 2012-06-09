@@ -5,7 +5,9 @@ Ripple::Application.routes.draw do
   match '/view_tentative',     to: 'schedule_student#view_tentative'
   match '/confirm_tentative',   to: 'schedule_student#confirm_tentative'
   match '/view_schedule',     to: 'schedule_student#view_schedule'
-  match '/view_teacher_schedule',     to: 'schedule_student#view_teacher_schedule'
+  match '/view_teacher_schedule',     to: 'schedule_student#view_schedule'
+
+  match '/teacher_management',  to: 'teacher_management#view_schedule'
 
   match '/next_steps', to: 'resound_process#next_steps'
   match '/follow_up_calls', to: 'resound_process#follow_up_calls'

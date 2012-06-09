@@ -26,13 +26,15 @@
         <ul class="nav">
           <li class="active"><%= link_to "Home", root_path %></li>
            <% if current_user %>
-            <li><%= link_to "Manage Users", users_path %></li>
+            <% if current_user.admin? %>
+              <li><%= link_to "Manage Users", users_path %></li>
+            <% end %>
             <li><%= link_to "Sign out", logout_path %></li>
           <% end %>
         </ul>
         <p class="navbar-text pull-right">
           <% if current_user %>
-            Signed in as <a href="#"><%= current_user.username %></a> (<%= link_to "Sign out", logout_path %>)</p>
+            Signed in as <a href="#" style="color: #cccccc;"><%= current_user.username %></a> (<%= link_to "Sign out", logout_path %>)</p>
           <% else %>
 
           <% end %>
@@ -46,55 +48,83 @@
     <% if current_user %>
       <div class="span3">
           <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Lesson Planning</li>
-              <li <%= current_page?(view_pending_path) ? "class='active'" : '' %>>
-                <%= link_to "Schedule a Student", view_pending_path %>
-              </li>
-              <li <%= current_page?(schedule_multiple_path) ? "class='active'" : '' %>>
-                <%= link_to "Schedule Multiple Students", schedule_multiple_path %>
-              </li>
-              <li <%= current_page?(view_tentative_path) ? "class='active'" : '' %>>
-                <%= link_to "View Tentative Lessons", view_tentative_path %>
-              </li>
-              <li <%= current_page?(view_schedule_path) ? "class='active'" : '' %>>
-                <%= link_to "View Schedule", view_schedule_path %>
-              </li>
-              <li class="nav-header">Student Management</li>
-              <li <%= current_page?(families_path) ? "class='active'" : '' %>>
-                <%= link_to "List Familes", families_path %>
-              </li>
-              <li <%= current_page?(new_family_path) ? "class='active'" : '' %>>
-                <%= link_to "Add New Family", new_family_path %>
-              </li>
-              <li <%= current_page?(students_path) ? "class='active'" : '' %>>
-                <%= link_to "List Students", students_path %>
-              </li>
-              <li <%= current_page?(new_student_path) ? "class='active'" : '' %>>
-                <%= link_to "Add New Student", new_student_path %>
-              </li>
-              <li class="nav-header">Teacher Management</li>
-              <li <%= current_page?(teachers_path) ? "class='active'" : '' %>>
-                <%= link_to "List Teachers", teachers_path %>
-              </li>
-              <li <%= current_page?(new_teacher_path) ? "class='active'" : '' %>>
-                <%= link_to "Add New Teacher", new_teacher_path %>
-              </li>
-              <li <%= current_page?(view_teacher_schedule_path) ? "class='active'" : '' %>>
-                <%= link_to "View Teacher Schedule", view_teacher_schedule_path %>
-              </li>
-              <li class="nav-header">Resound Process</li>
-              <li <%= current_page?(next_steps_path) ? "class='active'" : '' %>>
-                <%= link_to "Next Steps", next_steps_path %>
-              </li>
-              <li <%= current_page?(follow_up_calls_path) ? "class='active'" : '' %>>
-                <%= link_to "Make Follow-up Calls", follow_up_calls_path %>
-              </li>
-              <li class="nav-header">System Functions</li>
-              <li <%= current_page?(instruments_path) ? "class='active'" : '' %>>
-                <%= link_to "Instruments", instruments_path %>
-              </li>
-            </ul>
+            <% if current_user.admin? %>
+              <ul class="nav nav-list">
+                <li class="nav-header">Lesson Planning</li>
+                <li <%= current_page?(view_pending_path) ? "class='active'" : '' %>>
+                  <%= link_to "Schedule a Student", view_pending_path %>
+                </li>
+                <li <%= current_page?(schedule_multiple_path) ? "class='active'" : '' %>>
+                  <%= link_to "Schedule Multiple Students", schedule_multiple_path %>
+                </li>
+                <li <%= current_page?(view_tentative_path) ? "class='active'" : '' %>>
+                  <%= link_to "View Tentative Lessons", view_tentative_path %>
+                </li>
+                <li <%= current_page?(view_schedule_path) ? "class='active'" : '' %>>
+                  <%= link_to "View Schedule", view_schedule_path %>
+                </li>
+                <li class="nav-header">Student Management</li>
+                <li <%= current_page?(families_path) ? "class='active'" : '' %>>
+                  <%= link_to "List Familes", families_path %>
+                </li>
+                <li <%= current_page?(new_family_path) ? "class='active'" : '' %>>
+                  <%= link_to "Add New Family", new_family_path %>
+                </li>
+                <li <%= current_page?(students_path) ? "class='active'" : '' %>>
+                  <%= link_to "List Students", students_path %>
+                </li>
+                <li <%= current_page?(new_student_path) ? "class='active'" : '' %>>
+                  <%= link_to "Add New Student", new_student_path %>
+                </li>
+                <li class="nav-header">Teacher Management</li>
+                <li <%= current_page?(teachers_path) ? "class='active'" : '' %>>
+                  <%= link_to "List Teachers", teachers_path %>
+                </li>
+                <li <%= current_page?(new_teacher_path) ? "class='active'" : '' %>>
+                  <%= link_to "Add New Teacher", new_teacher_path %>
+                </li>
+                <li <%= current_page?(view_teacher_schedule_path) ? "class='active'" : '' %>>
+                  <%= link_to "View Teacher Schedule", view_teacher_schedule_path %>
+                </li>
+                <li class="nav-header">Resound Process</li>
+                <li <%= current_page?(next_steps_path) ? "class='active'" : '' %>>
+                  <%= link_to "Next Steps", next_steps_path %>
+                </li>
+                <li <%= current_page?(follow_up_calls_path) ? "class='active'" : '' %>>
+                  <%= link_to "Make Follow-up Calls", follow_up_calls_path %>
+                </li>
+                <li class="nav-header">System Functions</li>
+                <li <%= current_page?(instruments_path) ? "class='active'" : '' %>>
+                  <%= link_to "Instruments", instruments_path %>
+                </li>
+              </ul>
+            <% else %>
+              <ul class="nav nav-list">
+                <li class="nav-header">Teaching</li>
+                <li <%= current_page?(view_pending_path) ? "class='active'" : '' %>>
+                  My Schedule / Driving Directions
+                </li>
+                <li <%= current_page?(view_pending_path) ? "class='active'" : '' %>>
+                  Student Contact Info
+                </li>
+                <li <%= current_page?(view_pending_path) ? "class='active'" : '' %>>
+                  Submit Report Cards
+                </li>
+                <li class="nav-header">Admin</li>
+                <li <%= current_page?(view_pending_path) ? "class='active'" : '' %>>
+                  Update My Availability
+                </li>
+                <li <%= current_page?(view_pending_path) ? "class='active'" : '' %>>
+                  Submit My Timesheet
+                </li>
+                <li <%= current_page?(view_pending_path) ? "class='active'" : '' %>>
+                  Change My Profile
+                </li>
+                <li <%= current_page?(view_pending_path) ? "class='active'" : '' %>>
+                  Access Resources
+                </li>
+              </ul>
+            <% end %>
           </div><!--/.well -->
       </div><!--/span-->
       <div class="span9">

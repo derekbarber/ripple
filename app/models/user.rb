@@ -10,7 +10,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :username, :password, :password_confirmation
+  attr_accessible :username, :password, :password_confirmation, :admin, :teacher_id, :status
   has_secure_password
   #before_save :create_remember_token
 

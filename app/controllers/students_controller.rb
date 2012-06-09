@@ -60,7 +60,6 @@ class StudentsController < ApplicationController
     if (@student.family_id && @student.family_id > 0)
       @family = Family.find(@student.family_id)
     end
-
   end
 
   # POST /students
@@ -84,8 +83,12 @@ class StudentsController < ApplicationController
   def update
     @student = Student.find(params[:id])
 
+    if (@student.family_id && @student.family_id > 0)
+      @family = Family.find(@student.family_id)
+    end
+
     respond_to do |format|
-      if @student.update_attributes(params[:student])
+      if @student.update_attributes!(params[:student])
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
         format.json { head :no_content }
       else

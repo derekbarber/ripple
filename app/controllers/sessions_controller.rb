@@ -10,7 +10,11 @@ class SessionsController < ApplicationController
       #sign_in user
       #redirect_back_or user
       session[:user_id] = user.id
-      redirect_to next_steps_path, notice: "Logged in!"
+      if user.admin?
+        redirect_to next_steps_path, notice: "Logged in!"
+      else
+        redirect_to teacher_management_path, notice: "Logged in!"
+      end
     else
       #flash.now.alert = "Email or password is invalid"
       flash.now[:error] = 'Invalid username/password combination'

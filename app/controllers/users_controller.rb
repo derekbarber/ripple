@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
+    @teacher_names = Teacher.all.collect { |teacher| ["#{teacher.first_name} #{teacher.family_name}", teacher.id] }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,6 +35,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @teachers = Teacher.all
+    @teacher_names = Teacher.all.collect { |teacher| ["#{teacher.first_name} #{teacher.family_name}", teacher.id] }
+
     @user = User.find(params[:id])
   end
 
@@ -57,6 +61,7 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+    @teacher_names = Teacher.all.collect { |teacher| ["#{teacher.first_name} #{teacher.family_name}", teacher.id] }
 
     respond_to do |format|
       if @user.update_attributes(params[:user])

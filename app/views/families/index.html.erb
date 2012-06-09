@@ -26,7 +26,7 @@
             No students yet
           <% end %>
         </td>
-        <td><%= number_to_phone(family.phone_number1) %></td>
+        <td><%= number_to_phone(family.phone_number1, :area_code => true) %></td>
         <td><a href="mailto:<%= family.primary_email %>"><%= family.primary_email %></a></td>
         <td>
           <%= link_to 'Manage', family, :class => 'btn btn-mini' %>
