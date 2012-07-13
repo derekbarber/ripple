@@ -46,16 +46,16 @@ class ScheduleStudentController < ApplicationController
   def next_steps
     @students = Student.all
 
-    #@students.each do |student|
-    #  @resound_process = ResoundProcess.find_by_student_id(student.id)
+    @students.each do |student|
+      @resound_process = ResoundProcess.find_by_student_id(student.id)
 
-    #  unless @resound_process
-    #    puts "Student ID Not found: #{student.id}"
-    #    @resound_process_record = ResoundProcess.new
-    #    @resound_process_record.student_id = student.id
-    #    @resound_process_record.save
-    #  end
-    #end
+      unless @resound_process
+        #puts "Student ID Not found: #{student.id}"
+        @resound_process_record = ResoundProcess.new
+        @resound_process_record.student_id = student.id
+        @resound_process_record.save
+      end
+    end
 
     #@schedule_assessment = Student.all(:include => :resound_process, :conditions => "resound_processes.schedule_assessment = 0 OR resound_processes.schedule_assessment IS NULL")
     #@schedule_assessment = ResoundProcess.where(:schedule_assessment => false)
