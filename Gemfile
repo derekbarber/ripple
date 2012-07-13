@@ -6,6 +6,10 @@ gem 'bcrypt-ruby', '3.0.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+group :development do
+  gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git', :require => 'rails_development_boost'
+end
+
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '2.8.1'
@@ -21,13 +25,14 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
-
-  gem 'twitter-bootstrap-rails'
-  gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
-  gem 'jquery-ui-rails'
 end
 
 gem 'jquery-rails'
+gem 'twitter-bootstrap-rails'
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+gem 'jquery-ui-rails'
+gem 'bootstrap-datepicker-rails'
+gem "on_the_spot"
 
 group :test do
   gem 'rspec-rails', '2.8.1'
@@ -57,3 +62,4 @@ end
 gem 'simple_form'
 gem 'will_paginate'
 gem 'carrierwave'
+gem 'thin'

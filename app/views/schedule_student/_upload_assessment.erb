@@ -1,0 +1,51 @@
+<h3>Upload Assessment</h3>
+
+<% if @upload_assessment.any? %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Completed</th>
+        <th>Student</th>
+        <th>Family</th>
+        <th>Write / View Note</th>
+        <th>Primary Phone #</th>
+        <th>Due Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @upload_assessment.each do |resound_process| %>
+        <%
+          student = Student.find(resound_process.student_id)
+        %>
+        <tr>
+          <td><input type="checkbox"></td>
+          <td><%= student.full_name %></td>
+          <td>
+            <%=
+            if student.family_id && student.family_id > 0
+              family = Family.find(student.family_id)
+              family.family_name
+            else
+              "N/A"
+            end
+            %>
+          </td>
+          <td>
+            <%= on_the_spot_edit resound_process, :upload_assessment_note, :type => :textarea, :rows => 5, :columns => 45 %>
+          </td>
+          <td><%= number_to_phone(student.phone_number1, :area_code => true) %></td>
+          <td>
+            <%= form_for(resound_process, :remote => true) do |f| %>
+            <%= f.text_field :upload_assessment_due, :as => :string, :label => false, :class => 'date_picker', :style => 'width: 100px;', "data-behaviour" => 'datepicker' %>
+              <%= f.submit "Update" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  <p>No students currently awaiting the assessment upload</p>
+<% end %>

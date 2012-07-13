@@ -6,6 +6,7 @@ class Student < ActiveRecord::Base
   has_many :student_instrument, :dependent => :destroy
   has_many :student_availability, :dependent => :destroy
   has_many :lessons, :dependent => :destroy
+  has_one :resound_process
 
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :primary_email, format: { with: valid_email_regex }, :allow_blank => true,
