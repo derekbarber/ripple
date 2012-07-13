@@ -59,7 +59,7 @@ class ScheduleStudentController < ApplicationController
 
     #@schedule_assessment = Student.all(:include => :resound_process, :conditions => "resound_processes.schedule_assessment = 0 OR resound_processes.schedule_assessment IS NULL")
     #@schedule_assessment = ResoundProcess.where(:schedule_assessment => false)
-    @schedule_assessment = ResoundProcess.all(:conditions => "resound_processes.schedule_assessment IS 0 OR resound_processes.schedule_assessment IS NULL")
+    @schedule_assessment = ResoundProcess.all(:conditions => "resound_processes.schedule_assessment = '0' OR resound_processes.schedule_assessment IS NULL")
 
     @confirm_payment = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => false)
 
