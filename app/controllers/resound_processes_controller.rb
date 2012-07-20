@@ -32,10 +32,18 @@ class ResoundProcessesController < ApplicationController
   def update
     @resound_process = ResoundProcess.find(params[:id])
 
-    p params
+
     respond_to do |format|
       if @resound_process.update_attributes(params[:resound_process])
+        @schedule_assessment = ResoundProcess.where(:schedule_assessment => false)
+
+        @confirm_payment = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => false)
+
+        @upload_assessment = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
+                                                  :upload_assessment => false)
+
         format.html # { redirect_to(@resound_process, :notice => 'Value was successfully updated.') }
+        format.js
         format.json #{ render json: @resound_process, status: :updated }
       else
         format.html #{ render :action => "edit" }

@@ -1,25 +1,32 @@
 <h3>Schedule Assessment</h3>
 
-<% if @schedule_assessment.any? %>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Completed</th>
-        <th>Student</th>
-        <th>Family</th>
-        <th>Write / View Note</th>
-        <th>Primary Phone #</th>
-        <th>Due Date</th>
-      </tr>
-    </thead>
-    <tbody>
+<table class="table table-striped" id="scheduleAssessmentTable">
+  <thead>
+    <tr>
+      <th>Completed</th>
+      <th>Student</th>
+      <th>Family</th>
+      <th>Write / View Note</th>
+      <th>Primary Phone #</th>
+      <th>Due Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @schedule_assessment.any? %>
       <% @schedule_assessment.each do |resound_process| %>
         <%
           student = Student.find(resound_process.student_id)
         %>
         <tr>
-          <td><input type="checkbox"></td>
+          <td>
+            <%= form_for(resound_process, :remote => true) do |t| %>
+              <%= t.hidden_field :id, :value => resound_process.id %>
+              <%= t.check_box :schedule_assessment,
+                 :checked => resound_process.schedule_assessment,
+                :class => 'checkable' %>
+            <% end %>
+          </td>
           <td><%= student.full_name %></td>
           <td>
             <%=
@@ -44,9 +51,25 @@
           </td>
         </tr>
       <% end %>
-    </tbody>
-  </table>
+    <% else %>
+      <tr>
+        <td colspan="6">
+          <p>No students awaiting an assessment at this time</p>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<% else %>
-  <p>No students awaiting an assessment at this time</p>
-<% end %>
+<script>
+
+$('.checkable').live('change',
+function() {
+  if (confirm('Are you sure?')) {
+    $(this).parents('form:first').submit();
+  } else {
+    $(this).attr('checked', false);
+  }
+});
+
+</script>

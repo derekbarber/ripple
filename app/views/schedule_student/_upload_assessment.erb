@@ -1,19 +1,18 @@
 <h3>Upload Assessment</h3>
 
-<% if @upload_assessment.any? %>
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Completed</th>
-        <th>Student</th>
-        <th>Family</th>
-        <th>Write / View Note</th>
-        <th>Primary Phone #</th>
-        <th>Due Date</th>
-      </tr>
-    </thead>
-    <tbody>
+<table class="table table-striped" id="uploadAssessmentTable">
+  <thead>
+    <tr>
+      <th>Completed</th>
+      <th>Student</th>
+      <th>Family</th>
+      <th>Write / View Note</th>
+      <th>Primary Phone #</th>
+      <th>Due Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @upload_assessment.any? %>
       <% @upload_assessment.each do |resound_process| %>
         <%
           student = Student.find(resound_process.student_id)
@@ -43,9 +42,12 @@
           </td>
         </tr>
       <% end %>
-    </tbody>
-  </table>
-
-<% else %>
-  <p>No students currently awaiting the assessment upload</p>
-<% end %>
+    <% else %>
+      <tr>
+        <td colspan="6">
+          <p>No students currently awaiting the assessment upload</p>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

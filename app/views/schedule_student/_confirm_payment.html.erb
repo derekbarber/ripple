@@ -1,19 +1,18 @@
 <h3>Confirm Payment before Lessons + Set-up Billing Profile</h3>
 
-<% if @confirm_payment.any? %>
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Completed</th>
-        <th>Student</th>
-        <th>Family</th>
-        <th>Write / View Note</th>
-        <th>Primary Phone #</th>
-        <th>Due Date</th>
-      </tr>
-    </thead>
-    <tbody>
+<table class="table table-striped" id="confirmPaymentTable">
+  <thead>
+    <tr>
+      <th>Completed</th>
+      <th>Student</th>
+      <th>Family</th>
+      <th>Write / View Note</th>
+      <th>Primary Phone #</th>
+      <th>Due Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @confirm_payment.any? %>
       <% @confirm_payment.each do |resound_process| %>
         <%
           student = Student.find(resound_process.student_id)
@@ -47,9 +46,12 @@
           </td>
         </tr>
       <% end %>
-    </tbody>
-  </table>
-
-<% else %>
-  <p>No students awaiting payment confirmation</p>
-<% end %>
+    <% else %>
+      <tr>
+        <td colspan="6">
+          <p>No students awaiting payment confirmation</p>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

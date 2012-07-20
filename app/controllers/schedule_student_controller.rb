@@ -50,16 +50,25 @@ class ScheduleStudentController < ApplicationController
       @resound_process = ResoundProcess.find_by_student_id(student.id)
 
       unless @resound_process
-        #puts "Student ID Not found: #{student.id}"
+        puts "Student ID Not found: #{student.id}"
         @resound_process_record = ResoundProcess.new
         @resound_process_record.student_id = student.id
+        @resound_process_record.schedule_assessment = false
+        @resound_process_record.confirm_payment = false
+        @resound_process_record.upload_assessment = false
+        @resound_process_record.schedule_lessons = false
+        @resound_process_record.welcome_email = false
+        @resound_process_record.email_assessment = false
+        @resound_process_record.next_day_followup = false
+        @resound_process_record.one_month_followup = false
+        @resound_process_record.four_month_followup = false
         @resound_process_record.save
       end
     end
 
     #@schedule_assessment = Student.all(:include => :resound_process, :conditions => "resound_processes.schedule_assessment = 0 OR resound_processes.schedule_assessment IS NULL")
     #@schedule_assessment = ResoundProcess.where(:schedule_assessment => false)
-    @schedule_assessment = ResoundProcess.all(:conditions => "resound_processes.schedule_assessment = '0' OR resound_processes.schedule_assessment IS NULL")
+    @schedule_assessment = ResoundProcess.where(:schedule_assessment => false)
 
     @confirm_payment = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => false)
 

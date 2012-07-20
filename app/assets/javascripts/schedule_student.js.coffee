@@ -17,3 +17,5 @@ $(document).on "focus", "[data-behaviour~='datepicker']", (e) ->
 
 jQuery ->
   $('.best_in_place').best_in_place();
+
+
