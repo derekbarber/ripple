@@ -1,0 +1,35 @@
+<h2>Next Steps</h2>
+
+<div style="float: right;">
+  <select>
+    <option>Show All</option>
+    <option>Schedule Assessment</option>
+    <option>Confirm Payment</option>
+    <option>Upload Assessment</option>
+  </select>
+</div>
+
+<p>Include the following Students:</p>
+
+<input type="checkbox"> Active Prospect&nbsp;&nbsp;
+<input type="checkbox"> Customer&nbsp;&nbsp;
+<input type="checkbox"> Nurture Prospect&nbsp;&nbsp;
+<input type="checkbox"> Inactive Prospect&nbsp;&nbsp;
+
+<hr>
+
+<div id="schedule_assessment">
+<%= render :partial => 'schedule_assessment' %>
+</div>
+
+<hr>
+
+<div id="confirm_payment">
+<%= render :partial => 'confirm_payment' %>
+</div>
+
+<hr>
+
+<div id="upload_assessment">
+<%= render :partial => 'upload_assessment' %>
+</div>

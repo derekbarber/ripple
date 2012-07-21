@@ -1,3 +1,28 @@
-$('#schedule_assessment').html("<%=j render @schedule_assessment %>");
-$('#confirm_payment').html("<%=j render @confirm_payment %>");
-$('#upload_assessment').html("<%=j render @upload_assessment %>");
+$('#schedule_assessment').html("<%=j render :partial => 'schedule_assessment', :object => @schedule_assessment %>");
+
+jQuery(function() {
+  return $('#scheduleAssessmentTable').dataTable({
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    sPaginationType: "bootstrap"
+  });
+});
+
+
+$('#confirm_payment').html("<%=j render :partial => 'confirm_payment', :object => @confirm_payment %>");
+
+jQuery(function() {
+  return $('#confirmPaymentTable').dataTable({
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    sPaginationType: "bootstrap"
+  });
+});
+
+
+$('#upload_assessment').html("<%=j render :partial => 'upload_assessment', :object => @upload_assessment %>");
+
+jQuery(function() {
+  return $('#uploadAssessmentTable').dataTable({
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    sPaginationType: "bootstrap"
+  });
+});

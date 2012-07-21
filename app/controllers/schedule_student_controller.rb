@@ -1,6 +1,5 @@
 class ScheduleStudentController < ApplicationController
 
-  can_edit_on_the_spot
 
   def view_pending
     #@students = Student.all( :include => :lessons, :conditions => "lessons.student_id IS NULL")

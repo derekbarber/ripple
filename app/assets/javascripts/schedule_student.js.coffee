@@ -9,13 +9,5 @@
 #    $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true});
 #});
 
-$(document).on "focus", "[data-behaviour~='datepicker']", (e) ->
-  $(this).datepicker
-    format: "yyyy-mm-dd"
-    weekStart: 1
-    autoclose: true
-
-jQuery ->
-  $('.best_in_place').best_in_place();
 
 

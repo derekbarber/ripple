@@ -1,6 +1,5 @@
 <h3>Schedule Assessment</h3>
 
-
 <table class="table table-striped" id="scheduleAssessmentTable">
   <thead>
     <tr>
@@ -14,7 +13,7 @@
   </thead>
   <tbody>
     <% if @schedule_assessment.any? %>
-      <% @schedule_assessment.each do |resound_process| %>
+    <% @schedule_assessment.each do |resound_process| %>
         <%
           student = Student.find(resound_process.student_id)
         %>

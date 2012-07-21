@@ -5,8 +5,16 @@
 jQuery ->
   $('#scheduleAssessmentTable').dataTable
     "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-    sPaginationType: "bootstrap"
-
+    sPaginationType: "bootstrap",
+    "aoColumns": [
+          { "bSortable": false },
+          null,
+          null,
+          { "bSortable": false },
+          { "bSortable": false },
+          null
+    ],
+    "aaSorting": [[5, "asc"]]
 
 jQuery ->
   $('#confirmPaymentTable').dataTable
@@ -17,3 +25,13 @@ jQuery ->
   $('#uploadAssessmentTable').dataTable
     "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
     sPaginationType: "bootstrap"
+
+
+$(document).on "focus", "[data-behaviour~='datepicker']", (e) ->
+  $(this).datepicker
+    format: "yyyy-mm-dd"
+    weekStart: 1
+    autoclose: true
+
+#jQuery ->
+#  $('.best_in_place').best_in_place();

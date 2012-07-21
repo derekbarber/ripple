@@ -9,7 +9,7 @@ Ripple::Application.routes.draw do
 
   match '/teacher_management',  to: 'teacher_management#view_schedule'
 
-  match '/next_steps', to: 'schedule_student#next_steps'
+  match '/next_steps', to: 'resound_processes#next_steps'
   match '/follow_up_calls', to: 'schedule_student#follow_up_calls'
 
   resources :preferred_teachers
@@ -33,10 +33,9 @@ Ripple::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :resound_processes
 
   # Custom route for on_the_spot
-  resources :schedule_student do
+  resources :resound_processes do
     collection do
       put :update_attribute_on_the_spot
       get :get_attribute_on_the_spot
