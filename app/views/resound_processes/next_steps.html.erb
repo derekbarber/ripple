@@ -1,34 +1,42 @@
 <h2>Next Steps</h2>
 
 <div style="float: right;">
-  <select>
-    <option>Show All</option>
-    <option>Schedule Assessment</option>
-    <option>Confirm Payment</option>
-    <option>Upload Assessment</option>
+  <select id="selectSteps">
+    <option value="all">Show All</option>
+    <option value="schedule_assessment">Schedule Assessment</option>
+    <option value="confirm_payment">Confirm Payment</option>
+    <option value="upload_assessment">Upload Assessment</option>
+    <option value="schedule_lessons">Schedule Lessons</option>
+    <option value="send_welcome_email">Send Welcome Email</option>
+    <option value="email_assessment">Email Assessment</option>
+    <option value="next_day_followup">Next Day Follow-up</option>
+    <option value="one_week_followup">One Week Follow-up</option>
+    <option value="one_month_followup">One Month Follow-up</option>
+    <option value="four_month_followup">Four Month Follow-up</option>
   </select>
 </div>
 
 <p>Include the following Students:</p>
 
-<input type="checkbox"> Active Prospect&nbsp;&nbsp;
-<input type="checkbox"> Customer&nbsp;&nbsp;
+<input type="checkbox" checked="checked"> Active Prospect&nbsp;&nbsp;
+<input type="checkbox" checked="checked"> Customer&nbsp;&nbsp;
 <input type="checkbox"> Nurture Prospect&nbsp;&nbsp;
 <input type="checkbox"> Inactive Prospect&nbsp;&nbsp;
 
 <hr>
 
 <div id="schedule_assessment">
-<%= render :partial => 'schedule_assessment' %>
+  <%= render :partial => 'schedule_assessment' %>
+  <hr>
 </div>
 
-<hr>
+
 
 <div id="confirm_payment">
-<%= render :partial => 'confirm_payment' %>
+  <%= render :partial => 'confirm_payment' %>
+  <hr>
 </div>
 
-<hr>
 
 <div id="upload_assessment">
 <%= render :partial => 'upload_assessment' %>

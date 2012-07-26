@@ -16,22 +16,37 @@ jQuery ->
     ],
     "aaSorting": [[5, "asc"]]
 
-jQuery ->
   $('#confirmPaymentTable').dataTable
     "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
     sPaginationType: "bootstrap"
 
-jQuery ->
   $('#uploadAssessmentTable').dataTable
     "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
     sPaginationType: "bootstrap"
 
+jQuery ->
+  $(document).on "focus", "[data-behaviour~='datepicker']", (e) ->
+    $(this).datepicker
+      format: "yyyy-mm-dd"
+      weekStart: 1
+      autoclose: true
+  $(document).on "change", "[data-behaviour~='datepicker']", (e) ->
+    form = $(this).closest('form')
+    form.submit()
 
-$(document).on "focus", "[data-behaviour~='datepicker']", (e) ->
-  $(this).datepicker
-    format: "yyyy-mm-dd"
-    weekStart: 1
-    autoclose: true
-
-#jQuery ->
-#  $('.best_in_place').best_in_place();
+jQuery ->
+  $('#selectSteps').change ->
+    step = $(this).val()
+    $('#schedule_assessment').hide();
+    $('#confirm_payment').hide();
+    $('#upload_assessment').hide();
+    if step == "all"
+      $('#schedule_assessment').show()
+      $('#confirm_payment').show()
+      $('#upload_assessment').show()
+    else if step == "schedule_assessment"
+      $('#schedule_assessment').show()
+    else if step == "confirm_payment"
+      $('#confirm_payment').show()
+    else if step == "upload_assessment"
+      $('#upload_assessment').show()
