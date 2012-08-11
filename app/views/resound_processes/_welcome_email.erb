@@ -1,18 +1,18 @@
-<h3>Confirm Payment before Lessons + Set-up Billing Profile</h3>
+<h3>Send Welcome Email to Student</h3>
 
-<table class="table table-striped" id="confirmPaymentTable">
+<table class="table table-striped" id="welcomeEmailTable">
   <thead>
     <tr>
       <th>Completed</th>
       <th>Student</th>
       <th>Family</th>
       <th>Write / View Note</th>
-      <th>Primary Phone #</th>
+      <th>Primary Email</th>
       <th>Due Date</th>
     </tr>
   </thead>
   <tbody>
-    <% @confirm_payment.each do |resound_process| %>
+    <% @welcome_email.each do |resound_process| %>
       <%
         student = Student.find(resound_process.student_id)
       %>
@@ -20,13 +20,10 @@
         <td>
           <%= form_for(resound_process, :remote => true) do |t| %>
             <%= t.hidden_field :id, :value => resound_process.id %>
-            <%= t.hidden_field :upload_assessment_due, :value => 1.day.from_now %>
-            <%= t.hidden_field :schedule_lessons_due, :value => 1.day.from_now %>
-            <%= t.hidden_field :welcome_email_due, :value => 1.day.from_now %>
             <%= t.hidden_field :email_assessment_due, :value => 1.day.from_now %>
             <%= t.hidden_field :welcome_email_due, :value => 1.day.from_now %>
-            <%= t.check_box :confirm_payment,
-               :checked => resound_process.confirm_payment,
+            <%= t.check_box :welcome_email,
+               :checked => resound_process.welcome_email,
               :class => 'checkable' %>
           <% end %>
         </td>
@@ -42,12 +39,12 @@
           %>
         </td>
         <td>
-          <%= on_the_spot_edit resound_process, :confirm_payment_note, :type => :textarea, :rows => 5, :columns => 45 %>
+          <%= on_the_spot_edit resound_process, :welcome_email_note, :type => :textarea, :rows => 5, :columns => 45 %>
         </td>
-        <td><%= number_to_phone(student.phone_number1, :area_code => true) %></td>
+        <td><%= mail_to student.primary_email %></td>
         <td>
           <%= form_for(resound_process, :remote => true) do |f| %>
-            <%= f.text_field :confirm_payment_due, :as => :string, :label => false, :class => 'date_picker', :style => 'width: 100px;', "data-behaviour" => 'datepicker' %>
+            <%= f.text_field :welcome_email_due, :as => :string, :label => false, :class => 'date_picker', :style => 'width: 100px;', "data-behaviour" => 'datepicker' %>
           <% end %>
         </td>
       </tr>

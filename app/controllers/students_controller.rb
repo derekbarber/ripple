@@ -47,6 +47,25 @@ class StudentsController < ApplicationController
 
     @student.custom_contact_details = false
 
+    @resound_process_record = ResoundProcess.new
+    @resound_process_record.student_id = @student.id
+    @resound_process_record.schedule_assessment = false
+    @resound_process_record.schedule_assessment_due = 2.days.from_now
+    @resound_process_record.confirm_payment = false
+    @resound_process_record.confirm_payment_due = 4.days.from_now
+    @resound_process_record.upload_assessment = false
+    @resound_process_record.upload_assessment_due = 4.days.from_now
+    @resound_process_record.schedule_lessons = false
+    @resound_process_record.schedule_lessons_due = 4.days.from_now
+    @resound_process_record.welcome_email = false
+    @resound_process_record.welcome_email_due = 4.days.from_now
+    @resound_process_record.email_assessment = false
+    @resound_process_record.email_assessment_due = 4.days.from_now
+    @resound_process_record.next_day_followup = false
+    @resound_process_record.one_month_followup = false
+    @resound_process_record.four_month_followup = false
+    @resound_process_record.save
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @student }
@@ -88,7 +107,7 @@ class StudentsController < ApplicationController
     end
 
     respond_to do |format|
-      if @student.update_attributes!(params[:student])
+      if @student.update_attributes(params[:student])
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
         format.json { head :no_content }
       else

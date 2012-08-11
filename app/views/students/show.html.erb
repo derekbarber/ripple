@@ -4,10 +4,9 @@
 <div class="content-box">
 
 <p>
-  <strong>Birthday:</strong> <%= @student.birthday.strftime("%B %d, %Y") %> (Age: <%= @student.age %>)<br>
+  <strong>Birthday:</strong> <%= @student.birthday_text %> (Age: <%= @student.age %>)<br>
   <strong>Gender:</strong> <%= @student.gender %><br>
 </p>
-
 
 <% if @student.custom_contact_details == true %>
 

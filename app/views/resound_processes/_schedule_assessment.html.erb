@@ -14,12 +14,21 @@
   <tbody>
     <% @schedule_assessment.each do |resound_process| %>
       <%
+      if resound_process.student_id.nil?
+        next
+      end
         student = Student.find(resound_process.student_id)
       %>
       <tr>
         <td>
           <%= form_for(resound_process, :remote => true) do |t| %>
             <%= t.hidden_field :id, :value => resound_process.id %>
+            <%= t.hidden_field :confirm_payment_due, :value => 2.days.from_now %>
+            <%= t.hidden_field :upload_assessment_due, :value => 2.days.from_now %>
+            <%= t.hidden_field :schedule_lessons_due, :value => 2.days.from_now %>
+            <%= t.hidden_field :welcome_email_due, :value => 2.days.from_now %>
+            <%= t.hidden_field :email_assessment_due, :value => 2.days.from_now %>
+            <%= t.hidden_field :welcome_email_due, :value => 2.days.from_now %>
             <%= t.check_box :schedule_assessment,
                :checked => resound_process.schedule_assessment,
               :class => 'checkable' %>
@@ -41,6 +50,13 @@
         </td>
         <td><%= number_to_phone(student.phone_number1, :area_code => true) %></td>
         <td>
+          <div style="float: right; color: red;">
+          <%= if not resound_process.schedule_assessment_due.nil? and resound_process.schedule_assessment_due < Date.today
+             "Overdue"
+          end
+          %>
+          </div>
+
           <%= form_for(resound_process, :remote => true) do |f| %>
           <%#= f.datepicker :schedule_assessment_due %>
             <%= f.text_field :schedule_assessment_due, :as => :string, :label => false, :class => 'date_picker', :style => 'width: 100px;', "data-behaviour" => 'datepicker' %>

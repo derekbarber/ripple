@@ -27,9 +27,10 @@
     </div>
 
     <div class="control-group">
-      <%= f.label :birthday, :class => 'control-label' %>
+      <%= f.label :birthday_text, "Birthday", :class => 'control-label' %>
       <div class="controls">
-        <%= f.date_select :birthday, { :start_year => 1950, :end_year => Time.now.year - 4 }, { :class => 'span2' } %>
+        <%= f.text_field :birthday_text %>
+        <%#= f.date_select :birthday, { :start_year => 1950, :end_year => Time.now.year - 4 }, { :class => 'span2' } %>
       </div>
     </div>
 

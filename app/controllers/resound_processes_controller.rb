@@ -43,6 +43,34 @@ class ResoundProcessesController < ApplicationController
     @upload_assessment = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
                                               :upload_assessment => false)
 
+    @schedule_lessons = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
+                                          :upload_assessment => true, :schedule_lessons => false)
+
+
+    @welcome_email = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
+                                          :upload_assessment => true, :schedule_lessons => true,
+                                          :welcome_email => false)
+
+    @email_assessment = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
+                                              :upload_assessment => true, :schedule_lessons => true,
+                                              :welcome_email => true, :email_assessment => false)
+
+    @next_day_followup = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
+                                              :upload_assessment => true, :schedule_lessons => true,
+                                              :welcome_email => true, :email_assessment => true,
+                                              :next_day_followup => false)
+
+    @one_month_followup = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
+                                              :upload_assessment => true, :schedule_lessons => true,
+                                              :welcome_email => true, :email_assessment => true,
+                                              :next_day_followup => true, :one_month_followup => false)
+
+    @four_month_followup = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
+                                                :upload_assessment => true, :schedule_lessons => true,
+                                                :welcome_email => true, :email_assessment => true,
+                                                :next_day_followup => true, :one_month_followup => true,
+                                                :four_month_followup => false)
+
     respond_to do |format|
       if success
         format.html # { redirect_to(@resound_process, :notice => 'Value was successfully updated.') }
@@ -85,7 +113,7 @@ class ResoundProcessesController < ApplicationController
     end
 
     #@schedule_assessment = Student.all(:include => :resound_process, :conditions => "resound_processes.schedule_assessment = 0 OR resound_processes.schedule_assessment IS NULL")
-    #@schedule_assessment = ResoundProcess.where(:schedule_assessment => false)
+
     @schedule_assessment = ResoundProcess.where(:schedule_assessment => false)
 
     @confirm_payment = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => false)
@@ -93,33 +121,33 @@ class ResoundProcessesController < ApplicationController
     @upload_assessment = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
                                               :upload_assessment => false)
 
-    #@schedule_lessons = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
-    #                                          :upload_assessment => true, :schedule_lessons => false)
+    @schedule_lessons = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
+                                              :upload_assessment => true, :schedule_lessons => false)
 
 
-    #@welcome_email = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
-    #                                      :upload_assessment => true, :schedule_lessons => true,
-    #                                      :welcome_email => false)
+    @welcome_email = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
+                                          :upload_assessment => true, :schedule_lessons => true,
+                                          :welcome_email => false)
 
-    #@email_assessment = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
-    #                                          :upload_assessment => true, :schedule_lessons => true,
-    #                                          :welcome_email => true, :email_assessment => false)
+    @email_assessment = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
+                                              :upload_assessment => true, :schedule_lessons => true,
+                                              :welcome_email => true, :email_assessment => false)
 
-    #@next_day_followup = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
-    #                                          :upload_assessment => true, :schedule_lessons => true,
-    #                                          :welcome_email => true, :email_assessment => true,
-    #                                          :next_day_followup => false)
+    @next_day_followup = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
+                                              :upload_assessment => true, :schedule_lessons => true,
+                                              :welcome_email => true, :email_assessment => true,
+                                              :next_day_followup => false)
 
-    #@one_month_followup = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
-    #                                          :upload_assessment => true, :schedule_lessons => true,
-    #                                          :welcome_email => true, :email_assessment => true,
-    #                                          :next_day_followup => true, :one_month_followup => false)
+    @one_month_followup = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
+                                              :upload_assessment => true, :schedule_lessons => true,
+                                              :welcome_email => true, :email_assessment => true,
+                                              :next_day_followup => true, :one_month_followup => false)
 
-    #@four_month_followup = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
-    #                                            :upload_assessment => true, :schedule_lessons => true,
-    #                                            :welcome_email => true, :email_assessment => true,
-    #                                            :next_day_followup => true, :one_month_followup => true,
-    #                                            :four_month_followup => false)
+    @four_month_followup = ResoundProcess.where(:schedule_assessment => true, :confirm_payment => true,
+                                                :upload_assessment => true, :schedule_lessons => true,
+                                                :welcome_email => true, :email_assessment => true,
+                                                :next_day_followup => true, :one_month_followup => true,
+                                                :four_month_followup => false)
 
   end
 
