@@ -14,9 +14,6 @@
   <tbody>
     <% @schedule_assessment.each do |resound_process| %>
       <%
-      if resound_process.student_id.nil?
-        next
-      end
         student = Student.find(resound_process.student_id)
       %>
       <tr>

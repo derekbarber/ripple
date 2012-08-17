@@ -21,6 +21,8 @@ class StudentsController < ApplicationController
       @family = Family.find(@student.family_id)
     end
 
+    @resound_process = ResoundProcess.find_by_student_id(@student.id)
+
     @instruments = Instrument.all
     @instrument_names = Instrument.all.collect { |instrument| [instrument.name, instrument.id] }
 
@@ -76,6 +78,8 @@ class StudentsController < ApplicationController
   def edit
     @student = Student.find(params[:id])
 
+    @resound_process = ResoundProcess.find_by_student_id(@student.id)
+
     if (@student.family_id && @student.family_id > 0)
       @family = Family.find(@student.family_id)
     end
@@ -86,8 +90,42 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(params[:student])
 
+    if (params[:family_id] && (params[:family_id] != '0'))
+      @family = Family.find(params[:family_id])
+      @student.family_id = params[:family_id]
+    else
+      @student.family_id = 0
+    end
+
+    @student.custom_contact_details = false
+
+    @success = @student.save!
+    
+    logger.debug { "Success: #{@success}"}
+
+    if @success
+      @resound_process_record = ResoundProcess.new
+      @resound_process_record.student_id = @student.id
+      @resound_process_record.schedule_assessment = false
+      @resound_process_record.schedule_assessment_due = 2.days.from_now
+      @resound_process_record.confirm_payment = false
+      @resound_process_record.confirm_payment_due = 4.days.from_now
+      @resound_process_record.upload_assessment = false
+      @resound_process_record.upload_assessment_due = 4.days.from_now
+      @resound_process_record.schedule_lessons = false
+      @resound_process_record.schedule_lessons_due = 4.days.from_now
+      @resound_process_record.welcome_email = false
+      @resound_process_record.welcome_email_due = 4.days.from_now
+      @resound_process_record.email_assessment = false
+      @resound_process_record.email_assessment_due = 4.days.from_now
+      @resound_process_record.next_day_followup = false
+      @resound_process_record.one_month_followup = false
+      @resound_process_record.four_month_followup = false
+      @resound_process_record.save
+    end
+    
     respond_to do |format|
-      if @student.save
+      if @success
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render json: @student, status: :created, location: @student }
       else
@@ -106,6 +144,8 @@ class StudentsController < ApplicationController
       @family = Family.find(@student.family_id)
     end
 
+    @resound_process = ResoundProcess.find_by_student_id(@student.id)
+
     respond_to do |format|
       if @student.update_attributes(params[:student])
         format.html { redirect_to @student, notice: 'Student was successfully updated.' }
@@ -122,6 +162,9 @@ class StudentsController < ApplicationController
   def destroy
     @student = Student.find(params[:id])
     @student.destroy
+
+    @resound_process = ResoundProcess.find_by_student_id(@student.id)
+    @resound_process.destroy
 
     respond_to do |format|
       format.html { redirect_to students_url }

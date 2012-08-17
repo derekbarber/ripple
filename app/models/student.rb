@@ -28,6 +28,7 @@ class Student < ActiveRecord::Base
   mount_uploader :bank_authorization, BankAuthorizationUploader
 
   before_save :save_birthday_text
+  before_validation :strip_phone_numbers
 
   def status_text
     if self.family_id && self.family_id > 0
@@ -81,12 +82,13 @@ class Student < ActiveRecord::Base
   end
 
   protected
-
+  
   def strip_phone_numbers
     self.phone_number1 = self.phone_number1.gsub(/[^0-9]/, "")
     self.phone_number2 = self.phone_number2.gsub(/[^0-9]/, "")
     self.phone_number3 = self.phone_number3.gsub(/[^0-9]/, "")
     self.phone_number4 = self.phone_number4.gsub(/[^0-9]/, "")
   end
+
 
 end

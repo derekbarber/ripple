@@ -51,10 +51,6 @@
 
 <% end %>
 
-</div>
-
-<div class="content-box well">
-
 <h3>Notes</h3>
 <p>
   <% if @student.notes.length > 0 %>
@@ -66,20 +62,31 @@
 
 <br>
 
+<% if @student.assessment_form? %>
 <p>
-  Form: <%= @student.assessment_form %>
-  <%= link_to @student.assessment_form_url if @student.assessment_form? %>
+  <strong>Assessment Form:</strong> <%= link_to @student.assessment_form_url  %>
 </p>
+<% end %>
 
+<% if @student.bank_authorization? %>
 <p>
-  Form 2: <%= @student.bank_authorization %>
-  <%= link_to @student.bank_authorization_url if @student.bank_authorization? %>
+  <strong>Bank Authorization Form:</strong> <%= link_to @student.bank_authorization_url  %>
 </p>
+<% end %>
 
-<p>
-  <b>Status:</b>
-  <%= @student.status_text %>
-</p>
+</div>
+
+<div class="content-box well">
+
+  <h3>Next Step</h3>
+  <p>
+    <strong><%= @resound_process.next_step %></strong>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= @student.status_text %>
+  </p>
 
 </div>
 
