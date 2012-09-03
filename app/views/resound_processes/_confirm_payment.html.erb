@@ -15,10 +15,17 @@
     <% @confirm_payment.each do |resound_process| %>
       <%
         student = Student.find(resound_process.student_id)
+
+        td_style = '';
+        if not resound_process.confirm_payment_due.nil? and resound_process.confirm_payment_due < Date.today
+          td_style = 'background-color: #cd5c5c; color: #eeeeee; font-weight: bold;';
+        elsif not resound_process.confirm_payment_due.nil? and (resound_process.confirm_payment_due == Date.today or resound_process.confirm_payment_due == Date.tomorrow)
+          td_style = 'background-color: #fafad2; font-weight: bold;';
+        end
       %>
       <tr>
-        <td>
-          <%= form_for(resound_process, :remote => true) do |t| %>
+        <td style="<%= td_style %>">
+          <%= form_for(resound_process, :remote => true, :html => { :style => 'padding: 0; margin: 0;'}) do |t| %>
             <%= t.hidden_field :id, :value => resound_process.id %>
             <%= t.hidden_field :upload_assessment_due, :value => 1.day.from_now %>
             <%= t.hidden_field :schedule_lessons_due, :value => 1.day.from_now %>
@@ -30,8 +37,8 @@
               :class => 'checkable' %>
           <% end %>
         </td>
-        <td><%= student.full_name %></td>
-        <td>
+        <td style="<%= td_style %>"><%= student.full_name %></td>
+        <td style="<%= td_style %>">
           <%=
           if student.family_id && student.family_id > 0
             family = Family.find(student.family_id)
@@ -41,12 +48,12 @@
           end
           %>
         </td>
-        <td>
+        <td style="<%= td_style %>">
           <%= on_the_spot_edit resound_process, :confirm_payment_note, :type => :textarea, :rows => 5, :columns => 45 %>
         </td>
-        <td><%= number_to_phone(student.phone_number1, :area_code => true) %></td>
-        <td>
-          <%= form_for(resound_process, :remote => true) do |f| %>
+        <td style="<%= td_style %>"><%= number_to_phone(student.phone_number1, :area_code => true) %></td>
+        <td style="<%= td_style %>">
+          <%= form_for(resound_process, :remote => true, :html => { :style => 'padding: 0; margin: 0;'}) do |f| %>
             <%= f.text_field :confirm_payment_due, :as => :string, :label => false, :class => 'date_picker', :style => 'width: 100px;', "data-behaviour" => 'datepicker' %>
           <% end %>
         </td>
@@ -54,3 +61,5 @@
     <% end %>
   </tbody>
 </table>
+
+<hr>

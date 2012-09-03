@@ -1,3 +1,5 @@
+/* Schedule Assessment */
+
 $('#schedule_assessment').html("<%=j render :partial => 'schedule_assessment', :object => @schedule_assessment %>");
 
 jQuery(function() {
@@ -7,6 +9,7 @@ jQuery(function() {
   });
 });
 
+/* Confirm Payment */
 
 $('#confirm_payment').html("<%=j render :partial => 'confirm_payment', :object => @confirm_payment %>");
 
@@ -17,6 +20,7 @@ jQuery(function() {
   });
 });
 
+/* Upload Assessment */
 
 $('#upload_assessment').html("<%=j render :partial => 'upload_assessment', :object => @upload_assessment %>");
 
@@ -25,4 +29,82 @@ jQuery(function() {
     "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
     sPaginationType: "bootstrap"
   });
+});
+
+/* Schedule Lessons */
+
+$('#schedule_lessons').html("<%=j render :partial => 'schedule_lessons', :object => @schedule_lessons %>");
+
+jQuery(function() {
+  return $('#scheduleLessonsTable').dataTable({
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    sPaginationType: "bootstrap"
+  });
+});
+
+/* Welcome Email */
+
+$('#welcome_email').html("<%=j render :partial => 'welcome_email', :object => @welcome_email %>");
+
+jQuery(function() {
+  return $('#welcomeEmailTable').dataTable({
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    sPaginationType: "bootstrap"
+  });
+});
+
+/* Email Assessment */
+
+$('#email_assessment').html("<%=j render :partial => 'email_assessment', :object => @email_assessment %>");
+
+jQuery(function() {
+  return $('#emailAssessmentTable').dataTable({
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    sPaginationType: "bootstrap"
+  });
+});
+
+/* Next Day Followup */
+
+$('#next_day_followup').html("<%=j render :partial => 'next_day_followup', :object => @next_day_followup %>");
+
+jQuery(function() {
+  return $('#nextDayFollowupTable').dataTable({
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    sPaginationType: "bootstrap"
+  });
+});
+
+/* One Month Followup */
+
+$('#one_month_followup').html("<%=j render :partial => 'one_month_followup', :object => @one_month_followup %>");
+
+jQuery(function() {
+  return $('#oneMonthFollowupTable').dataTable({
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    sPaginationType: "bootstrap"
+  });
+});
+
+/* Four Month Followup */
+
+$('#four_month_followup').html("<%=j render :partial => 'four_month_followup', :object => @four_month_followup %>");
+
+jQuery(function() {
+  return $('#fourMonthFollowupTable').dataTable({
+    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+    sPaginationType: "bootstrap"
+  });
+});
+
+
+$('.on_the_spot_editing').each(initializeOnTheSpot);
+
+$('.checkable').live('change',
+function() {
+  if (confirm('Are you sure?')) {
+    $(this).parents('form:first').submit();
+  } else {
+    $(this).attr('checked', false);
+  }
 });

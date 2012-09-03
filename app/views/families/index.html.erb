@@ -8,6 +8,7 @@
       <th>Student name(s)</th>
       <th>Primary Phone</th>
       <th>Primary Email</th>
+      <th>Status</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -28,6 +29,7 @@
         </td>
         <td><%= number_to_phone(family.phone_number1, :area_code => true) %></td>
         <td><a href="mailto:<%= family.primary_email %>"><%= family.primary_email %></a></td>
+        <td><%= family.status_text %></td>
         <td>
           <%= link_to 'Manage', family, :class => 'btn btn-mini' %>
           <%= link_to 'Edit', edit_family_path(family), :class => 'btn btn-mini' %>

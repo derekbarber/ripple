@@ -7,10 +7,9 @@
     <option value="confirm_payment">Confirm Payment</option>
     <option value="upload_assessment">Upload Assessment</option>
     <option value="schedule_lessons">Schedule Lessons</option>
-    <option value="send_welcome_email">Send Welcome Email</option>
+    <option value="welcome_email">Send Welcome Email</option>
     <option value="email_assessment">Email Assessment</option>
     <option value="next_day_followup">Next Day Follow-up</option>
-    <option value="one_week_followup">One Week Follow-up</option>
     <option value="one_month_followup">One Month Follow-up</option>
     <option value="four_month_followup">Four Month Follow-up</option>
   </select>
@@ -19,7 +18,7 @@
 <p>Include the following Students:</p>
 
 <input type="checkbox" checked="checked"> Active Prospect&nbsp;&nbsp;
-<input type="checkbox" checked="checked"> Customer&nbsp;&nbsp;
+<input type="checkbox"> Customer&nbsp;&nbsp;
 <input type="checkbox"> Nurture Prospect&nbsp;&nbsp;
 <input type="checkbox"> Inactive Prospect&nbsp;&nbsp;
 
@@ -27,27 +26,36 @@
 
 <div id="schedule_assessment">
   <%= render :partial => 'schedule_assessment' %>
-  <hr>
 </div>
-
 
 <div id="confirm_payment">
   <%= render :partial => 'confirm_payment' %>
-  <hr>
 </div>
-
 
 <div id="upload_assessment">
   <%= render :partial => 'upload_assessment' %>
-  <hr>
 </div>
 
 <div id="schedule_lessons">
   <%= render :partial => 'schedule_lessons' %>
-  <hr>
 </div>
 
 <div id="welcome_email">
   <%= render :partial => 'welcome_email' %>
-  <hr>
+</div>
+
+<div id="email_assessment">
+  <%= render :partial => 'email_assessment' %>
+</div>
+
+<div id="next_day_followup">
+  <%= render :partial => 'next_day_followup' %>
+</div>
+
+<div id="one_month_followup">
+  <%= render :partial => 'one_month_followup' %>
+</div>
+
+<div id="four_month_followup">
+  <%= render :partial => 'four_month_followup' %>
 </div>

@@ -35,6 +35,16 @@ class ResoundProcessesController < ApplicationController
     @resound_process = ResoundProcess.find(params[:id])
 
     success = @resound_process.update_attributes(params[:resound_process])
+    
+    if params[:resound_process].include?(:assessment_date)
+      @assessment_date = Time.zone.parse(params[:resound_process][:assessment_date])
+      logger.debug { "ASSESSMENT DATE: #{@assessment_date}"}
+      @resound_process.schedule_assessment = true
+      @confirm_payment_due = @assessment_date + 2.days
+      logger.debug { "CONFIRM PAYMENT DUE DATE: #{@confirm_payment_due}"}
+      @resound_process.confirm_payment_due = @confirm_payment_due.to_s
+      @resound_process.save
+    end
 
     @student_records = ResoundProcess.where("resound_processes.student_id IS NOT NULL")
 

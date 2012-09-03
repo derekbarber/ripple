@@ -65,7 +65,7 @@ class Student < ActiveRecord::Base
     unless (birthday.nil?)
       @birthday_text || birthday.try(:strftime, "%Y-%m-%d")
     else
-      "Not specified"
+      ""
     end
   end
 

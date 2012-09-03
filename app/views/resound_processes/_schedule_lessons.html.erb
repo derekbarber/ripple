@@ -1,7 +1,6 @@
+<h3>Schedule Lessons</h3>
 
-<h3>Upload Assessment</h3>
-
-<table class="table table-striped" id="uploadAssessmentTable">
+<table class="table table-striped" id="scheduleLessonsTable">
   <thead>
     <tr>
       <th>Completed</th>
@@ -13,32 +12,30 @@
     </tr>
   </thead>
   <tbody>
-    <% @upload_assessment.each do |resound_process| %>
+    <% @schedule_lessons.each do |resound_process| %>
       <%
         student = Student.find(resound_process.student_id)
 
         td_style = '';
-        if not resound_process.upload_assessment_due.nil? and resound_process.upload_assessment_due < Date.today
+        if not resound_process.schedule_assessment_due.nil? and resound_process.schedule_assessment_due < Date.today
           td_style = 'background-color: #cd5c5c; color: #eeeeee; font-weight: bold;';
-        elsif not resound_process.upload_assessment_due.nil? and (resound_process.upload_assessment_due == Date.today or resound_process.upload_assessment_due == Date.tomorrow)
+        elsif not resound_process.schedule_assessment_due.nil? and (resound_process.schedule_assessment_due == Date.today or resound_process.schedule_assessment_due == Date.tomorrow)
           td_style = 'background-color: #fafad2; font-weight: bold;';
         end
       %>
       <tr>
-        <td style="<%= td_style %>">
+        <td>
           <%= form_for(resound_process, :remote => true, :html => { :style => 'padding: 0; margin: 0;'}) do |t| %>
             <%= t.hidden_field :id, :value => resound_process.id %>
-            <%= t.hidden_field :schedule_lessons_due, :value => 1.day.from_now %>
-            <%= t.hidden_field :welcome_email_due, :value => 1.day.from_now %>
             <%= t.hidden_field :email_assessment_due, :value => 1.day.from_now %>
             <%= t.hidden_field :welcome_email_due, :value => 1.day.from_now %>
-            <%= t.check_box :upload_assessment,
-               :checked => resound_process.upload_assessment,
+            <%= t.check_box :schedule_lessons,
+               :checked => resound_process.schedule_lessons,
               :class => 'checkable' %>
           <% end %>
         </td>
-        <td style="<%= td_style %>"><%= student.full_name %></td>
-        <td style="<%= td_style %>">
+        <td><%= student.full_name %></td>
+        <td>
           <%=
           if student.family_id && student.family_id > 0
             family = Family.find(student.family_id)
@@ -48,13 +45,13 @@
           end
           %>
         </td>
-        <td style="<%= td_style %>">
-          <%= on_the_spot_edit resound_process, :upload_assessment_note, :type => :textarea, :rows => 5, :columns => 45 %>
+        <td>
+          <%= on_the_spot_edit resound_process, :schedule_lessons_note, :type => :textarea, :rows => 5, :columns => 45 %>
         </td>
-        <td style="<%= td_style %>"><%= link_to "Student Page", student_path(student) %></td>
-        <td style="<%= td_style %>">
+        <td><%= mail_to student.primary_email %></td>
+        <td>
           <%= form_for(resound_process, :remote => true, :html => { :style => 'padding: 0; margin: 0;'}) do |f| %>
-          <%= f.text_field :upload_assessment_due, :as => :string, :label => false, :class => 'date_picker', :style => 'width: 100px;', "data-behaviour" => 'datepicker' %>
+            <%= f.text_field :schedule_lessons_due, :as => :string, :label => false, :class => 'date_picker', :style => 'width: 100px;', "data-behaviour" => 'datepicker' %>
           <% end %>
         </td>
       </tr>

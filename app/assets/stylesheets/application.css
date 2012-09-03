@@ -11,6 +11,7 @@
  *= require_self
  *= require jquery.ui.core
  *= require jquery.ui.theme
+  *= require jquery.ui.dialog
  *= require dataTables/jquery.dataTables.bootstrap
  *= require bootstrap-datepicker
  *= require on_the_spot

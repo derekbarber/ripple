@@ -3,7 +3,7 @@
 <table class="table table-striped" id="scheduleAssessmentTable">
   <thead>
     <tr>
-      <th>Completed</th>
+      <th></th>
       <th>Student</th>
       <th>Family</th>
       <th>Write / View Note</th>
@@ -15,24 +15,51 @@
     <% @schedule_assessment.each do |resound_process| %>
       <%
         student = Student.find(resound_process.student_id)
+
+        td_style = '';
+        if not resound_process.schedule_assessment_due.nil? and resound_process.schedule_assessment_due < Date.today
+          td_style = 'background-color: #cd5c5c; color: #eeeeee; font-weight: bold;';
+        elsif not resound_process.schedule_assessment_due.nil? and (resound_process.schedule_assessment_due == Date.today or resound_process.schedule_assessment_due == Date.tomorrow)
+          td_style = 'background-color: #fafad2; font-weight: bold;';
+        end
       %>
       <tr>
-        <td>
-          <%= form_for(resound_process, :remote => true) do |t| %>
-            <%= t.hidden_field :id, :value => resound_process.id %>
-            <%= t.hidden_field :confirm_payment_due, :value => 2.days.from_now %>
-            <%= t.hidden_field :upload_assessment_due, :value => 2.days.from_now %>
-            <%= t.hidden_field :schedule_lessons_due, :value => 2.days.from_now %>
-            <%= t.hidden_field :welcome_email_due, :value => 2.days.from_now %>
-            <%= t.hidden_field :email_assessment_due, :value => 2.days.from_now %>
-            <%= t.hidden_field :welcome_email_due, :value => 2.days.from_now %>
-            <%= t.check_box :schedule_assessment,
-               :checked => resound_process.schedule_assessment,
-              :class => 'checkable' %>
-          <% end %>
+        <td style="<%= td_style %>">
+          <div id="scheduleAssessmentDate<%= resound_process.id %>" title="Assessment Date Confirmation">
+            <p>When did you schedule the assessment for?</p>
+            <%= form_for(resound_process, :remote => true, :html => { :id => "assessmentDateForm#{resound_process.id}" } ) do |t| %>
+              <%= t.hidden_field :id, :value => resound_process.id %>
+              <%= t.text_field :assessment_date, :as => :string, :label => false, :class => 'date_picker', :style => 'width: 100px;', "data-behaviour" => 'datepicker2' %>
+            <% end %>
+          </div>
+          <input type="checkbox" id="scheduleAssessment<%= resound_process.id %>">
+
+          <script>
+          $('#scheduleAssessmentDate<%= resound_process.id %>').dialog({
+            autoOpen: false,
+            "open": function() {$(this).find(".date_picker").blur();},
+            resizable: false,
+            height: 190,
+            width: 360,
+            modal: true,
+            buttons: {
+              Confirm: function() {
+                $('#assessmentDateForm<%= resound_process.id %>').submit();
+                $( this ).dialog( "close" );
+              },
+              Cancel: function() {
+                $('#scheduleAssessment<%= resound_process.id %>').attr('checked', false);
+                $( this ).dialog( "close" );
+              }
+            }
+          });
+          $('#scheduleAssessment<%= resound_process.id %>').click(function() {
+            $('#scheduleAssessmentDate<%= resound_process.id %>').dialog('open');
+          });
+          </script>
         </td>
-        <td><%= student.full_name %></td>
-        <td>
+        <td style="<%= td_style %>"><%= student.full_name %></td>
+        <td style="<%= td_style %>">
           <%=
           if student.family_id && student.family_id > 0
             family = Family.find(student.family_id)
@@ -42,20 +69,12 @@
           end
           %>
         </td>
-        <td>
+        <td style="<%= td_style %>">
           <%= on_the_spot_edit resound_process, :schedule_assessment_note, :type => :textarea, :rows => 5, :columns => 45 %>
         </td>
-        <td><%= number_to_phone(student.phone_number1, :area_code => true) %></td>
-        <td>
-          <div style="float: right; color: red;">
-          <%= if not resound_process.schedule_assessment_due.nil? and resound_process.schedule_assessment_due < Date.today
-             "Overdue"
-          end
-          %>
-          </div>
-
-          <%= form_for(resound_process, :remote => true) do |f| %>
-          <%#= f.datepicker :schedule_assessment_due %>
+        <td style="<%= td_style %>"><%= number_to_phone(student.phone_number1, :area_code => true) %></td>
+        <td style="<%= td_style %>">
+          <%= form_for(resound_process, :remote => true, :html => { :style => 'padding: 0; margin: 0;'}) do |f| %>
             <%= f.text_field :schedule_assessment_due, :as => :string, :label => false, :class => 'date_picker', :style => 'width: 100px;', "data-behaviour" => 'datepicker' %>
           <% end %>
         </td>
@@ -64,15 +83,4 @@
   </tbody>
 </table>
 
-<script>
-
-$('.checkable').live('change',
-function() {
-  if (confirm('Are you sure?')) {
-    $(this).parents('form:first').submit();
-  } else {
-    $(this).attr('checked', false);
-  }
-});
-
-</script>
+<hr>
