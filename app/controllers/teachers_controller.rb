@@ -95,6 +95,9 @@ class TeachersController < ApplicationController
   end
 
   def import
+    
+    require 'csv'
+
     if request.post? && params[:file].present?
       infile = params[:file].read
       status = params[:status]
