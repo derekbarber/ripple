@@ -1,0 +1,10 @@
+<%= form_tag import_families_path, :method => 'post', :multipart => true do %>
+  <fieldset>
+    <legend>Import Family Records</legend>
+    <p>File:   <%= file_field_tag "file" %></p>
+    <p>Family Type: <%= select_tag("status", options_for_select([["Active Prospect",  0], ["Customer", 1], ["Nurture Prospect", 2], ["Inactive Prospect",  3]], 0)) %></p>
+    <p>
+      <%= submit_tag 'Upload' %>
+    </p>
+  </fieldset>
+<% end %>

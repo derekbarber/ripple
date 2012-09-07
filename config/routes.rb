@@ -11,6 +11,9 @@ Ripple::Application.routes.draw do
 
   match '/next_steps', to: 'resound_processes#next_steps'
   match '/follow_up_calls', to: 'schedule_student#follow_up_calls'
+  
+  match '/import_families', to: 'families#import'
+  match '/import_teachers', to: 'teachers#import'
 
   resources :preferred_teachers
   resources :student_availabilities

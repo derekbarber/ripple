@@ -84,4 +84,61 @@ class FamiliesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def import
+    if request.post? && params[:file].present?
+      infile = params[:file].read
+      status = params[:status]
+      n, errs = 0, []
+
+      CSV.parse(infile) do |row|
+        n += 1
+        # SKIP: header i.e. first row OR blank row
+        next if n == 1 or row.join.blank?
+        # build_from_csv method will map customer attributes &
+        # build new customer record
+        family = Family.build_from_csv(row, status)
+        # Save upon valid
+        # otherwise collect error records to export
+        p family
+        if family.valid?
+          family.save
+        else
+          errs << row
+        end
+      end
+      # Export Error file for later upload upon correction
+      if errs.any?
+        errFile ="errors_#{Date.today.strftime('%d%b%y')}.csv"
+        errs.insert(0, Family.csv_header)
+        errCSV = CSV.generate do |csv|
+          errs.each {|row| csv << row}
+        end
+        send_data errCSV,
+          :type => 'text/csv; charset=iso-8859-1; header=present',
+          :disposition => "attachment; filename=#{errFile}.csv"
+      else
+        flash[:notice] = I18n.t('family.import.success')
+        redirect_to import_url #GET
+      end
+    end
+  end
+
+  def export
+    # CRITERIA : to select family records
+    #=> Family.active.latest.limit(100)
+    families = Family.limit(10)
+    filename ="families_#{Date.today.strftime('%d%b%y')}"
+    csv_data = FasterCSV.generate do |csv|
+      csv << Family.csv_header
+      families.each do |f|
+        csv << f.to_csv
+      end
+    end
+    send_data csv_data,
+      :type => 'text/csv; charset=iso-8859-1; header=present',
+      :disposition => "attachment; filename=#{filename}.csv"
+  end
+
+
 end

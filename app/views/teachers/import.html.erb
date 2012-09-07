@@ -1,0 +1,10 @@
+<%= form_tag import_teachers_path, :method => 'post', :multipart => true do %>
+  <fieldset>
+    <legend>Import Teacher Records</legend>
+    <p>File:   <%= file_field_tag "file" %></p>
+    <p>Family Type: <%= select_tag("status", options_for_select([["Prospective",  0], ["Active", 1], ["Inactive", 2]], 1)) %></p>
+    <p>
+      <%= submit_tag 'Upload' %>
+    </p>
+  </fieldset>
+<% end %>

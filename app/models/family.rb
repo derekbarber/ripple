@@ -29,6 +29,49 @@ class Family < ActiveRecord::Base
     end
   end
 
+  def self.csv_header
+    "First Name,Last Name,Email,Phone,Mobile, Address, FAX, City".split(',')
+  end
+
+  def self.build_from_csv(row, status)
+    family = Family.new
+
+    secondary_email = row[2]
+    if secondary_email == nil
+      secondary_email = ''
+    end
+
+    phone_number1 = row[12]
+    if phone_number1 == nil
+      phone_number1 = ''
+    end
+    
+    phone_number2 = row[13]
+    if phone_number2 == nil
+      phone_number2 = ''
+    end
+
+    family.attributes ={:city => row[0],
+      :primary_email => row[1],
+      :secondary_email => secondary_email,
+      :third_email => row[3],
+      :parent_names => row[4],
+      :family_name => row[5],
+      :notes => row[11],
+      :phone_number1 => phone_number1,
+      :phone_number2 => phone_number2,
+      :street_address => row[14],
+      :postal_code => row[15],
+      :phone_number3 => '',
+      :phone_number4 => '',
+      :status => status}
+    return family
+  end
+
+  def to_csv
+    [family_name, parent_names, email, phone, mobile, address, fax, city]
+  end
+
   protected
 
   def strip_phone_numbers
