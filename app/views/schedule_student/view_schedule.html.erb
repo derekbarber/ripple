@@ -35,21 +35,28 @@
 
       <% @lessons.each do |lesson| %>
 
-        <% student = Student.find(lesson.student_id) %>
-        <% teacher = Teacher.find(lesson.teacher_id) %>
-        <% instrument = Instrument.find(lesson.instrument_id) %>
+        <% 
+        begin
+        %>
+          <% student = Student.find(lesson.student_id) %>
+          <% teacher = Teacher.find(lesson.teacher_id) %>
+          <% instrument = Instrument.find(lesson.instrument_id) %>
 
-        <tr>
-          <td><%= student.full_name %></td>
-          <td><%= teacher.full_name %></td>
-          <td><%= instrument.name %></td>
-          <td><%= lesson.day_of_week %></td>
-          <td><%= lesson.start_time.strftime("%I:%M %p") %> - <%= lesson.end_time.strftime("%I:%M %p") %></td>
-          <td>
-            <%= link_to 'Delete', lesson_path(lesson), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
-          </td>
-      </tr>
-
+          <tr>
+            <td><%= student.full_name %></td>
+            <td><%= teacher.full_name %></td>
+            <td><%= instrument.name %></td>
+            <td><%= lesson.day_of_week %></td>
+            <td><%= lesson.start_time.strftime("%I:%M %p") %> - <%= lesson.end_time.strftime("%I:%M %p") %></td>
+            <td>
+              <%= link_to 'Delete', lesson_path(lesson), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+            </td>
+        </tr>
+        <%
+      rescue ActiveRecord::RecordNotFound => e
+        student = nil
+      end
+      %>
     <% end %>
 
     </tbody>

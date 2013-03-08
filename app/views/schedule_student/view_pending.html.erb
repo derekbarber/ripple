@@ -36,31 +36,35 @@
       <% 
       begin
         student = Student.find(student_instrument.student_id)
+        %>
+
+        <% if student.family_id %>
+          <% family = Family.find(student.family_id) %>
+        <% end %>
+
+        <% instrument = Instrument.find(student_instrument.instrument_id) %>
+
+        <tr>
+          <td><%= student.full_name %></td>
+          <td>
+            <% if family %>
+              <%= family.parent_names %>
+            <% else %>
+              Not part of a family
+            <% end %>
+          </td>
+          <td><%= instrument.name %></td>
+          <td>
+            <%= link_to 'Schedule Lesson', schedule_pending_path(:id => student_instrument.id), :class => 'btn btn-mini' %>
+          </td>
+        </tr>
+        <%
       rescue ActiveRecord::RecordNotFound => e
         student = nil
       end
       %>
 
-      <% if student.family_id %>
-        <% family = Family.find(student.family_id) %>
-      <% end %>
 
-      <% instrument = Instrument.find(student_instrument.instrument_id) %>
-
-      <tr>
-        <td><%= student.full_name %></td>
-        <td>
-          <% if family %>
-            <%= family.parent_names %>
-          <% else %>
-            Not part of a family
-          <% end %>
-        </td>
-        <td><%= instrument.name %></td>
-        <td>
-          <%= link_to 'Schedule Lesson', schedule_pending_path(:id => student_instrument.id), :class => 'btn btn-mini' %>
-        </td>
-      </tr>
 
     <% end %>
 
