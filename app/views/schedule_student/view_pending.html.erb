@@ -33,7 +33,13 @@
 
     <% @student_instruments.each do |student_instrument| %>
 
-      <% student = Student.find(student_instrument.student_id) %>
+      <% 
+      begin
+        student = Student.find(student_instrument.student_id)
+      rescue ActiveRecord::RecordNotFound => e
+        student = nil
+      end
+      %>
 
       <% if student.family_id %>
         <% family = Family.find(student.family_id) %>

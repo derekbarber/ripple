@@ -1,0 +1,53 @@
+// Set the correct sprite paths
+$iconSpritePath: image-path('glyphicons-halflings.png');
+$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
+
+//$navbarBackground: #555;
+//$navbarBackgroundHighlight: #888;
+//$navbarText: #eee;
+//$navbarLinkColor: #eee;
+
+@import "bootswatch/united/variables";
+@import "bootstrap";
+
+body { padding-top: 60px; }
+
+@import "bootstrap-responsive";
+
+//.navbar .brand {
+//  color: #FAFFB8;
+//}
+
+//.sidebar-nav {
+//  padding: 9px 0;
+//}
+
+@import "bootswatch/united/bootswatch";
+
+.main-unit {
+  padding: 20px;
+  margin-bottom: 30px;
+  background-color: #f5f5f5;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+.form-horizontal .wide-controls {
+  margin-left: 10px;
+}
+
+.content-box {
+  padding: 10px;
+  float: left;
+  width: 350px;
+  margin-right: 60px;
+}
+
+.controls-box {
+  float: right;
+  width: 350px;
+}
+
+.content-clear {
+  clear: both;
+}
